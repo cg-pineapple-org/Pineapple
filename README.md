@@ -1,5 +1,5 @@
 # Pineapple project
-## Team members:
+## Team Members:
 ### 1. Hoang Ngoc Tuan
 ### 2. Lam Vi Nguyen
 ### 3. Nguyen Luong Chi Binh
