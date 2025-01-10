@@ -1,7 +1,5 @@
 package com.codegym.pineapple.controller;
 
-//import com.codegym.service.StudentService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
