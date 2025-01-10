@@ -5,6 +5,6 @@
          version="4.0">
     <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>/assets/*</url-pattern>
+        <url-pattern>/static/*</url-pattern>
     </servlet-mapping>
 </web-app>
