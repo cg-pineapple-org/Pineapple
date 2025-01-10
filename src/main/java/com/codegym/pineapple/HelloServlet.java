@@ -1,6 +1,10 @@
 package com.codegym.pineapple;
 
+import com.codegym.pineapple.connection.JdbcConnection;
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.io.*;
+import java.sql.Connection;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -13,6 +17,8 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Connection connection = JdbcConnection.getConnection();
+        System.out.println("env file:" + connection);
         response.setContentType("text/html");
 
         // Hello
