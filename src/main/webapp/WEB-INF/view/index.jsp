@@ -133,9 +133,9 @@
                 <div class="row">
                     <div class="col-md-2 nav-left">
                         <!-- logo -->
-                        <strong class="logo">
-                            <a href="index.html"><img src="assets/images/den-trang.png" alt="logo"></a>
-                        </strong>
+<%--                        <strong class="logo">--%>
+<%--                            <a href="index.html"><img src="assets/images/den-trang.png" alt="logo"></a>--%>
+<%--                        </strong>--%>
                         <!-- logo -->
                     </div>
                     <div class="col-md-8 nav-mind">
@@ -287,6 +287,11 @@
                         <div class="header-menu header-menu-resize">
                             <ul class="header-nav dagon-nav">
                                 <li class="btn-close hidden-md"><i class="flaticon-close" aria-hidden="true"></i></li>
+                                <li>
+                                    <strong class="logo">
+                                        <a href="index.html"><img src="assets/images/den-trang.svg" alt="logo"></a>
+                                    </strong>
+                                </li>
                                 <li class="menu-item-has-children arrow">
                                     <a href="index.html">Home</a>
                                     <span class="toggle-submenu hidden-md"></span>
