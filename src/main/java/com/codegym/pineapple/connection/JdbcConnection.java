@@ -1,6 +1,8 @@
 package com.codegym.pineapple.connection;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,6 +16,8 @@ public class JdbcConnection {
     private static final String USERNAME = dotenv.get("JDBC_USERNAME");
     private static final String PASSWORD = dotenv.get("JDBC_PASSWORD");
 
+    private static final Logger logger = LogManager.getLogger(JdbcConnection.class);
+
     public static Connection getConnection(){
         Connection connection;
         try{
@@ -23,12 +27,10 @@ public class JdbcConnection {
             return connection;
         }
         catch (ClassNotFoundException e){
-            System.out.println("No driver found");
-            e.printStackTrace();
+            logger.error("Driver not found{}", e.getMessage());
         }
         catch (SQLException e){
-            System.out.println("Something is wrong");
-            e.printStackTrace();
+            logger.error("Error{}", e.getMessage());
         }
         return null;
     }
