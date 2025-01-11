@@ -23,6 +23,8 @@ public class ProductDetailController extends HttpServlet {
                 List<List> list = ProductService.getInstance().getProductDetailByProductId(id);
                 req.setAttribute("product", list.get(1).get(0));
                 req.setAttribute("product_details", list.get(0));
+                req.setAttribute("related_products", list.get(2));
+                req.setAttribute("category", list.get(3).get(0));
                 req.getRequestDispatcher("WEB-INF/view/product/product_detail.jsp").forward(req, resp);
                 break;
         }
