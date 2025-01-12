@@ -685,7 +685,7 @@
                                     </div>
                                 </div>
                                 <div class="product-innfo">
-                                    <div class="product-name"><a href="<c:url value="/product_details?id=${related_product.id}"/>">${related_product.name}</a></div>
+                                    <div class="product-name"><a href="<c:url value="/products/detail?id=${related_product.id}"/>">${related_product.name}</a></div>
 <%--                                    <div class="group-btn-hover style2">--%>
 <%--                                        <a href="#" class="add-to-cart"><i class="flaticon-shopping-cart"--%>
 <%--                                                                           aria-hidden="true"></i></a>--%>
