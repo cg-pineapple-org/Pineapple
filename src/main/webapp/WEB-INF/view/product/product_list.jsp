@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/owl.carousel.css"/>">
     <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/chosen.css"/>">
     <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/jquery.bxslider.css"/>">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/style.css"/>">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
           rel="stylesheet">
@@ -573,127 +574,66 @@
         </div>
     </header><!-- end HEADER -->
     <!-- MAIN -->
-    <main class="site-main color-${product_details[0].id}" id="site-main">
-        <div class="container">
-            <ol class="breadcrumb-page">
-                <li><a href="<c:url value="/"/>">Home </a></li>
-                <li class="active"><a href="#">Detail</a></li>
+    <main class="site-main" id="site-main">
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Product management</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="<c:url value="/"/>">Home</a>
+                </li>
+                <li class="breadcrumb-item active"><a href="#">Product table</a></li>
             </ol>
-        </div>
-        <c:forEach items="${product_details}" var="product_detail">
-            <div class="container pineapple-custom color-${product_detail.id}">
-                <div class="product-content-single">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12 padding-right">
-                            <div class="product-media">
-                                <div class="image-preview-container image-thick-box image_preview_container">
-                                    <img id="img_zoom" data-zoom-image="assets/images/detail/thick-box-1.jpg"
-                                         src="assets/images/detail/thick-box.jpg" alt="">
-                                    <a href="#" class="btn-zoom open_qv"><i class="flaticon-magnifying-glass"
-                                                                            aria-hidden="true"></i></a>
-                                </div>
-                                <div class="product-preview image-small product_preview">
-                                    <div id="thumbnails" class="thumbnails_carousel owl-carousel nav-style4"
-                                         data-nav="true"
-                                         data-autoplay="false" data-dots="false" data-loop="true" data-margin="10"
-                                         data-responsive='{"0":{"items":3},"480":{"items":5},"600":{"items":5},"1000":{"items":5}}'>
-                                        <a href="#" data-image="assets/images/detail/thick-box-1.jpg"
-                                           data-zoom-image="assets/images/detail/thick-box-1.jpg">
-                                            <img src="assets/images/detail/i1.jpg"
-                                                 data-large-image="assets/images/detail/thick-box-1.jpg" alt="i1">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="product-info-main">
-                                <div class="product-name"><a href="#"><c:out value="${product.name}"/> </a></div>
-                                <div class="product-info-stock-sku">
-                                    <div class="stock available">
-                                        <span class="label-stock">Availability: </span>
-                                        <c:choose>
-                                            <c:when test="${product_detail.amount > 0}">
-                                                In Stock
-                                            </c:when>
-                                            <c:otherwise>
-                                                Out of stock
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </div>
-                                </div>
-                                <div class="product-infomation">
-                                    <c:forEach items="${product_details}" var="product_detail_color">
-                                        <button type="button" class="block btn color-${product_detail_color.id}-btn"
-                                                style="background-color: ${product_detail_color.color}; color: ${product_detail_color.color}">
-                                            a
-                                        </button>
-                                    </c:forEach>
-
-                                </div>
-                                <div class="product-info-price">
-                                <span class="price">
-
-                                    <ins>$<c:out value="${product_detail.price}"/></ins>
-
-                                </span>
-                                    <div class="quantity">
-                                        <h6 class="quantity-title">Quantity:</h6>
-                                        <div class="buttons-added">
-                                            <input type="text" value="1" max="${product_detail.amount}" title="Qty"
-                                                   class="input-text qty text" size="1">
-                                            <a href="#" class="sign plus"><i class="fa fa-plus"></i></a>
-                                            <a href="#" class="sign minus"><i class="fa fa-minus"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="single-add-to-cart">
-                                        <a href="#" class="btn-add-to-cart">Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Product table
                 </div>
-                <div class="tab-details-product">
-                    <ul class="box-tab nav-tab">
-                        <li class="active"><a data-toggle="tab" href="#tab-1">Description</a></li>
-                    </ul>
-                    <div class="tab-container">
-                        <div id="tab-1" class="tab-panel active">
-                            <div class="box-content">
-                                <p>
-                                    <c:out value="${product_detail.description}"/>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </c:forEach>
-        <div class="block-recent-view single">
-            <div class="container">
-                <div class="title-of-section">You may be also interested</div>
-                <div class="owl-carousel nav-style2 border-background equal-container" data-nav="true"
-                     data-autoplay="false" data-dots="false" data-loop="true" data-margin="30"
-                     data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4},"1200":{"items":4}}'>
-                    <c:forEach items="${related_products}" var="related_product">
-                        <div class="product-item style1">
-                            <div class="product-inner equal-elem">
-                                <div class="product-thumb">
-                                    <div class="thumb-inner">
-<%--                                        <a href="#"><img src="assets/images/home1/r1.jpg" alt="r1"></a>--%>
-                                    </div>
-                                </div>
-                                <div class="product-innfo">
-                                    <div class="product-name"><a href="<c:url value="/products/detail?id=${related_product.id}"/>">${related_product.name}</a></div>
-<%--                                    <div class="group-btn-hover style2">--%>
-<%--                                        <a href="#" class="add-to-cart"><i class="flaticon-shopping-cart"--%>
-<%--                                                                           aria-hidden="true"></i></a>--%>
-<%--                                    </div>--%>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                        <tr>
+                            <th>
+                                <a class="btn btn-success" style="color: white !important;" href="<c:url value="/products/add"/>">Add product</a>
+                            </th>
+                            <th>Id</th>
+                            <th>Category</th>
+                            <th>Product</th>
+                            <th>Color</th>
+                            <th>Stock</th>
+                            <th>Description</th>
+                            <th>
+                                <a class="btn btn-success" style="color: white !important;" href="<c:url value="/products/add"/>">Add product</a>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${product_list}" var="product">
+                            <tr>
+                                <td>
+                                    <a class="btn btn-primary"
+                                       href="<c:url value="/products/detail?id=${product['product_detail'].productId}"/>">Detail</a>
+                                    <a class="btn btn-warning"
+                                       href="<c:url value="/students/edit?id=${product['product_detail'].id}"/>">Edit</a>
+                                    <a class="btn btn-danger"
+                                       href="<c:url value="/students/remove?id=${product['product_detail'].id}"/>">Delete</a>
+                                </td>
+                                <td>${product['product_detail'].id}</td>
+                                <td>${product['category'].name}</td>
+                                <td>${product['product'].name}</td>
+                                <td>${product['product_detail'].color}</td>
+                                <td>${product['product_detail'].amount}</td>
+                                <td>${product['product_detail'].description}</td>
+                                <td>
+                                    <a class="btn btn-primary"
+                                       href="<c:url value="/products/detail?id=${product.product_detail.productId}"/>">Detail</a>
+                                    <a class="btn btn-warning"
+                                       href="<c:url value="/students/edit?id=${product.product_detail.id}"/>">Edit</a>
+                                    <a class="btn btn-danger"
+                                       href="<c:url value="/students/remove?id=${product.product_detail.id}"/>">Delete</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -849,9 +789,12 @@
 <script type="text/javascript" src=" <c:url value="/assets/js/Modernizr.js"/>"></script>
 <script type="text/javascript" src=" <c:url value="/assets/js/jquery.plugin.js"/>"></script>
 <script type="text/javascript" src=" <c:url value="/assets/js/jquery.countdown.js"/>"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+<script src="<c:url value='/assets/js/datatables-simple-demo.js'/>"></script>
 
 <script>
-    $('#test-press').click(function (){
+    $('#test-press').click(function () {
         console.log("test");
     });
     <c:forEach items="${product_details}" var="product_detail">

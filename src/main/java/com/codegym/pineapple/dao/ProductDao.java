@@ -13,7 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class ProductDao {
@@ -161,6 +163,51 @@ public class ProductDao {
         List<List> resultList = new ArrayList<>();
         resultList.add(productList);
         resultList.add(categoryList);
+        return resultList;
+    }
+
+    public List<Map<String, Object>> findAllProduct(){
+        List<Map<String, Object>> resultList = new ArrayList();
+
+        Map<String, Object> objectMap;
+
+        Category category;
+        Product product;
+        ProductDetail productDetail;
+
+        try{
+            Connection connection = JdbcConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_FIND_ALL_PRODUCT);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                objectMap = new HashMap<>();
+                category = new Category();
+                product = new Product();
+                productDetail = new ProductDetail();
+
+                category.setName(resultSet.getString("c.name"));
+
+                product.setName(resultSet.getString("p.name"));
+
+                productDetail.setId(resultSet.getInt("pd.id"));
+                productDetail.setColor(resultSet.getString("pd.color"));
+                productDetail.setAmount(resultSet.getInt("pd.amount"));
+                productDetail.setPrice(resultSet.getDouble("pd.price"));
+                productDetail.setDescription(resultSet.getString("pd.description"));
+                productDetail.setProductId(resultSet.getInt("pd.product_id"));
+
+                objectMap.put("category", category);
+                objectMap.put("product", product);
+                objectMap.put("product_detail", productDetail);
+
+                resultList.add(objectMap);
+            }
+            connection.close();
+        }
+        catch (SQLException e){
+            logger.error("Database error while finding all products{}", e.getMessage());
+        }
         return resultList;
     }
 }

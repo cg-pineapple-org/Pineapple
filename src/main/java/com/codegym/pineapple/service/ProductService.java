@@ -5,6 +5,7 @@ import com.codegym.pineapple.model.Product;
 import com.codegym.pineapple.model.ProductDetail;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class ProductService {
@@ -29,5 +30,9 @@ public class ProductService {
 
     public List<List> getProductDetailByProductId(Integer id){
         return ProductDao.getInstance().findProductDetailByProductId(id);
+    }
+
+    public List<Map<String, Object>> getAllProducts(){
+        return ProductDao.getInstance().findAllProduct();
     }
 }
