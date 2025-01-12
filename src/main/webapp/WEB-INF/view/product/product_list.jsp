@@ -22,11 +22,6 @@
           rel="stylesheet">
 
     <style>
-        <c:forEach items="${product_details}" var="product_detail" >
-        .color-${product_detail.id} .pineapple-custom:not(.color-${product_detail.id}),
-        </c:forEach> .default .default {
-            display: none;
-        }
     </style>
 
 </head>
@@ -794,14 +789,6 @@
 <script src="<c:url value='/assets/js/datatables-simple-demo.js'/>"></script>
 
 <script>
-    $('#test-press').click(function () {
-        console.log("test");
-    });
-    <c:forEach items="${product_details}" var="product_detail">
-    $('.color-${product_detail.id}-btn').click(function () {
-        $('#site-main').removeAttr('class').addClass('site-main color-${product_detail.id}');
-    });
-    </c:forEach>
 </script>
 </body>
 </html>

@@ -851,9 +851,6 @@
 <script type="text/javascript" src=" <c:url value="/assets/js/jquery.countdown.js"/>"></script>
 
 <script>
-    $('#test-press').click(function (){
-        console.log("test");
-    });
     <c:forEach items="${product_details}" var="product_detail">
     $('.color-${product_detail.id}-btn').click(function () {
         $('#site-main').removeAttr('class').addClass('site-main color-${product_detail.id}');
