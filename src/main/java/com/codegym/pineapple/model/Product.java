@@ -3,20 +3,20 @@ package com.codegym.pineapple.model;
 public class Product {
     private Integer id;
     private String name;
-    private Integer categoriesId;
+    private Integer categoryId;
 
     public Product() {
     }
 
-    public Product(String name, Integer categoriesId) {
+    public Product(String name, Integer categoryId) {
         this.name = name;
-        this.categoriesId = categoriesId;
+        this.categoryId = categoryId;
     }
 
-    public Product(Integer id, String name, Integer categoriesId) {
+    public Product(Integer id, String name, Integer categoryId) {
         this.id = id;
         this.name = name;
-        this.categoriesId = categoriesId;
+        this.categoryId = categoryId;
     }
 
     public Integer getId() {
@@ -35,11 +35,11 @@ public class Product {
         this.name = name;
     }
 
-    public Integer getCategoriesId() {
-        return categoriesId;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoriesId(Integer categoriesId) {
-        this.categoriesId = categoriesId;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 }

@@ -5,6 +5,7 @@ import com.codegym.pineapple.model.Product;
 import com.codegym.pineapple.model.ProductDetail;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductService {
     private static ProductService productService = null;
@@ -12,7 +13,7 @@ public class ProductService {
     private ProductService(){}
 
     public static ProductService getInstance(){
-        if (productService == null){
+        if (!Optional.ofNullable(productService).isPresent()){
             productService = new ProductService();
         }
         return productService;

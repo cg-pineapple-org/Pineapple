@@ -1,6 +1,7 @@
 package com.codegym.pineapple.dao;
 
 import com.codegym.pineapple.connection.JdbcConnection;
+import com.codegym.pineapple.constant.QueryConstant;
 import com.codegym.pineapple.model.Category;
 import com.codegym.pineapple.model.Product;
 import com.codegym.pineapple.model.ProductDetail;
@@ -13,20 +14,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ProductDao {
     private static final Logger logger = LoggerFactory.getLogger(ProductDao.class);
-    private final String QUERY_FIND_PRODUCT = "select id, name from products where id = ?;";
-    private final String QUERY_FIND_PRODUCT_DETAIL = "select id, color, amount, price, description from product_details where id = ?;";
-    private final String QUERY_FIND_PRODUCT_DETAIL_BY_PRODUCT_ID = "select pd.id, pd.color, pd.amount, pd.price, pd.description, pd.product_id, p.name, p.categories_id from product_details pd inner join products p on pd.product_id = p.id where pd.product_id = ?;";
-    private final String QUERY_FIND_PRODUCT_BY_CATEGORIES_ID = "select p.id, p.name, p.categories_id, c.name from products p inner join categories c on p.categories_id = c.id where p.categories_id = ?;";
+    private final Integer DEFAULT_CATEGORY_ID = 1;
 
     private static ProductDao productDao = null;
 
     private ProductDao(){}
 
     public static ProductDao getInstance(){
-        if (productDao == null){
+        if (!Optional.ofNullable(productDao).isPresent()){
             productDao = new ProductDao();
         }
         return productDao;
@@ -37,7 +36,7 @@ public class ProductDao {
 
         try{
             Connection connection = JdbcConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_FIND_PRODUCT);
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_FIND_PRODUCT);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -58,7 +57,7 @@ public class ProductDao {
 
         try{
             Connection connection = JdbcConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_FIND_PRODUCT_DETAIL);
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_FIND_PRODUCT_DETAIL);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -85,11 +84,11 @@ public class ProductDao {
 
         ProductDetail productDetail;
         Product product;
-        Integer categoryId = 1;
+        Integer defaultCategoryId = DEFAULT_CATEGORY_ID;
 
         try{
             Connection connection = JdbcConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_FIND_PRODUCT_DETAIL_BY_PRODUCT_ID);
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_FIND_PRODUCT_DETAIL_BY_PRODUCT_ID);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -107,28 +106,31 @@ public class ProductDao {
 
                 product.setId(resultSet.getInt("pd.product_id"));
                 product.setName(resultSet.getString("p.name"));
-                product.setCategoriesId(resultSet.getInt("p.categories_id"));
+                product.setCategoryId(resultSet.getInt("p.category_id"));
 
-                categoryId = product.getCategoriesId();
+                defaultCategoryId = product.getCategoryId();
 
                 productList.add(product);
             }
 
-
-            tempList = findProductByCategory(categoryId, connection);
+            tempList = findProductByCategory(defaultCategoryId, connection);
 
             connection.close();
         }
         catch (SQLException e){
             logger.error("Database error while finding product detail related to product{}", e.getMessage());
         }
-        List<List> list = new ArrayList<>();
-        list.add(productDetailList);
-        list.add(productList);
-        list.add(tempList.get(0));
-        list.add(tempList.get(1));
+        List<List> resultList = new ArrayList<>();
+        resultList.add(productDetailList);
+        resultList.add(productList);
 
-        return list;
+        List<Product> relatedProductList = tempList.get(0);
+        List<Category> categoryList = tempList.get(1);
+
+        resultList.add(relatedProductList);
+        resultList.add(categoryList);
+
+        return resultList;
     }
 
     public List<List> findProductByCategory(Integer id, Connection connection) throws SQLException{
@@ -138,7 +140,7 @@ public class ProductDao {
         Product product;
         Category category;
 
-        PreparedStatement preparedStatement = connection.prepareStatement(QUERY_FIND_PRODUCT_BY_CATEGORIES_ID);
+        PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_FIND_PRODUCT_BY_CATEGORY_ID);
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -146,19 +148,19 @@ public class ProductDao {
             product = new Product();
             product.setId(resultSet.getInt("p.id"));
             product.setName(resultSet.getString("p.name"));
-            product.setCategoriesId(resultSet.getInt("p.categories_id"));
+            product.setCategoryId(resultSet.getInt("p.category_id"));
 
             productList.add(product);
 
             category = new Category();
-            category.setId(resultSet.getInt("p.categories_id"));
+            category.setId(resultSet.getInt("p.category_id"));
             category.setName(resultSet.getString("c.name"));;
 
             categoryList.add(category);
         }
-        List<List> list = new ArrayList<>();
-        list.add(productList);
-        list.add(categoryList);
-        return list;
+        List<List> resultList = new ArrayList<>();
+        resultList.add(productList);
+        resultList.add(categoryList);
+        return resultList;
     }
 }
