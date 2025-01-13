@@ -44,4 +44,5 @@ bin/
 
 /.env
 src/main/resources/.env
+src/main/resources/.env.example
 *.*~
