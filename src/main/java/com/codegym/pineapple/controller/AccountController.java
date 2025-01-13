@@ -75,10 +75,10 @@ public class AccountController extends HttpServlet {
                 String confirmPassword = req.getParameter("confirmPassword");
                 try {
                     if (Objects.equals(accountService.register(firstName, lastName, country, dayOfBirth, email, phone, username, password, confirmPassword), "Registration successful!")) {
-                        req.setAttribute("message", "Registration successful!");
+                        req.setAttribute("message", accountService.register(firstName, lastName, country, dayOfBirth, email, phone, username, password, confirmPassword));
                         req.getRequestDispatcher("/WEB-INF/view/account/login.jsp").forward(req, resp);
                     } else {
-                        req.setAttribute("message", accountService.register(firstName, lastName, country, dayOfBirth, email, phone, username, password, confirmPassword));
+                        req.setAttribute("message", "Registration failed!");
                         req.getRequestDispatcher("/WEB-INF/view/account/register.jsp").forward(req, resp);
                     }
                 } catch (Exception e) {
