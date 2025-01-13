@@ -10,9 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AccountDAO {
+public class AuthDAO {
 
-    private static final Logger logger = LogManager.getLogger(AccountDAO.class);
+    private static final Logger logger = LogManager.getLogger(AuthDAO.class);
 
 
     public String getPasswordByUsername(String username) {
@@ -58,16 +58,16 @@ public class AccountDAO {
         return false;
     }
 
-    public boolean createUser(String firstName, String lastName, String country,
-                              String dayOfBirth, String phone, String email, String username, String hashedPassword) {
+    public boolean createUser(String first_name, String last_name, String country,
+                              String day_of_birth, String email, String phone, String username, String hashedPassword) {
         try (Connection connection = JdbcConnection.getConnection()) {
             connection.setAutoCommit(false);
 
             try (PreparedStatement userStatement = connection.prepareStatement(QueryConstant.QUERY_ADD_USER)) {
-                userStatement.setString(1, firstName);
-                userStatement.setString(2, lastName);
+                userStatement.setString(1, first_name);
+                userStatement.setString(2, last_name);
                 userStatement.setString(3, country);
-                userStatement.setString(4, dayOfBirth);
+                userStatement.setString(4, day_of_birth);
                 userStatement.setString(5, email);
                 userStatement.setString(6, phone);
                 userStatement.setInt(7, 2);

@@ -2,39 +2,39 @@ package com.codegym.pineapple.model;
 
 public class User {
     private Integer id;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private String country;
-    private String date_of_birth;
+    private String dateOfBirth;
     private String email;
     private String phone;
-    private Integer role_id;
-    private Integer cart_id;
+    private Integer roleId;
+    private Integer cartId;
 
     public User() {
     }
 
-    public User(String first_name, String last_name, String country, String date_of_birth, String email, String phone, Integer role_id, Integer cart_id) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public User(String firstName, String lastName, String country, String dateOfBirth, String email, String phone, Integer roleId, Integer cartId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.country = country;
-        this.date_of_birth = date_of_birth;
+        this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phone = phone;
-        this.role_id = role_id;
-        this.cart_id = cart_id;
+        this.roleId = roleId;
+        this.cartId = cartId;
     }
 
-    public User(Integer id, String first_name, String last_name, String country, String date_of_birth, String email, String phone, Integer role_id, Integer cart_id) {
+    public User(Integer id, String firstName, String lastName, String country, String dateOfBirth, String email, String phone, Integer roleId, Integer cartId) {
         this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.country = country;
-        this.date_of_birth = date_of_birth;
+        this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phone = phone;
-        this.role_id = role_id;
-        this.cart_id = cart_id;
+        this.roleId = roleId;
+        this.cartId = cartId;
     }
 
     public Integer getId() {
@@ -45,20 +45,20 @@ public class User {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getCountry() {
@@ -69,12 +69,12 @@ public class User {
         this.country = country;
     }
 
-    public String getDate_of_birth() {
-        return date_of_birth;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDate_of_birth(String date_of_birth) {
-        this.date_of_birth = date_of_birth;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getEmail() {
@@ -93,19 +93,19 @@ public class User {
         this.phone = phone;
     }
 
-    public Integer getRole_id() {
-        return role_id;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setRole_id(Integer role_id) {
-        this.role_id = role_id;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
-    public Integer getCart_id() {
-        return cart_id;
+    public Integer getCartId() {
+        return cartId;
     }
 
-    public void setCart_id(Integer cart_id) {
-        this.cart_id = cart_id;
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
     }
 }

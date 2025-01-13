@@ -1,32 +1,28 @@
 package com.codegym.pineapple.service;
 
-import com.codegym.pineapple.dao.AccountDAO;
+import com.codegym.pineapple.dao.AuthDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.Optional;
 
-public class AccountService {
-    private final AccountDAO accountDAO;
-    private static final Logger logger = LogManager.getLogger(AccountDAO.class);
+public class AuthService {
+    private final AuthDAO authDAO;
+    private static final Logger logger = LogManager.getLogger(AuthDAO.class);
 
-    public AccountService() {
-        this.accountDAO = new AccountDAO();
+    public AuthService() {
+        this.authDAO = new AuthDAO();
     }
 
     public boolean login(String username, String password) {
-        if (!accountDAO.checkUsernameExists(username)) {
+        if (!authDAO.checkUsernameExists(username)) {
             logger.error("Username does not exist.");
             return false;
         }
 
-        String storedPassword = accountDAO.getPasswordByUsername(username);
-        if (!Optional.ofNullable(accountDAO).isPresent()) {
+        String storedPassword = authDAO.getPasswordByUsername(username);
+        if (!Optional.ofNullable(authDAO).isPresent()) {
             logger.error("No password found for the user.");
             return false;
         }
@@ -64,13 +60,13 @@ public class AccountService {
             return "Passwords do not match!";
         }
 
-        if (accountDAO.checkEmailExist(email) || accountDAO.checkUsernameExists(username)) {
+        if (authDAO.checkEmailExist(email) || authDAO.checkUsernameExists(username)) {
             return "Email already exists!";
         }
 
         String hashedPassword = hashPassword(password);
 
-        accountDAO.createUser(firstName, lastName, country, dayOfBirth, email, phone, username, hashedPassword);
+        authDAO.createUser(firstName, lastName, country, dayOfBirth, email, phone, username, hashedPassword);
 
         return "Registration successful!";
     }

@@ -559,39 +559,56 @@
         <div class="container">
             <ol class="breadcrumb-page">
                 <li><a href="index.html">Home </a></li>
-                <li class="active"><a href="#">Login</a></li>
+                <li class="active"><a href="#">Register</a></li>
             </ol>
         </div>
         <div class="customer-login">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <h5 class="title-login">Log in to your account</h5>
-                        <p class="p-title-login">Wellcome to your account.</p>
-                        <c:if test="${not empty errorMessage}">
+                    <div class="col-sm-6 border-after">
+                        <h5 class="title-login">Great an account</h5>
+                        <c:if test="${not empty message}">
                             <div class="error-message">${errorMessage}</div>
                         </c:if>
-                        <form class="login" method="post" action="<c:url value='/account/login' />">
-                            <p class="form-row form-row-wide">
-                                <label>Username or Email Address:<span class="required"></span></label>
-                                <input type="text" value="" name="username"
-                                       placeholder="Type your username or email address" class="input-text" required>
+                        <form class="register" method="post" action="<c:url value='/auth/register' />">
+                            <p class="form-row form-row-wide col-md-6 padding-left">
+                                <label>First name<span class="required">*</span></label>
+                                <input type="text" value="" name="first_name" placeholder="First name" class="input-text">
+                            </p>
+                            <p class="form-row form-row-wide col-md-6 padding-right">
+                                <label>Last Name<span class="required"></span></label>
+                                <input title="lastname" type="text" value="" name="last_name" class="input-text">
                             </p>
                             <p class="form-row form-row-wide">
+                                <label>Country<span class="required">*</span></label>
+                                <input title="country" type="text" name="country" placeholder="Country" class="input-text">
+                            </p>
+                            <p class="form-row form-row-wide">
+                                <label>Day of Birth<span class="required">*</span></label>
+                                <input title="day of birth" type="text" name="day_of_birth" placeholder="" class="input-text">
+                            </p>
+                            <p class="form-row form-row-wide">
+                                <label>Email<span class="required">*</span></label>
+                                <input title="email" type="email" name="email" placeholder="Email address" class="input-text">
+                            </p>
+                            <p class="form-row form-row-wide">
+                                <label>Username<span class="required">*</span></label>
+                                <input title="username" type="text" name="username" placeholder="Username" class="input-text">
+                            </p>
+                            <p class="form-row form-row-wide col-md-6 padding-left">
                                 <label>Password:<span class="required"></span></label>
-                                <input type="password" name="password" placeholder="************" class="input-text" required>
+                                <input title="pass" type="password" name="password" class="input-text">
                             </p>
-                            <ul class="inline-block">
-                                <li>
-                                    <label class="inline">
-                                        <input type="checkbox" name="rememberMe">
-                                        <span class="input"></span> Remember me
-                                    </label>
-                                </li>
-                            </ul>
-                            <a href="#" class="forgot-password">Forgotten password?</a>
+                            <p class="form-row form-row-wide col-md-6 padding-right">
+                                <label>Confirm Password<span class="required">*</span></label>
+                                <input title="pass2" type="password" name="confirmPassword" class="input-text">
+                            </p>
+                            <p class="form-row form-row-wide">
+                                <label>Phone Number<span class="required">*</span></label>
+                                <input title="phone" type="text" name="phone" placeholder="Phone Number" class="input-text">
+                            </p>
                             <p class="form-row">
-                                <input type="submit" value="Login" name="login" class="button-submit">
+                                <input type="submit" value="Submit" name="Submit" class="button-submit">
                             </p>
                         </form>
                     </div>
