@@ -7,17 +7,26 @@ public class Cart {
     private Integer id;
     private Integer userId;
     private List<CartItem> cartItems;
-    private double totalPrice;
+    private Double totalPrice = 0d;
+    private int numberOfItem;
 
     public Cart() {
         cartItems = new ArrayList<>();
     }
 
-    public Cart(Integer id, Integer userId, List<CartItem> cartItems, double totalPrice) {
+    public Cart(Integer userId, List<CartItem> cartItems, Double totalPrice, int numberOfItem) {
+        this.userId = userId;
+        this.cartItems = cartItems;
+        this.totalPrice = totalPrice;
+        this.numberOfItem = numberOfItem;
+    }
+
+    public Cart(Integer id, Integer userId, List<CartItem> cartItems, Double totalPrice, int numberOfItem) {
         this.id = id;
         this.userId = userId;
         this.cartItems = cartItems;
         this.totalPrice = totalPrice;
+        this.numberOfItem = numberOfItem;
     }
 
     public Integer getId() {
@@ -44,12 +53,20 @@ public class Cart {
         this.cartItems = cartItems;
     }
 
-    public double getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public int getNumberOfItem() {
+        return numberOfItem;
+    }
+
+    public void setNumberOfItem(int numberOfItem) {
+        this.numberOfItem = numberOfItem;
     }
 
     public void add(CartItem item) {
@@ -58,6 +75,6 @@ public class Cart {
 
     public void clear() {
         this.cartItems.clear();
-        this.totalPrice = 0;
+        this.totalPrice = 0d;
     }
 }

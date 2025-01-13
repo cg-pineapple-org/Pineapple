@@ -16,6 +16,8 @@ public class CartService {
 
     public Cart getCart(Integer userId) {
         Cart cart = cartDao.getCart(userId);
+        cart.setTotalPrice(cartDao.getCartTotalPrice(userId, cart));
+        cart.setNumberOfItem(cartDao.getNumberOfItem(userId, cart));
         if (Optional.ofNullable(cart).isPresent()) {
             return cart;
         }

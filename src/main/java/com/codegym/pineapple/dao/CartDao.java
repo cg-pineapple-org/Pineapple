@@ -1,9 +1,9 @@
 package com.codegym.pineapple.dao;
 
 import com.codegym.pineapple.connection.JdbcConnection;
+import com.codegym.pineapple.constant.QueryConstant;
 import com.codegym.pineapple.model.Cart;
 import com.codegym.pineapple.model.CartItem;
-import com.codegym.pineapple.model.Product;
 import com.codegym.pineapple.model.ProductDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,14 +19,7 @@ public class CartDao {
         Cart cart = new Cart();
         try {
             Connection connection = JdbcConnection.getConnection();
-            String query = "SELECT p.name, pd.color, ci.quantity, pd.price\n" +
-                    "FROM carts c\n" +
-                    "JOIN users u ON u.cart_id = c.id\n" +
-                    "JOIN cart_items ci ON ci.cart_id = c.id\n" +
-                    "JOIN product_details pd ON ci.product_detail_id = pd.id\n" +
-                    "JOIN products p ON p.id = pd.product_id\n" +
-                    "WHERE c.user_id = 1;";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_LIST_CART_ITEMS);
 //            preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -39,6 +32,9 @@ public class CartDao {
                 cartItem.setQuantity(resultSet.getInt("quantity"));
                 cartItem.setProductDetail(productDetail);
                 cartItem.setProductName(resultSet.getString("name"));
+                cartItem.setSubTotal(resultSet.getDouble("sub_total"));
+                Double subTotal = cartItem.getSubTotal();
+                cart.setTotalPrice(cart.getTotalPrice() + subTotal);
                 cart.add(cartItem);
             }
             connection.close();
@@ -48,11 +44,44 @@ public class CartDao {
         return cart;
     }
 
+    public Double getCartTotalPrice(Integer userId, Cart cart) {
+        try {
+            Connection connection = JdbcConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_CALCULATE_CART_TOTAL_PRICE);
+//            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                cart.setTotalPrice(resultSet.getDouble("cart_total"));
+            }
+            connection.close();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return cart.getTotalPrice();
+    }
+
+    public int getNumberOfItem(Integer userId, Cart cart) {
+        try {
+            Connection connection = JdbcConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_CALCULATE_NUBER_CART_ITEM);
+//            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                cart.setNumberOfItem(resultSet.getInt("number_item"));
+            }
+            connection.close();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return cart.getNumberOfItem();
+    }
 //    public boolean addToCart(Cart cart, ProductDetail productDetail) {
 //        try {
 //            for (CartItem item : cart.getCartItems()) {
 //                if (item.getProductDetailId() == productDetail.getProductId()) {
-//                    existingItem = item;
+//                    CartItem existingItem = item;
 //                break; } }
 //
 //            Connection connection = JdbcConnection.getConnection();

@@ -5,25 +5,29 @@ public class CartItem {
     private Integer cartId;
     private Integer productDetailId;
     private Integer quantity;
+    private Double subTotal;
     private String productName;
+    private String color;
     private ProductDetail productDetail;
 
     public CartItem() {
     }
 
-    public CartItem(Integer cartId, Integer productDetailId, Integer quantity, String productName, ProductDetail productDetail) {
+    public CartItem(Integer cartId, Integer productDetailId, Integer quantity, Double subTotal, String productName, ProductDetail productDetail) {
         this.cartId = cartId;
         this.productDetailId = productDetailId;
         this.quantity = quantity;
+        this.subTotal = subTotal;
         this.productName = productName;
         this.productDetail = productDetail;
     }
 
-    public CartItem(Integer id, Integer cartId, Integer productDetailId, Integer quantity, String productName, ProductDetail productDetail) {
+    public CartItem(Integer id, Integer cartId, Integer productDetailId, Integer quantity, Double subTotal, String productName, ProductDetail productDetail) {
         this.id = id;
         this.cartId = cartId;
         this.productDetailId = productDetailId;
         this.quantity = quantity;
+        this.subTotal = subTotal;
         this.productName = productName;
         this.productDetail = productDetail;
     }
@@ -76,4 +80,11 @@ public class CartItem {
         this.productDetail = productDetail;
     }
 
+    public Double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(Double subTotal) {
+        this.subTotal = subTotal;
+    }
 }

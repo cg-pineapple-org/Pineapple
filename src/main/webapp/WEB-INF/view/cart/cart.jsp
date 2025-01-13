@@ -187,96 +187,60 @@
                             </div>
                         </div><!-- block search -->
                     </div>
-                    <div class="col-md-2 nav-right">
-                        <!-- block mini cart -->
-                        <div class="block-minicart dropdown">
-                            <a class="minicart" href="#">
+                    <!-- block mini cart -->
+                    <div class="block-minicart dropdown">
+                        <a class="minicart" href="#">
 
                                     <span class="counter qty">
 
                                         <span class="cart-icon"><i class="flaticon-shopping-cart"
                                                                    aria-hidden="true"></i></span>
 
-                                        <span class="counter-number">2</span>
+                                        <span class="counter-number">${cart.numberOfItem}</span>
 
                                     </span>
-                                <span class="counter-your-cart">
+                            <span class="counter-your-cart">
 
                                         <span class="counter-label">Your Cart:</span>
 
-                                        <span class="counter-price">$00.00</span>
+                                        <span class="counter-price">
+                                            <fmt:formatNumber value="${cart.totalPrice}"
+                                                              type="number" minFractionDigits="0"
+                                                              maxFractionDigits="2"/>
+                                        </span>
 
                                     </span>
-                            </a>
-                            <div class="parent-megamenu">
-                                <form>
-                                    <div class="minicart-content-wrapper">
-                                        <div class="subtitle">
-                                            You have <span>2</span> item(s) in your cart
-                                        </div>
-                                        <div class="minicart-items-wrapper">
-                                            <ol class="minicart-items">
-                                                <li class="product-inner">
-                                                    <div class="product-thumb style1">
-                                                        <div class="thumb-inner">
-                                                            <a href="#"><img src="assets/images/home1/c1.jpg"
-                                                                             alt="c1"></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-innfo">
-                                                        <div class="product-name"><a href="#">Notebook Pro
-                                                        </a></div>
-                                                        <a href="#" class="remove"><i class="flaticon-close"
-                                                                                      aria-hidden="true"></i></a>
-                                                        <span class="price price-dark">
-
-                                                                <ins>$229.00</ins>
-
-                                                            </span>
-                                                    </div>
-                                                </li>
-                                                <li class="product-inner">
-                                                    <div class="product-thumb style1">
-                                                        <div class="thumb-inner">
-                                                            <a href="#"><img src="assets/images/home1/c2.jpg"
-                                                                             alt="c2"></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-innfo">
-                                                        <div class="product-name"><a href="#">Bluetooth Speaker
-                                                        </a></div>
-                                                        <a href="#" class="remove"><i class="flaticon-close"
-                                                                                      aria-hidden="true"></i></a>
-                                                        <span class="price">
-
-                                                                <ins>$229.00</ins>
-
-                                                                <del>$259.00</del>
-
-                                                            </span>
-                                                    </div>
-                                                </li>
-                                            </ol>
-                                        </div>
-                                        <div class="subtotal">
-                                            <span class="label">Total :</span>
-                                            <span class="price">$480.00</span>
-                                        </div>
-                                        <div class="actions">
-                                            <a class="btn btn-viewcart" href="shopping-cart.html">View cart</a>
-                                            <a class="btn btn-checkout" href="checkout.html">Checkout</a>
-                                        </div>
+                        </a>
+                        <div class="parent-megamenu">
+                            <form>
+                                <div class="minicart-content-wrapper">
+                                    <div class="subtitle">
+                                        You have <span>${cart.numberOfItem}</span> item(s) in your cart
                                     </div>
-                                </form>
-                            </div>
-                        </div><!-- block mini cart -->
-                        <a href="#" class="hidden-md search-hidden"><span class="flaticon-magnifying-glass"></span></a>
-                        <a class="wishlist-minicart" href="wishlist.html"><i class="fa fa-heart-o"
-                                                                             aria-hidden="true"></i></a>
-                    </div>
+
+                                    <div class="subtotal">
+                                        <span class="label">Total :</span>
+                                        <span class="price">
+                                                <fmt:formatNumber value="${cart.totalPrice}"
+                                                                  type="number" minFractionDigits="0"
+                                                                  maxFractionDigits="2"/>
+                                            </span>
+                                    </div>
+                                    <div class="actions">
+                                        <a class="btn btn-viewcart" href="shopping-cart.html">View cart</a>
+                                        <a class="btn btn-checkout" href="checkout.html">Checkout</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div><!-- block mini cart -->
+                    <a href="#" class="hidden-md search-hidden"><span class="flaticon-magnifying-glass"></span></a>
+                    <a class="wishlist-minicart" href="wishlist.html"><i class="fa fa-heart-o"
+                                                                         aria-hidden="true"></i></a>
                 </div>
             </div>
-        </div><!-- header-content -->
+        </div>
+        <!-- header-content -->
         <!-- header-menu-bar -->
         <div class="header-menu-bar header-sticky">
             <div class="header-menu-nav menu-style-2">
@@ -587,7 +551,8 @@
                                     <th class="tb-image"></th>
                                     <th class="tb-product">Product Name</th>
                                     <th class="tb-price">Unit Price</th>
-                                    <th class="tb-qty">Qty</th>
+                                    <th class="tb-color">Color</th>
+                                    <th class="tb-qty">Quantity</th>
                                     <th class="tb-total">SubTotal</th>
                                     <th class="tb-remove"></th>
                                 </tr>
@@ -606,8 +571,15 @@
                                 <%--                                        <a href="home" class="home-button">Mua sắm ngay</a>--%>
                                 <%--                                    </c:otherwise>--%>
                                 <%--                                </c:choose>--%>
+
+
+                                <%--                                <jsp:useBean id="cart" scope="session" type="com.codegym.pineapple.model.Cart" />--%>
+                                <%--                                <%--%>
+                                <%--                                    List<CartItem> cartItems = cart.getCartItems();--%>
+                                <%--                                    Double totalPrice = cart.getTotalPrice();--%>
+                                <%--                                %>--%>
                                 <%
-                                    int totalPrice = 0;
+                                    int totalPrice;
                                 %>
                                 <c:forEach var="item" items="${cart.cartItems}">
                                     <tr>
@@ -618,20 +590,31 @@
                                             <div class="product-name"><a href="#">${item.productName}</a></div>
                                         </td>
                                         <td class="tb-price">
-                                            <span class="price">${item.productDetail.price}</span>
+                                            <span class="price">
+                                                <fmt:formatNumber value="${item.productDetail.price}"
+                                                                  type="number" minFractionDigits="0"
+                                                                  maxFractionDigits="2"/>
+                                            </span>
+                                        </td>
+                                        <td class="tb-color">
+                                            <div class="color"><a href="#">${item.productDetail.color}</a></div>
                                         </td>
                                         <td class="tb-qty">
                                             <div class="quantity">
                                                 <div class="buttons-added">
-                                                    <input type="text" value="${item.quantity}" title="Qty" class="input-text qty text"
+                                                    <input type="text" value="${item.quantity}" title="Qty"
+                                                           class="input-text qty text"
                                                            size="1">
-                                                    <a href="#" class="sign plus" onclick="updateQuantity(1)"><i class="fa fa-plus"></i></a>
-                                                    <a href="#" class="sign minus" onclick="updateQuantity(-1)"><i class="fa fa-minus"></i></a>
+                                                    <a href="#" class="sign plus" onclick="updateQuantity(1)"><i
+                                                            class="fa fa-plus"></i></a>
+                                                    <a href="#" class="sign minus" onclick="updateQuantity(-1)"><i
+                                                            class="fa fa-minus"></i></a>
 
                                                     <script>
                                                         function updateQuantity(change) {
                                                             let quantityInput = document.getElementById('quantity');
-                                                            let quantity = parseInt(quantityInput.value) || 0; quantity += change;
+                                                            let quantity = parseInt(quantityInput.value) || 0;
+                                                            quantity += change;
                                                             if (quantity < 1) quantity = 1;
                                                             quantityInput.value = quantity;
                                                             let subPrice = price * quantity;
@@ -645,7 +628,7 @@
                                         </td>
                                         <td class="tb-total">
                                             <span class="sub-price">
-                                                <fmt:formatNumber value="${item.productDetail.price * item.quantity}"
+                                                <fmt:formatNumber value="${item.subTotal}"
                                                                   type="number" minFractionDigits="0"
                                                                   maxFractionDigits="2"/>
                                             </span>
@@ -656,63 +639,6 @@
                                         </td>
                                     </tr>
                                 </c:forEach>
-                                <tr>
-                                    <td class="tb-image"><a href="#" class="item-photo"><img
-                                            src="assets/images/cart1.jpg"
-                                            alt="cart"></a></td>
-                                    <td class="tb-product">
-                                        <div class="product-name"><a href="#">Modern Watches</a></div>
-                                    </td>
-                                    <td class="tb-price">
-                                        <span class="price">$229.00</span>
-                                    </td>
-                                    <td class="tb-qty">
-                                        <div class="quantity">
-                                            <div class="buttons-added">
-                                                <input type="text" value="1" title="Qty" class="input-text qty text"
-                                                       size="1">
-                                                <a href="#" class="sign plus"><i class="fa fa-plus"></i></a>
-                                                <a href="#" class="sign minus"><i class="fa fa-minus"></i></a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="tb-total">
-                                        <span class="price">$229.00</span>
-                                    </td>
-                                    <td class="tb-remove">
-                                        <a href="#" class="action-remove"><span><i class="flaticon-close"
-                                                                                   aria-hidden="true"></i></span></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="tb-image"><a href="#" class="item-photo"><img
-                                            src="assets/images/cart2.jpg"
-                                            alt="cart"></a>
-                                    <td class="tb-product">
-                                        <div class="product-name"><a href="#">Photo Camera
-                                        </a></div>
-                                    </td>
-                                    <td class="tb-price">
-                                        <span class="price">$229.00</span>
-                                    </td>
-                                    <td class="tb-qty">
-                                        <div class="quantity">
-                                            <div class="buttons-added">
-                                                <input type="text" value="1" title="Qty" class="input-text qty text"
-                                                       size="1">
-                                                <a href="#" class="sign plus"><i class="fa fa-plus"></i></a>
-                                                <a href="#" class="sign minus"><i class="fa fa-minus"></i></a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="tb-total">
-                                        <span class="price">$229.00</span>
-                                    </td>
-                                    <td class="tb-remove">
-                                        <a href="#" class="action-remove"><span><i class="flaticon-close"
-                                                                                   aria-hidden="true"></i></span></a>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -733,9 +659,17 @@
                     <div class="order-summary">
                         <h4 class="title-shopping-cart">Order Summary</h4>
                         <div class="checkout-element-content">
-                            <span class="order-left">Total:<span class="total-price">${totalPrice}</span></span>
+                            <span class="order-left">Total:<span class="total-price">
+                                <fmt:formatNumber value="${cart.totalPrice}"
+                                                  type="number" minFractionDigits="0"
+                                                  maxFractionDigits="2"/>
+                            </span></span>
                             <span class="order-left">Shipping:<span>Free Shipping</span></span>
-                            <span class="order-left">Total:<span>$458.00</span></span>
+                            <span class="order-left">Total:<span>
+                                <fmt:formatNumber value="${cart.totalPrice}"
+                                                  type="number" minFractionDigits="0"
+                                                  maxFractionDigits="2"/>
+                            </span></span>
                             <ul>
                                 <li><label class="inline"><input type="checkbox"><span class="input"></span>I have promo
                                     code</label></li>
