@@ -49,7 +49,9 @@ public class AccountDAO {
             PreparedStatement statement = connection.prepareStatement(QueryConstant.QUERY_GET_EMAIL_BY_EMAIL);
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
-            return resultSet.next();
+            if (resultSet.next()) {
+                return true;
+            }
         } catch (SQLException e) {
             logger.error("Error checking username: " + e.getMessage());
         }
@@ -81,7 +83,7 @@ public class AccountDAO {
             connection.commit();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error creating user: " + e.getMessage());
         }
         return false;
     }
