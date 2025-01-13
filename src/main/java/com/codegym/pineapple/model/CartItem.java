@@ -5,22 +5,27 @@ public class CartItem {
     private Integer cartId;
     private Integer productDetailId;
     private Integer quantity;
-//    private ProductDetail productDetail;
+    private String productName;
+    private ProductDetail productDetail;
 
     public CartItem() {
     }
 
-    public CartItem(Integer cartId, Integer productDetailId, Integer quantity) {
+    public CartItem(Integer cartId, Integer productDetailId, Integer quantity, String productName, ProductDetail productDetail) {
         this.cartId = cartId;
         this.productDetailId = productDetailId;
         this.quantity = quantity;
+        this.productName = productName;
+        this.productDetail = productDetail;
     }
 
-    public CartItem(Integer id, Integer cartId, Integer productDetailId, Integer quantity) {
+    public CartItem(Integer id, Integer cartId, Integer productDetailId, Integer quantity, String productName, ProductDetail productDetail) {
         this.id = id;
         this.cartId = cartId;
         this.productDetailId = productDetailId;
         this.quantity = quantity;
+        this.productName = productName;
+        this.productDetail = productDetail;
     }
 
     public Integer getId() {
@@ -54,4 +59,21 @@ public class CartItem {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public ProductDetail getProductDetail() {
+        return productDetail;
+    }
+
+    public void setProductDetail(ProductDetail productDetail) {
+        this.productDetail = productDetail;
+    }
+
 }

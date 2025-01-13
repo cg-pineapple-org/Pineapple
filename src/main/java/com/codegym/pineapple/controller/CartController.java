@@ -22,11 +22,11 @@ public class CartController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter("action");
+        String action = req.getServletPath();
         switch (action) {
             case "/cart":
-                Integer id = Integer.parseInt(req.getParameter("id"));
-                req.setAttribute("cart", cartService.getCart(id));
+//                Integer id = Integer.parseInt(req.getParameter("id"));
+                req.setAttribute("cart", cartService.getCart(1));
                 req.getRequestDispatcher("/WEB-INF/view/cart/cart.jsp").forward(req, resp);
                 break;
         }

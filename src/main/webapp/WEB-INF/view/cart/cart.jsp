@@ -1,5 +1,10 @@
+<%@ page import="com.codegym.pineapple.service.CartService" %>
+<%@ page import="com.codegym.pineapple.model.CartItem" %>
+<%@ page import="com.codegym.pineapple.model.Cart" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,17 +12,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Dagon</title>
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"/>
-    <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon/flaticon.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/pe-icon-7-stroke.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/chosen.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery.bxslider.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href=" <c:url value = "/assets/images/favicon.png"/>">
+    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/fonts/flaticon/flaticon.css"/>">
+    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/animate.css"/>">
+    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/bootstrap.min.css"/>">
+    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/font-awesome.css" />">
+    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/pe-icon-7-stroke.css"/>">
+    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/owl.carousel.css"/>">
+    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/chosen.css"/>">
+    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/jquery.bxslider.css"/>">
+    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/style.css"/>">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
+          rel="stylesheet">
 </head>
 <body class="page-product">
 <div class="wrapper">
@@ -49,7 +55,8 @@
                             <i class="fa fa-star" aria-hidden="true"></i>
                             <span class="review">5 Review(s)</span>
                         </span>
-                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i>Add to Wishlist</a>
+                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i>Add to
+                        Wishlist</a>
                     <div class="product-infomation">
                         Description Our new HPB12 / A12 battery is rated at 2000mAh and designed to power up Black and
                         Decker FireStorm line of 12V tools allowing...
@@ -172,7 +179,8 @@
                                         <div class="box-group">
                                             <input type="text" class="form-control"
                                                    placeholder="Search keyword here...">
-                                            <button class="btn btn-search" type="button"><span class="flaticon-magnifying-glass"></span></button>
+                                            <button class="btn btn-search" type="button"><span
+                                                    class="flaticon-magnifying-glass"></span></button>
                                         </div>
                                     </form>
                                 </div>
@@ -263,7 +271,8 @@
                             </div>
                         </div><!-- block mini cart -->
                         <a href="#" class="hidden-md search-hidden"><span class="flaticon-magnifying-glass"></span></a>
-                        <a class="wishlist-minicart" href="wishlist.html"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                        <a class="wishlist-minicart" href="wishlist.html"><i class="fa fa-heart-o"
+                                                                             aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -288,7 +297,8 @@
                                 <span class="title-menu">All Departments</span>
                             </h4>
                             <div class="vertical-menu-content">
-                                <span class="btn-close hidden-md"><i class="flaticon-close" aria-hidden="true"></i></span>
+                                <span class="btn-close hidden-md"><i class="flaticon-close"
+                                                                     aria-hidden="true"></i></span>
                                 <ul class="vertical-menu-list">
                                     <li><a href="#">New Arrivals</a></li>
                                     <li class="menu-item-has-children arrow item-megamenu">
@@ -330,7 +340,8 @@
                                                                     <li class="menu-item"><a href="#">Soundbars</a></li>
                                                                     <li class="menu-item"><a href="#">
                                                                         Computer</a></li>
-                                                                    <li class="menu-item"><a href="#">New Arrivals</a></li>
+                                                                    <li class="menu-item"><a href="#">New Arrivals</a>
+                                                                    </li>
                                                                     <li class="menu-item"><a href="#">Monitors</a></li>
                                                                 </ul>
                                                             </div>
@@ -379,7 +390,8 @@
                                                                     <li class="menu-item"><a href="#">Soundbars</a></li>
                                                                     <li class="menu-item"><a href="#">
                                                                         Computer</a></li>
-                                                                    <li class="menu-item"><a href="#">New Arrivals</a></li>
+                                                                    <li class="menu-item"><a href="#">New Arrivals</a>
+                                                                    </li>
                                                                     <li class="menu-item"><a href="#">Monitors</a></li>
                                                                 </ul>
                                                             </div>
@@ -430,9 +442,11 @@
                                                                     </a></li>
                                                                     <li class="menu-item"><a href="#">Printers</a>
                                                                     </li>
-                                                                    <li class="menu-item"><a href="#">Game & Consoles</a>
+                                                                    <li class="menu-item"><a href="#">Game &
+                                                                        Consoles</a>
                                                                     </li>
-                                                                    <li class="menu-item"><a href="#">New Arrivals</a></li>
+                                                                    <li class="menu-item"><a href="#">New Arrivals</a>
+                                                                    </li>
                                                                     <li class="menu-item"><a href="#">Monitors</a></li>
                                                                 </ul>
                                                             </div>
@@ -579,6 +593,69 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <%--                                <c:choose>--%>
+                                <%--                                    <c:when test="${not empty cart.cartItems}">--%>
+                                <%--                                        <ul class="product-list">--%>
+                                <%--                                            <c:forEach var="item" items="${cart.cartItems}">--%>
+                                <%--                                                <li>${item.productDetail.name}: ${item.quantity}</li>--%>
+                                <%--                                            </c:forEach>--%>
+                                <%--                                        </ul>--%>
+                                <%--                                    </c:when>--%>
+                                <%--                                    <c:otherwise>--%>
+                                <%--                                        <p class="no-product">Giỏ hàng đang trống</p>--%>
+                                <%--                                        <a href="home" class="home-button">Mua sắm ngay</a>--%>
+                                <%--                                    </c:otherwise>--%>
+                                <%--                                </c:choose>--%>
+                                <%
+                                    int totalPrice = 0;
+                                %>
+                                <c:forEach var="item" items="${cart.cartItems}">
+                                    <tr>
+                                        <td class="tb-image"><a href="#" class="item-photo"><img
+                                                src="assets/images/cart1.jpg"
+                                                alt="cart"></a></td>
+                                        <td class="tb-product">
+                                            <div class="product-name"><a href="#">${item.productName}</a></div>
+                                        </td>
+                                        <td class="tb-price">
+                                            <span class="price">${item.productDetail.price}</span>
+                                        </td>
+                                        <td class="tb-qty">
+                                            <div class="quantity">
+                                                <div class="buttons-added">
+                                                    <input type="text" value="${item.quantity}" title="Qty" class="input-text qty text"
+                                                           size="1">
+                                                    <a href="#" class="sign plus" onclick="updateQuantity(1)"><i class="fa fa-plus"></i></a>
+                                                    <a href="#" class="sign minus" onclick="updateQuantity(-1)"><i class="fa fa-minus"></i></a>
+
+                                                    <script>
+                                                        function updateQuantity(change) {
+                                                            let quantityInput = document.getElementById('quantity');
+                                                            let quantity = parseInt(quantityInput.value) || 0; quantity += change;
+                                                            if (quantity < 1) quantity = 1;
+                                                            quantityInput.value = quantity;
+                                                            let subPrice = price * quantity;
+                                                            document.getElementsByClassName("sub-price").innerText = subPrice;
+                                                            totalPrice += subPrice;
+                                                            document.getElementsByClassName("total-price").innerText = totalPrice;
+                                                        }
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="tb-total">
+                                            <span class="sub-price">
+                                                <fmt:formatNumber value="${item.productDetail.price * item.quantity}"
+                                                                  type="number" minFractionDigits="0"
+                                                                  maxFractionDigits="2"/>
+                                            </span>
+                                        </td>
+                                        <td class="tb-remove">
+                                            <a href="#" class="action-remove"><span><i class="flaticon-close"
+                                                                                       aria-hidden="true"></i></span></a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                                 <tr>
                                     <td class="tb-image"><a href="#" class="item-photo"><img
                                             src="assets/images/cart1.jpg"
@@ -656,7 +733,7 @@
                     <div class="order-summary">
                         <h4 class="title-shopping-cart">Order Summary</h4>
                         <div class="checkout-element-content">
-                            <span class="order-left">Subtotal:<span>$458.00</span></span>
+                            <span class="order-left">Total:<span class="total-price">${totalPrice}</span></span>
                             <span class="order-left">Shipping:<span>Free Shipping</span></span>
                             <span class="order-left">Total:<span>$458.00</span></span>
                             <ul>
@@ -714,7 +791,8 @@
                                     <a href="#" class="add-to-cart"><i class="flaticon-shopping-cart"
                                                                        aria-hidden="true"></i></a>
                                     <a href="compare.html" class="compare"><i class="fa fa-exchange"></i></a>
-                                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o"
+                                                                                aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -754,7 +832,8 @@
                                     <a href="#" class="add-to-cart"><i class="flaticon-shopping-cart"
                                                                        aria-hidden="true"></i></a>
                                     <a href="compare.html" class="compare"><i class="fa fa-exchange"></i></a>
-                                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o"
+                                                                                aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -793,7 +872,8 @@
                                     <a href="#" class="add-to-cart"><i class="flaticon-shopping-cart"
                                                                        aria-hidden="true"></i></a>
                                     <a href="compare.html" class="compare"><i class="fa fa-exchange"></i></a>
-                                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o"
+                                                                                aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -832,7 +912,8 @@
                                     <a href="#" class="add-to-cart"><i class="flaticon-shopping-cart"
                                                                        aria-hidden="true"></i></a>
                                     <a href="compare.html" class="compare"><i class="fa fa-exchange"></i></a>
-                                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o"
+                                                                                aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -874,7 +955,8 @@
                                     <a href="#" class="add-to-cart"><i class="flaticon-shopping-cart"
                                                                        aria-hidden="true"></i></a>
                                     <a href="compare.html" class="compare"><i class="fa fa-exchange"></i></a>
-                                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o"
+                                                                                aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -913,7 +995,8 @@
                                     <a href="#" class="add-to-cart"><i class="flaticon-shopping-cart"
                                                                        aria-hidden="true"></i></a>
                                     <a href="compare.html" class="compare"><i class="fa fa-exchange"></i></a>
-                                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                    <a href="wishlist.html" class="wishlist"><i class="fa fa-heart-o"
+                                                                                aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -1055,23 +1138,23 @@
 </div>
 <a href="#" id="scrollup" title="Scroll to Top">Scroll</a>
 <!-- jQuery -->
-<script type="text/javascript" src="assets/js/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="assets/js/wow.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.actual.min.js"></script>
-<script type="text/javascript" src="assets/js/chosen.jquery.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.sticky.js"></script>
-<script type="text/javascript" src="assets/js/jquery.elevateZoom.min.js"></script>
-<script src="assets/js/fancybox/source/jquery.fancybox.pack.js"></script>
-<script src="assets/js/fancybox/source/helpers/jquery.fancybox-media.js"></script>
-<script src="assets/js/fancybox/source/helpers/jquery.fancybox-thumbs.js"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/jquery-2.1.4.min.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/jquery-ui.min.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/owl.carousel.min.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/wow.min.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/jquery.actual.min.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/chosen.jquery.min.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/jquery.bxslider.min.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/jquery.sticky.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/jquery.elevateZoom.min.js"/>"></script>
+<script src=" <c:url value="/assets/js/fancybox/source/jquery.fancybox.pack.js"/>"></script>
+<script src=" <c:url value="/assets/js/fancybox/source/helpers/jquery.fancybox-media.js"/>"></script>
+<script src=" <c:url value="/assets/js/fancybox/source/helpers/jquery.fancybox-thumbs.js"/>"></script>
 <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>
-<script type="text/javascript" src="assets/js/function.js"></script>
-<script type="text/javascript" src="assets/js/Modernizr.js"></script>
-<script type="text/javascript" src="assets/js/jquery.plugin.js"></script>
-<script type="text/javascript" src="assets/js/jquery.countdown.js"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/function.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/Modernizr.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/jquery.plugin.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/jquery.countdown.js"/>"></script>
 </body>
 </html>

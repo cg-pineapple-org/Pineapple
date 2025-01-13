@@ -3,6 +3,8 @@ package com.codegym.pineapple.dao;
 import com.codegym.pineapple.connection.JdbcConnection;
 import com.codegym.pineapple.model.Cart;
 import com.codegym.pineapple.model.CartItem;
+import com.codegym.pineapple.model.Product;
+import com.codegym.pineapple.model.ProductDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,40 +17,41 @@ public class CartDao {
 
     public Cart getCart(Integer userId) {
         Cart cart = new Cart();
-        CartItem cartItem = new CartItem();
-//        ProductDetail productDetail = new ProductDetail();
         try {
             Connection connection = JdbcConnection.getConnection();
-            String query = "SELECT " +
-                                "pd.product_name, pd.color, ci.quantity, pd.price, " +
-                            "FROM carts c" +
-                            "JOIN users u ON u.cart_id = c.id" +
-                            "JOIN cart_items ci ON ci.cart_id = c.id" +
-                            "JOIN product_details pd ON ci.product_detail_id = pd.id" +
-                            "WHERE c.user_id = ?";
+            String query = "SELECT p.name, pd.color, ci.quantity, pd.price\n" +
+                    "FROM carts c\n" +
+                    "JOIN users u ON u.cart_id = c.id\n" +
+                    "JOIN cart_items ci ON ci.cart_id = c.id\n" +
+                    "JOIN product_details pd ON ci.product_detail_id = pd.id\n" +
+                    "JOIN products p ON p.id = pd.product_id\n" +
+                    "WHERE c.user_id = 1;";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, userId);
+//            preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
+                CartItem cartItem = new CartItem();
+                ProductDetail productDetail = new ProductDetail();
+
+                productDetail.setColor(resultSet.getString("color"));
+                productDetail.setPrice(resultSet.getDouble("price"));
                 cartItem.setQuantity(resultSet.getInt("quantity"));
-//                productDetail.setProductName(resultSet.getString("product_name");
-//                productDetail.setColor(resultSet.getString("color");
-//                productDetail.setPrice(resultSet.getString("price");
-                cart.setTotalPrice(resultSet.getInt("quantity") * resultSet.getDouble("price"));
+                cartItem.setProductDetail(productDetail);
+                cartItem.setProductName(resultSet.getString("name"));
                 cart.add(cartItem);
             }
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
         return cart;
     }
 
-//    public boolean addToCart(Cart cart, Pro) {
+//    public boolean addToCart(Cart cart, ProductDetail productDetail) {
 //        try {
 //            for (CartItem item : cart.getCartItems()) {
-//                if (item.getProductDetailId() == productDetails.getProductId()) {
+//                if (item.getProductDetailId() == productDetail.getProductId()) {
 //                    existingItem = item;
 //                break; } }
 //

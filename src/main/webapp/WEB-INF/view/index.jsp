@@ -265,7 +265,7 @@
                                             <span class="price">$480.00</span>
                                         </div>
                                         <div class="actions">
-                                            <a class="btn btn-viewcart" href="shopping-cart.html">View cart</a>
+                                            <a class="btn btn-viewcart" href="/cart">View cart</a>
                                             <a class="btn btn-checkout" href="checkout.html">Checkout</a>
                                         </div>
                                     </div>
