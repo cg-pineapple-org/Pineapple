@@ -1,6 +1,7 @@
 package com.codegym.pineapple.dao;
 
 import com.codegym.pineapple.connection.JdbcConnection;
+import com.codegym.pineapple.constant.QueryConstant;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,60 +14,54 @@ public class AccountDAO {
 
     private static final Logger logger = LogManager.getLogger(AccountDAO.class);
 
+
     public String getPasswordByUsername(String username) {
-        String query = "SELECT password FROM accounts WHERE username = ?";
         try {
             Connection connection = JdbcConnection.getConnection();
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(QueryConstant.QUERY_GET_PASSWORD_BY_USERNAME);
             statement.setString(1, username);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getString("password");
             }
         } catch (SQLException e) {
-            System.out.println("Error retrieving password: " + e.getMessage());
+            logger.error("Error retrieving password: " + e.getMessage());
         }
         return null;
     }
 
     public boolean checkUsernameExists(String username) {
-        String query = "SELECT username FROM accounts WHERE username = ?";
         try {
             Connection connection = JdbcConnection.getConnection();
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(QueryConstant.QUERY_GET_USERNAME_BY_USERNAME);
             statement.setString(1, username);
             ResultSet resultSet = statement.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {
-            System.out.println("Error checking username: " + e.getMessage());
+            logger.error("Error checking username: " + e.getMessage());
         }
         return false;
     }
 
     public boolean checkEmailExist(String email) {
-        String query = "SELECT email FROM users WHERE email = ?";
         try {
             Connection connection = JdbcConnection.getConnection();
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(QueryConstant.QUERY_GET_EMAIL_BY_EMAIL);
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {
-            System.out.println("Error checking username: " + e.getMessage());
+            logger.error("Error checking username: " + e.getMessage());
         }
         return false;
     }
 
     public boolean createUser(String firstName, String lastName, String country,
                               String dayOfBirth, String phone, String email, String username, String hashedPassword) {
-
-        String queryUser = "INSERT INTO users (first_name, last_name, country, day_of_birth, email, phone, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        String queryAccount = "INSERT INTO accounts (user_id, username, password) VALUES (LAST_INSERT_ID(), ?, ?)";
-
         try (Connection connection = JdbcConnection.getConnection()) {
             connection.setAutoCommit(false);
 
-            try (PreparedStatement userStatement = connection.prepareStatement(queryUser)) {
+            try (PreparedStatement userStatement = connection.prepareStatement(QueryConstant.QUERY_ADD_USER)) {
                 userStatement.setString(1, firstName);
                 userStatement.setString(2, lastName);
                 userStatement.setString(3, country);
@@ -77,7 +72,7 @@ public class AccountDAO {
                 userStatement.executeUpdate();
             }
 
-            try (PreparedStatement accountStatement = connection.prepareStatement(queryAccount)) {
+            try (PreparedStatement accountStatement = connection.prepareStatement(QueryConstant.QUERY_ADD_ACCOUNT)) {
                 accountStatement.setString(1, username);
                 accountStatement.setString(2, hashedPassword);
                 accountStatement.executeUpdate();
