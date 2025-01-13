@@ -1,6 +1,7 @@
 package com.codegym.pineapple.service;
 
 import com.codegym.pineapple.dao.AuthDAO;
+import com.codegym.pineapple.utility.ValidateUtility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
@@ -10,6 +11,7 @@ import java.util.Optional;
 public class AuthService {
     private final AuthDAO authDAO;
     private static final Logger logger = LogManager.getLogger(AuthDAO.class);
+    private ValidateUtility validateUtility = new ValidateUtility();
 
     public AuthService() {
         this.authDAO = new AuthDAO();
@@ -24,6 +26,11 @@ public class AuthService {
         String storedPassword = authDAO.getPasswordByUsername(username);
         if (!Optional.ofNullable(authDAO).isPresent()) {
             logger.error("No password found for the user.");
+            return false;
+        }
+
+        if (username == null || username.isEmpty() || password == null || password.trim().isEmpty()) {
+            logger.error("Username and password cannot be empty");
             return false;
         }
 
@@ -62,6 +69,30 @@ public class AuthService {
 
         if (authDAO.checkEmailExist(email) || authDAO.checkUsernameExists(username)) {
             return "Email already exists!";
+        }
+
+        if (validateUtility.checkEmail(email)) {
+            return "Invalid email!";
+        }
+
+        if (validateUtility.checkUsername(username)) {
+            return "Invalid username!";
+        }
+
+        if (validateUtility.checkPhone(phone)) {
+            return "Invalid phone number!";
+        }
+
+        if (validateUtility.checkDayOfBirth(dayOfBirth)) {
+            return "Invalid day of birth!";
+        }
+
+        if (!validateUtility.checkPassword(password)) {
+            return "Invalid password!";
+        }
+
+        if (!validateUtility.checkUsername(username)) {
+            return "Invalid username!";
         }
 
         String hashedPassword = hashPassword(password);

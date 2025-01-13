@@ -48,11 +48,7 @@ public class AuthController extends HttpServlet {
             case "/auth/login":
                 String usernameLogin = req.getParameter("username");
                 String passwordLogin = req.getParameter("password");
-                if (usernameLogin == null || usernameLogin.trim().isEmpty() || passwordLogin == null || passwordLogin.trim().isEmpty()) {
-                    req.setAttribute("message", "Username and password cannot be empty");
-                    req.getRequestDispatcher("/WEB-INF/view/auth/login.jsp").forward(req, resp);
-                    return;
-                }
+
                 if (authService.login(usernameLogin, passwordLogin)) {
                     // todo: feature under development
                     req.getRequestDispatcher("/WEB-INF/view/auth/register.jsp").forward(req, resp);
@@ -74,8 +70,7 @@ public class AuthController extends HttpServlet {
                 String confirmPassword = req.getParameter("confirmPassword");
                 try {
                     if (Objects.equals(authService.register(firstName, lastName, country, dayOfBirth, email, phone, username, password, confirmPassword), "Registration successful!")) {
-                        req.setAttribute("message", authService.register(firstName, lastName, country, dayOfBirth, email, phone, username, password, confirmPassword));
-//                        req.getRequestDispatcher("/WEB-INF/view/auth/login.jsp").forward(req, resp);
+                        req.setAttribute("message", "Registration successful!");
                         resp.sendRedirect("/auth/login");
                     } else {
                         req.setAttribute("message", "Registration failed!");
