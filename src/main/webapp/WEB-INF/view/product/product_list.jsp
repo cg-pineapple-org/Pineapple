@@ -22,6 +22,18 @@
           rel="stylesheet">
 
     <style>
+        <c:forEach items="${product_list}" var="product">
+        .pineapple-table:not(.section-${product['product_detail'].id}) .confirm-${product['product_detail'].id}-btn,
+        </c:forEach> .default .default {
+            display: none;
+        }
+
+        <c:forEach items="${product_list}" var="product">
+        .section-${product['product_detail'].id} .edit-${product['product_detail'].id}-btn,
+        </c:forEach> .not-default .not-default {
+            display: none;
+        }
+
     </style>
 
 </head>
@@ -81,554 +93,75 @@
         </div>
     </div>
     <!-- HEADER -->
-    <header class="site-header header-opt-1">
-        <!-- header-top -->
-        <div class="header-top">
-            <div class="container">
-                <!-- hotline -->
-                <ul class="nav-top-left">
-                    <li><a href="#">Welcome to Dagon Shop</a></li>
-                </ul><!-- hotline -->
-                <!-- heder links -->
-                <ul class="nav-top-right dagon-nav">
-                    <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle">
-                            <img src="assets/images/general/l1.jpg" alt="flag">English<i class="fa fa-angle-down"
-                                                                                         aria-hidden="true"></i>
-                        </a>
-                        <ul class="submenu parent-megamenu">
-                            <li class="switcher-option">
-                                <a href="#" class="flag"><img src="assets/images/general/l1.jpg" alt="flag">English</a>
-                            </li>
-                            <li class="switcher-option">
-                                <a href="#" class="flag"><img src="assets/images/general/l2.jpg" alt="flag">Hungary</a>
-                            </li>
-                            <li class="switcher-option">
-                                <a href="#" class="flag"><img src="assets/images/general/l3.jpg" alt="flag">German</a>
-                            </li>
-                            <li class="switcher-option">
-                                <a href="#" class="flag"><img src="assets/images/general/l4.jpg" alt="flag">French</a>
-                            </li>
-                            <li class="switcher-option">
-                                <a href="#" class="flag"><img src="assets/images/general/l5.jpg" alt="flag">Canada</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle">
-                            <span>Dollar (US)</span><i class="fa fa-angle-down" aria-hidden="true"></i>
-                        </a>
-                        <ul class="submenu parent-megamenu">
-                            <li class="switcher-option">
-                                <a href="#" class="switcher-flag icon">Pound (GBP)</a>
-                            </li>
-                            <li class="switcher-option">
-                                <a href="#" class="switcher-flag icon">Euro (EUR)</a>
-                            </li>
-                            <li class="switcher-option">
-                                <a href="#" class="switcher-flag icon">Dollar (USD)</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="#"><i class="flaticon-profile" aria-hidden="true"></i>Register / Sign in</a></li>
-                </ul><!-- heder links -->
-            </div>
-        </div> <!-- header-top -->
-        <!-- header-content -->
-        <div class="header-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2 nav-left">
-                        <!-- logo -->
-                        <strong class="logo">
-                            <a href="index.html"><img src="assets/images/logo.png" alt="logo"></a>
-                        </strong><!-- logo -->
-                    </div>
-                    <div class="col-md-8 nav-mind">
-                        <!-- block search -->
-                        <div class="block-search">
-                            <div class="block-content">
-                                <div class="categori-search  ">
-                                    <select title="categories" data-placeholder="All Categories"
-                                            class="chosen-select categori-search-option">
-                                        <option value="">All Categories</option>
-                                        <optgroup label="LifeStyle">
-                                            <option>Cell Phones</option>
-                                            <option>Game & Consoles</option>
-                                            <option>Smart Watchs</option>
-                                        </optgroup>
-                                        <optgroup label="Smartphone">
-                                            <option>Cell Phones</option>
-                                            <option>Game & Consoles</option>
-                                            <option>Smart Watchs</option>
-                                        </optgroup>
-                                        <optgroup label="LifeStyle">
-                                            <option>Cell Phones</option>
-                                            <option>Game & Consoles</option>
-                                            <option>Smart Watchs</option>
-                                        </optgroup>
-                                        <optgroup label="Smartphone">
-                                            <option>Cell Phones</option>
-                                            <option>Game & Consoles</option>
-                                            <option>Smart Watchs</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                                <div class="form-search">
-                                    <form>
-                                        <div class="box-group">
-                                            <input type="text" class="form-control"
-                                                   placeholder="Search keyword here...">
-                                            <button class="btn btn-search" type="button"><span
-                                                    class="flaticon-magnifying-glass"></span></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div><!-- block search -->
-                    </div>
-                    <div class="col-md-2 nav-right">
-                        <!-- block mini cart -->
-                        <div class="block-minicart dropdown">
-                            <a class="minicart" href="#">
-
-                                    <span class="counter qty">
-
-                                        <span class="cart-icon"><i class="flaticon-shopping-cart"
-                                                                   aria-hidden="true"></i></span>
-
-                                        <span class="counter-number">2</span>
-
-                                    </span>
-                                <span class="counter-your-cart">
-
-                                        <span class="counter-label">Your Cart:</span>
-
-                                        <span class="counter-price">$00.00</span>
-
-                                    </span>
-                            </a>
-                            <div class="parent-megamenu">
-                                <form>
-                                    <div class="minicart-content-wrapper">
-                                        <div class="subtitle">
-                                            You have <span>2</span> item(s) in your cart
-                                        </div>
-                                        <div class="minicart-items-wrapper">
-                                            <ol class="minicart-items">
-                                                <li class="product-inner">
-                                                    <div class="product-thumb style1">
-                                                        <div class="thumb-inner">
-                                                            <a href="#"><img src="assets/images/home1/c1.jpg"
-                                                                             alt="c1"></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-innfo">
-                                                        <div class="product-name"><a href="#">Notebook Pro
-                                                        </a></div>
-                                                        <a href="#" class="remove"><i class="flaticon-close"
-                                                                                      aria-hidden="true"></i></a>
-                                                        <span class="price price-dark">
-
-                                                                <ins>$229.00</ins>
-
-                                                            </span>
-                                                    </div>
-                                                </li>
-                                                <li class="product-inner">
-                                                    <div class="product-thumb style1">
-                                                        <div class="thumb-inner">
-                                                            <a href="#"><img src="assets/images/home1/c2.jpg"
-                                                                             alt="c2"></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-innfo">
-                                                        <div class="product-name"><a href="#">Bluetooth Speaker
-                                                        </a></div>
-                                                        <a href="#" class="remove"><i class="flaticon-close"
-                                                                                      aria-hidden="true"></i></a>
-                                                        <span class="price">
-
-                                                                <ins>$229.00</ins>
-
-                                                                <del>$259.00</del>
-
-                                                            </span>
-                                                    </div>
-                                                </li>
-                                            </ol>
-                                        </div>
-                                        <div class="subtotal">
-                                            <span class="label">Total :</span>
-                                            <span class="price">$480.00</span>
-                                        </div>
-                                        <div class="actions">
-                                            <a class="btn btn-viewcart" href="shopping-cart.html">View cart</a>
-                                            <a class="btn btn-checkout" href="checkout.html">Checkout</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div><!-- block mini cart -->
-                        <a href="#" class="hidden-md search-hidden"><span class="flaticon-magnifying-glass"></span></a>
-                        <a class="wishlist-minicart" href="wishlist.html"><i class="fa fa-heart-o"
-                                                                             aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div><!-- header-content -->
-        <!-- header-menu-bar -->
-        <div class="header-menu-bar header-sticky">
-            <div class="header-menu-nav menu-style-2">
-                <div class="container">
-                    <div class="header-menu-nav-inner">
-                        <div id="box-vertical-megamenus" class="box-vertical-megamenus nav-toggle-cat">
-                            <h4 class="title active">
-
-                                    <span class="btn-open-mobile home-page">
-
-                                        <span></span>
-
-                                        <span></span>
-
-                                        <span></span>
-
-                                    </span>
-                                <span class="title-menu">All Departments</span>
-                            </h4>
-                            <div class="vertical-menu-content">
-                                <span class="btn-close hidden-md"><i class="flaticon-close"
-                                                                     aria-hidden="true"></i></span>
-                                <ul class="vertical-menu-list">
-                                    <li><a href="#">New Arrivals</a></li>
-                                    <li class="menu-item-has-children arrow item-megamenu">
-                                        <a href="#" class="dropdown-toggle">Tv & Audio</a>
-                                        <span class="toggle-submenu hidden-md"></span>
-                                        <div class="submenu parent-megamenu megamenu">
-                                            <div class="row">
-                                                <div class="submenu-banner submenu-banner-menu-1">
-                                                    <div class="col-md-4">
-                                                        <div class="dropdown-menu-info">
-                                                            <h6 class="dropdown-menu-title">Smartphone</h6>
-                                                            <div class="dropdown-menu-content">
-                                                                <ul class="menu">
-                                                                    <li class="menu-item"><a href="#">Monitors
-                                                                    </a></li>
-                                                                    <li class="menu-item"><a href="#">Tablet</a></li>
-                                                                    <li class="menu-item"><a href="#">Computer
-                                                                    </a></li>
-                                                                    <li class="menu-item"><a href="#">Bestseller</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Top Rated</a></li>
-                                                                    <li class="menu-item"><a href="#">Office</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Networking</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="dropdown-menu-info">
-                                                            <h6 class="dropdown-menu-title">Computer</h6>
-                                                            <div class="dropdown-menu-content">
-                                                                <ul class="menu">
-                                                                    <li class="menu-item"><a href="#">Smart
-                                                                        Computer</a></li>
-                                                                    <li class="menu-item"><a href="#">Bluetooth
-                                                                    </a></li>
-                                                                    <li class="menu-item"><a href="#">Soundbars</a></li>
-                                                                    <li class="menu-item"><a href="#">
-                                                                        Computer</a></li>
-                                                                    <li class="menu-item"><a href="#">New Arrivals</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Monitors</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="menu-item-has-children arrow item-megamenu">
-                                        <a href="#" class="dropdown-toggle">Laptop</a>
-                                        <span class="toggle-submenu hidden-md"></span>
-                                        <div class="submenu parent-megamenu megamenu">
-                                            <div class="row">
-                                                <div class="submenu-banner submenu-banner-menu-1">
-                                                    <div class="col-md-4">
-                                                        <div class="dropdown-menu-info">
-                                                            <h6 class="dropdown-menu-title">Smartphone</h6>
-                                                            <div class="dropdown-menu-content">
-                                                                <ul class="menu">
-                                                                    <li class="menu-item"><a href="#">Monitors
-                                                                    </a></li>
-                                                                    <li class="menu-item"><a href="#">Tablet</a></li>
-                                                                    <li class="menu-item"><a href="#">Computer
-                                                                    </a></li>
-                                                                    <li class="menu-item"><a href="#">Bestseller</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Top Rated</a></li>
-                                                                    <li class="menu-item"><a href="#">Office</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Networking</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="dropdown-menu-info">
-                                                            <h6 class="dropdown-menu-title">Computer</h6>
-                                                            <div class="dropdown-menu-content">
-                                                                <ul class="menu">
-                                                                    <li class="menu-item"><a href="#">Smart
-                                                                        Computer</a></li>
-                                                                    <li class="menu-item"><a href="#">Bluetooth
-                                                                    </a></li>
-                                                                    <li class="menu-item"><a href="#">Soundbars</a></li>
-                                                                    <li class="menu-item"><a href="#">
-                                                                        Computer</a></li>
-                                                                    <li class="menu-item"><a href="#">New Arrivals</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Monitors</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a href="#">Computer</a>
-                                    </li>
-                                    <li><a href="#">Smartphone </a></li>
-                                    <li class="menu-item-has-children arrow item-megamenu">
-                                        <a href="#" class="dropdown-toggle">Printers</a>
-                                        <span class="toggle-submenu hidden-md"></span>
-                                        <div class="submenu parent-megamenu megamenu">
-                                            <div class="row">
-                                                <div class="submenu-banner submenu-banner-menu-1">
-                                                    <div class="col-md-4">
-                                                        <div class="dropdown-menu-info">
-                                                            <h6 class="dropdown-menu-title">Camera</h6>
-                                                            <div class="dropdown-menu-content">
-                                                                <ul class="menu">
-                                                                    <li class="menu-item"><a href="#">Monitor
-                                                                    </a></li>
-                                                                    <li class="menu-item"><a href="#">Speakers</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Tablet
-                                                                        Computer</a></li>
-                                                                    <li class="menu-item"><a href="#">Monitors</a></li>
-                                                                    <li class="menu-item"><a href="#">Projector</a></li>
-                                                                    <li class="menu-item"><a href="#">Office</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Networking</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="dropdown-menu-info">
-                                                            <h6 class="dropdown-menu-title">Computer</h6>
-                                                            <div class="dropdown-menu-content">
-                                                                <ul class="menu">
-                                                                    <li class="menu-item"><a href="#">Computer</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Phone
-                                                                    </a></li>
-                                                                    <li class="menu-item"><a href="#">Printers</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Game &
-                                                                        Consoles</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">New Arrivals</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Monitors</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a href="#">Camera</a></li>
-                                    <li><a href="#">Game & Consoles</a></li>
-                                    <li><a href="#">Tablet</a></li>
-                                    <li><a href="#">Monitors</a></li>
-                                    <li><a href="#">Drivers</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="header-menu header-menu-resize">
-                            <ul class="header-nav dagon-nav">
-                                <li class="btn-close hidden-md"><i class="flaticon-close" aria-hidden="true"></i></li>
-                                <li class="menu-item-has-children arrow">
-                                    <a href="index2.html" class="dropdown-toggle">Home</a>
-                                    <span class="toggle-submenu hidden-md"></span>
-                                    <ul class="submenu parent-megamenu">
-                                        <li class="menu-item">
-                                            <a href="index.html">Home 1</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="index2.html">Home 2</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="index3.html">Home 3</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children arrow">
-                                    <a href="#" class="dropdown-toggle">Shop</a>
-                                    <span class="toggle-submenu hidden-md"></span>
-                                    <ul class="submenu parent-megamenu">
-                                        <li class="menu-item">
-                                            <a href="grid-product.html">Grid Product</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="list-product.html">List Product</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="list-product-right.html">List Product Right</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="grid-product-right.html">Grid Product Right</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="detail.html">Detail Product</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children arrow">
-                                    <a href="#" class="dropdown-toggle">Sub Menu</a>
-                                    <span class="toggle-submenu hidden-md"></span>
-                                    <ul class="submenu parent-megamenu">
-                                        <li class="menu-item">
-                                            <a href="checkout.html">Checkout</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="shopping-cart.html">Shopping Cart</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="contact-us.html">Contact Us</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="login.html">Login</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="wishlist.html">Wishlist</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="compare.html">Compare</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="contact-us.html" class="dropdown-toggle">Contact Us</a>
-                                    <span class="toggle-submenu hidden-md"></span>
-                                </li>
-                                <li class="menu-item-has-children arrow">
-                                    <a href="#" class="dropdown-toggle">Blog</a>
-                                    <span class="toggle-submenu hidden-md"></span>
-                                    <ul class="submenu parent-megamenu">
-                                        <li class="menu-item">
-                                            <a href="blog-grid.html">Blog Grid</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="blog-list.html">Blog List</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="blog-single.html">Blog Single</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <span data-action="toggle-nav" class="menu-on-mobile hidden-md">
-
-                                <span class="btn-open-mobile home-page">
-
-                                    <span></span>
-
-                                    <span></span>
-
-                                    <span></span>
-
-                                </span>
-
-                                <span class="title-menu-mobile">Main menu</span>
-
-                            </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header><!-- end HEADER -->
+    <%@ include file="/WEB-INF/view/user/header.jsp" %>
+<!-- end HEADER -->--%>
     <!-- MAIN -->
     <main class="site-main" id="site-main">
-        <div class="container-fluid px-4">
-            <h1 class="mt-4">Product management</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="<c:url value="/"/>">Home</a>
-                </li>
-                <li class="breadcrumb-item active"><a href="#">Product table</a></li>
-            </ol>
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    Product table
-                </div>
-                <div class="card-body">
-                    <table id="datatablesSimple">
-                        <thead>
-                        <tr>
-                            <th>
-                                <a class="btn btn-success" style="color: white !important;" href="<c:url value="/products/add"/>">Add product</a>
-                            </th>
-                            <th>Id</th>
-                            <th>Category</th>
-                            <th>Product</th>
-                            <th>Color</th>
-                            <th>Stock</th>
-                            <th>Description</th>
-                            <th>
-                                <a class="btn btn-success" style="color: white !important;" href="<c:url value="/products/add"/>">Add product</a>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${product_list}" var="product">
+        <div class="container px-5">
+            <div class="container-fluid px-5">
+                <h1 class="mt-4">Product management</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a href="<c:url value="/"/>">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active"><a href="#">Product table</a></li>
+                </ol>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Product table
+                    </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple" class="pineapple-table">
+                            <thead>
                             <tr>
-                                <td>
-                                    <a class="btn btn-primary"
-                                       href="<c:url value="/products/detail?id=${product['product_detail'].productId}"/>">Detail</a>
-                                    <a class="btn btn-warning"
-                                       href="<c:url value="/students/edit?id=${product['product_detail'].id}"/>">Edit</a>
-                                    <a class="btn btn-danger"
-                                       href="<c:url value="/students/remove?id=${product['product_detail'].id}"/>">Delete</a>
-                                </td>
-                                <td>${product['product_detail'].id}</td>
-                                <td>${product['category'].name}</td>
-                                <td>${product['product'].name}</td>
-                                <td>${product['product_detail'].color}</td>
-                                <td>${product['product_detail'].amount}</td>
-                                <td>${product['product_detail'].description}</td>
-                                <td>
-                                    <a class="btn btn-primary"
-                                       href="<c:url value="/products/detail?id=${product.product_detail.productId}"/>">Detail</a>
-                                    <a class="btn btn-warning"
-                                       href="<c:url value="/students/edit?id=${product.product_detail.id}"/>">Edit</a>
-                                    <a class="btn btn-danger"
-                                       href="<c:url value="/students/remove?id=${product.product_detail.id}"/>">Delete</a>
-                                </td>
+                                <th>Id</th>
+                                <th>Category</th>
+                                <th>Product</th>
+                                <th>Color</th>
+                                <th>Stock</th>
+                                <th>Description</th>
+                                <th>
+                                    <a class="btn btn-success" style="color: white !important;"
+                                       href="<c:url value="/products/add"/>">Add product</a>
+                                </th>
                             </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${product_list}" var="product">
+                                <tr>
+                                    <td>${product['product_detail'].id}</td>
+                                    <td>${product['category'].name}</td>
+                                    <td>${product['product'].name}</td>
+                                    <td>${product['product_detail'].color}</td>
+                                    <td>${product['product_detail'].amount}</td>
+                                    <td>${product['product_detail'].description}</td>
+                                    <td>
+                                        <a class="btn btn-primary"
+                                           href="<c:url value="/products/detail?id=${product['product_detail'].productId}"/>">Detail</a>
+                                        <button type="button"
+                                                class="btn btn-warning edit-${product['product_detail'].id}-btn">Edit
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-warning confirm-${product['product_detail'].id}-btn">
+                                            Confirm
+                                        </button>
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                        <form action="<c:url value="/products/list"/>" method="get">
+                            <button href="#" onClick="(function(){
+                                window.location.href = 'localhost:8080/products/list?page_size=${page_size}&page=${page - 1}';
+                                return false;
+                            })();return false;">click here</button>
+                            <button type="button" class="btn" id="prev_btn">Previous</button>
+                            <input id="pageSize" type="number" value="${page_size}" min="5" max="15" name="page_size" placeholder="Page size" class="input-number">
+                            <input id="pageNumber" type="number" value="${page}" name="page" placeholder="Page" class="input-number">
+                            <button type="button" class="btn" id="next-btn">Next</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -784,11 +317,34 @@
 <script type="text/javascript" src=" <c:url value="/assets/js/Modernizr.js"/>"></script>
 <script type="text/javascript" src=" <c:url value="/assets/js/jquery.plugin.js"/>"></script>
 <script type="text/javascript" src=" <c:url value="/assets/js/jquery.countdown.js"/>"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-        crossorigin="anonymous"></script>
-<script src="<c:url value='/assets/js/datatables-simple-demo.js'/>"></script>
+<script>
+    <c:forEach items="${product_list}" var="product">
+    $('.edit-${product['product_detail'].id}-btn').click(function () {
+        $('.pineapple-table').addClass('section-${product['product_detail'].id}');
+    });
+
+    $('.confirm-${product['product_detail'].id}-btn').click(function () {
+        $('.pineapple-table').removeClass('section-${product['product_detail'].id}');
+    });
+    </c:forEach>
+</script>
 
 <script>
+    document.getElementById("prev_btn").onclick = function (){
+        let pageSize = document.getElementById("pageSize").value;
+        let page = document.getElementById("pageNumber").value;
+        window.location.href = 'localhost:8080/products/list?page_size=' + (pageSize-1) + '&page=' + page;
+    }
+
+    document.getElementById("prev_btn").onclick = function (){
+        let pageSize = document.getElementById("pageSize").value;
+        let page = document.getElementById("pageNumber").value;
+        window.location.href = 'localhost:8080/products/list?page_size=' + (pageSize+1) + '&page=' + page;
+    }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+
 </body>
 </html>

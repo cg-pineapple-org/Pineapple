@@ -32,7 +32,10 @@ public class ProductService {
         return ProductDao.getInstance().findProductDetailByProductId(id);
     }
 
-    public List<Map<String, Object>> getAllProducts(){
-        return ProductDao.getInstance().findAllProduct();
+    public List<Map<String, Object>> getAllProducts(Integer pageSize, Integer page){
+        List<Map<String, Object>> resultList = ProductDao.getInstance().findAllProduct(pageSize, page);
+
+        if (resultList.isEmpty()) return null;
+        return resultList;
     }
 }

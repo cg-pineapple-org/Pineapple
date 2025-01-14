@@ -195,7 +195,7 @@
               <a href="index.html">
                 <img
                         class="logo responsive-logo"
-                        src="assets/images/den-trang.svg"
+                        src="<c:url value = "/assets/images/den-trang.svg"/>"
                         alt="logo"
                 />
               </a>

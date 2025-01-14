@@ -166,7 +166,7 @@ public class ProductDao {
         return resultList;
     }
 
-    public List<Map<String, Object>> findAllProduct(){
+    public List<Map<String, Object>> findAllProduct(Integer pageSize, Integer page){
         List<Map<String, Object>> resultList = new ArrayList();
 
         Map<String, Object> objectMap;
@@ -175,9 +175,13 @@ public class ProductDao {
         Product product;
         ProductDetail productDetail;
 
+        int offset = (pageSize * (page - 1));
+
         try{
             Connection connection = JdbcConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_FIND_ALL_PRODUCT);
+            preparedStatement.setInt(1, pageSize);
+            preparedStatement.setInt(2, offset);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
