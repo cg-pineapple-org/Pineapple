@@ -51,6 +51,9 @@ public class ProductDao {
         catch (SQLException e){
             logger.error("Database error while finding product{}", e.getMessage());
         }
+        catch (Exception e){
+            logger.error("Some thing went wrong{}", e.getMessage());
+        }
         return product;
     }
 
@@ -74,6 +77,9 @@ public class ProductDao {
         }
         catch (SQLException e){
             logger.error("Database error while finding product detail{}", e.getMessage());
+        }
+        catch (Exception e){
+            logger.error("Some thing went wrong{}", e.getMessage());
         }
         return productDetail;
     }
@@ -121,6 +127,9 @@ public class ProductDao {
         }
         catch (SQLException e){
             logger.error("Database error while finding product detail related to product{}", e.getMessage());
+        }
+        catch (Exception e){
+            logger.error("Some thing went wrong{}", e.getMessage());
         }
         List<List> resultList = new ArrayList<>();
         resultList.add(productDetailList);
@@ -211,6 +220,9 @@ public class ProductDao {
         }
         catch (SQLException e){
             logger.error("Database error while finding all products{}", e.getMessage());
+        }
+        catch (Exception e){
+            logger.error("Some thing went wrong{}", e.getMessage());
         }
         return resultList;
     }

@@ -6,7 +6,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Products detail</title>
+    <title>Products list</title>
     <link rel="shortcut icon" type="image/x-icon" href=" <c:url value = "/assets/images/favicon.png"/>">
     <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/fonts/flaticon/flaticon.css"/>">
     <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/animate.css"/>">
@@ -26,6 +26,18 @@
         .pineapple-table:not(.section-${product['product_detail'].id}) .confirm-${product['product_detail'].id}-btn,
         </c:forEach> .default .default {
             display: none;
+        }
+
+        <c:forEach items="${product_list}" var="product">
+        .pineapple-table:not(.section-${product['product_detail'].id}) .input-${product['product_detail'].id},
+        </c:forEach> .default .default {
+            pointer-events: none;
+        }
+
+        <c:forEach items="${product_list}" var="product">
+        .section-${product['product_detail'].id} .input-${product['product_detail'].id},
+        </c:forEach> .not-default .not-default {
+            backdrop-filter: contrast(0%);
         }
 
         <c:forEach items="${product_list}" var="product">
@@ -94,74 +106,73 @@
     </div>
     <!-- HEADER -->
     <%@ include file="/WEB-INF/view/user/header.jsp" %>
-<!-- end HEADER -->--%>
+    <!-- end HEADER -->
     <!-- MAIN -->
     <main class="site-main" id="site-main">
-        <div class="container px-5">
-            <div class="container-fluid px-5">
-                <h1 class="mt-4">Product management</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="<c:url value="/"/>">Home</a>
-                    </li>
-                    <li class="breadcrumb-item active"><a href="#">Product table</a></li>
-                </ol>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
-                        Product table
-                    </div>
-                    <div class="card-body">
-                        <table id="datatablesSimple" class="pineapple-table">
-                            <thead>
+        <div class="container-fluid px-5">
+            <h1 class="mt-4">Product management</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="<c:url value="/"/>">Home</a>
+                </li>
+                <li class="breadcrumb-item active"><a href="#">Product table</a></li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Product table
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple" class="pineapple-table table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Category</th>
+                            <th>Product</th>
+                            <th>Color</th>
+                            <th>Stock</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>
+                                <a class="btn btn-success" style="color: white !important;"
+                                   href="<c:url value="/products/add"/>">Add product</a>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${product_list}" var="product">
                             <tr>
-                                <th>Id</th>
-                                <th>Category</th>
-                                <th>Product</th>
-                                <th>Color</th>
-                                <th>Stock</th>
-                                <th>Description</th>
-                                <th>
-                                    <a class="btn btn-success" style="color: white !important;"
-                                       href="<c:url value="/products/add"/>">Add product</a>
-                                </th>
+                                <td class="pineapple-id">${product['product_detail'].id}</td>
+                                <td>${product['category'].name}</td>
+                                <td>${product['product'].name}</td>
+                                <td class="pineapple-color"><input type="text" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].color}"></td>
+                                <td class="pineapple-amount"><input type="text" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].amount}"></td>
+                                <td class="pineapple-price"><input type="text" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].price}"></td>
+                                <td class="pineapple-description"><input type="text" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].description}"></td>
+                                <td>
+                                    <a class="btn btn-primary"
+                                       href="<c:url value="/products/detail?id=${product['product_detail'].productId}"/>">Detail</a>
+                                    <button type="button"
+                                            class="btn btn-warning edit-${product['product_detail'].id}-btn">Edit
+                                    </button>
+                                    <button type="button"
+                                            class="btn btn-warning confirm-${product['product_detail'].id}-btn">Confirm
+                                    </button>
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${product_list}" var="product">
-                                <tr>
-                                    <td>${product['product_detail'].id}</td>
-                                    <td>${product['category'].name}</td>
-                                    <td>${product['product'].name}</td>
-                                    <td>${product['product_detail'].color}</td>
-                                    <td>${product['product_detail'].amount}</td>
-                                    <td>${product['product_detail'].description}</td>
-                                    <td>
-                                        <a class="btn btn-primary"
-                                           href="<c:url value="/products/detail?id=${product['product_detail'].productId}"/>">Detail</a>
-                                        <button type="button"
-                                                class="btn btn-warning edit-${product['product_detail'].id}-btn">Edit
-                                        </button>
-                                        <button type="button"
-                                                class="btn btn-warning confirm-${product['product_detail'].id}-btn">
-                                            Confirm
-                                        </button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                        <form action="<c:url value="/products/list"/>" method="get">
-                            <button href="#" onClick="(function(){
-                                window.location.href = 'localhost:8080/products/list?page_size=${page_size}&page=${page - 1}';
-                                return false;
-                            })();return false;">click here</button>
-                            <button type="button" class="btn" id="prev_btn">Previous</button>
-                            <input id="pageSize" type="number" value="${page_size}" min="5" max="15" name="page_size" placeholder="Page size" class="input-number">
-                            <input id="pageNumber" type="number" value="${page}" name="page" placeholder="Page" class="input-number">
-                            <button type="button" class="btn" id="next-btn">Next</button>
-                        </form>
-                    </div>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                    <form action="<c:url value="/products/list"/>" method="get" class="form-group">
+                        <button type="button" class="btn" id="prev-btn">Previous</button>
+                        <input id="pageSize" type="number" value="${page_size}" min="5" max="15" name="page_size"
+                               placeholder="Page size" class="input-number form-text">
+                        <input id="pageNumber" type="number" value="${page}" name="page" placeholder="Page"
+                               class="input-number form-text">
+                        <button type="button" class="btn" id="next-btn">Next</button>
+                        <button type="button" class="btn" id="change-btn">Confirm changes</button>
+                        <button type="button" class="btn" id="rest-btn">Reset changes</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -323,23 +334,34 @@
         $('.pineapple-table').addClass('section-${product['product_detail'].id}');
     });
 
+    let map = new Map();
+
     $('.confirm-${product['product_detail'].id}-btn').click(function () {
         $('.pineapple-table').removeClass('section-${product['product_detail'].id}');
+        let id = $('.confirm-${product['product_detail'].id}-btn').parent().parent().children(".child").eq(1).children(".child").eq(1);
+        let color = $('.confirm-${product['product_detail'].id}-btn').parent().parent().children(".child").eq(3).children(".child").eq(1);
+        let amount = $('.confirm-${product['product_detail'].id}-btn').parent().parent().children(".child").eq(4).children(".child").eq(1);
+        let price = $('.confirm-${product['product_detail'].id}-btn').parent().parent().children(".child").eq(5).children(".child").eq(1);
+        let description = $('.confirm-${product['product_detail'].id}-btn').parent().parent().children(".child").eq(6).children(".child").eq(1);
+
+        let list = [color, amount, price, description];
+        map.set(id, list);
+
     });
     </c:forEach>
 </script>
 
 <script>
-    document.getElementById("prev_btn").onclick = function (){
+    document.getElementById("prev-btn").onclick = function () {
         let pageSize = document.getElementById("pageSize").value;
         let page = document.getElementById("pageNumber").value;
-        window.location.href = 'localhost:8080/products/list?page_size=' + (pageSize-1) + '&page=' + page;
+        window.location.href = '/products/list?page_size=' + pageSize + '&page=' + (parseInt(page) - 1);
     }
 
-    document.getElementById("prev_btn").onclick = function (){
+    document.getElementById("next-btn").onclick = function () {
         let pageSize = document.getElementById("pageSize").value;
         let page = document.getElementById("pageNumber").value;
-        window.location.href = 'localhost:8080/products/list?page_size=' + (pageSize+1) + '&page=' + page;
+        window.location.href = '/products/list?page_size=' + pageSize + '&page=' + (parseInt(page) + 1);
     }
 </script>
 
