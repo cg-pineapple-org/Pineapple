@@ -2,6 +2,8 @@ package com.codegym.pineapple.dao;
 
 import com.codegym.pineapple.connection.JdbcConnection;
 import com.codegym.pineapple.constant.QueryConstant;
+import com.codegym.pineapple.model.Account;
+import com.codegym.pineapple.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -86,5 +88,23 @@ public class AuthDAO {
             logger.error("Error creating user: " + e.getMessage());
         }
         return false;
+    }
+
+    public Account findUserByUsername(String username) {
+        String query = "SELECT password FROM accounts WHERE username = ?";
+        Account account = null;
+        try {
+            Connection connection = JdbcConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                account = new Account();
+                account.setPassword(resultSet.getString("password"));
+            }
+        } catch (SQLException e) {
+            logger.error("Error retrieving email: " + e.getMessage());
+        }
+        return account;
     }
 }

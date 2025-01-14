@@ -553,7 +553,8 @@
                 </div>
             </div>
         </div>
-    </header><!-- end HEADER -->
+    </header>
+    <!-- end HEADER -->
     <!-- MAIN -->
     <main class="site-main site-login">
         <div class="container">

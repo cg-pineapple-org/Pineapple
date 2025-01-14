@@ -12,17 +12,26 @@
     <script type="text/javascript" src="/js/jquery.validate.min.js"></script>
 </head>
 <body>
-
-<%-- todo: add header--%>
+<%--<jsp:directive.include file="header.jsp" />--%>
 
 <div align="center">
-    <h2>Reset Your Password</h2>
+    <h2>Change Your Password</h2>
     <p>
-        Please enter your login email, we'll send a new random password to your inbox:
+        Please enter your login username and email, we'll send a new random password to your inbox:
     </p>
 
-    <form id="resetForm" action="reset_password" method="post">
+    <c:if test="${not empty sucessMessage}">
+        <div class="success-message">${sucessMessage}</div>
+    </c:if>
+    <c:if test="${not empty errorMessage}">
+        <div class="error-message">${errorMessage}</div>
+    </c:if>
+    <form id="resetForm" action="/auth/forgot-password" method="post">
         <table>
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" name="username" id="username" size="20"></td>
+            </tr>
             <tr>
                 <td>Email:</td>
                 <td><input type="text" name="email" id="email" size="20"></td>
@@ -36,7 +45,7 @@
     </form>
 </div>
 
-<%-- todo: add footer--%>
+<%--<jsp:directive.include file="footer.jsp" />--%>
 
 <script type="text/javascript">
 

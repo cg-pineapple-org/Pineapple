@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -51,7 +52,8 @@ public class AuthController extends HttpServlet {
 
                 if (authService.login(usernameLogin, passwordLogin)) {
                     // todo: feature under development
-                    req.getRequestDispatcher("/WEB-INF/view/auth/register.jsp").forward(req, resp);
+                    HttpSession session=req.getSession();
+                    session.setAttribute("userId",usernameLogin);
                 } else {
                     req.setAttribute("message", "Invalid username or password");
                     req.getRequestDispatcher("/WEB-INF/view/auth/login.jsp").forward(req, resp);

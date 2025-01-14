@@ -1,6 +1,8 @@
 package com.codegym.pineapple.service;
 
 import com.codegym.pineapple.dao.AuthDAO;
+import com.codegym.pineapple.model.Account;
+import com.codegym.pineapple.model.User;
 import com.codegym.pineapple.utility.ValidateUtility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -104,5 +106,9 @@ public class AuthService {
 
     private String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public Account getUserByUsername(String username) {
+        return authDAO.findUserByUsername(username);
     }
 }
