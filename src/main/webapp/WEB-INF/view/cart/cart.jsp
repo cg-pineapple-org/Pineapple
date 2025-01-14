@@ -1,7 +1,3 @@
-<%@ page import="com.codegym.pineapple.service.CartService" %>
-<%@ page import="com.codegym.pineapple.model.CartItem" %>
-<%@ page import="com.codegym.pineapple.model.Cart" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -558,26 +554,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <%--                                <c:choose>--%>
-                                <%--                                    <c:when test="${not empty cart.cartItems}">--%>
-                                <%--                                        <ul class="product-list">--%>
-                                <%--                                            <c:forEach var="item" items="${cart.cartItems}">--%>
-                                <%--                                                <li>${item.productDetail.name}: ${item.quantity}</li>--%>
-                                <%--                                            </c:forEach>--%>
-                                <%--                                        </ul>--%>
-                                <%--                                    </c:when>--%>
-                                <%--                                    <c:otherwise>--%>
-                                <%--                                        <p class="no-product">Giỏ hàng đang trống</p>--%>
-                                <%--                                        <a href="home" class="home-button">Mua sắm ngay</a>--%>
-                                <%--                                    </c:otherwise>--%>
-                                <%--                                </c:choose>--%>
-
-
-                                <%--                                <jsp:useBean id="cart" scope="session" type="com.codegym.pineapple.model.Cart" />--%>
-                                <%--                                <%--%>
-                                <%--                                    List<CartItem> cartItems = cart.getCartItems();--%>
-                                <%--                                    Double totalPrice = cart.getTotalPrice();--%>
-                                <%--                                %>--%>
                                 <%
                                     int totalPrice;
                                 %>
@@ -605,24 +581,10 @@
                                                     <input type="text" value="${item.quantity}" title="Qty"
                                                            class="input-text qty text"
                                                            size="1">
-                                                    <a href="#" class="sign plus" onclick="updateQuantity(1)"><i
+                                                    <a href="#" class="sign plus"><i
                                                             class="fa fa-plus"></i></a>
-                                                    <a href="#" class="sign minus" onclick="updateQuantity(-1)"><i
+                                                    <a href="#" class="sign minus"><i
                                                             class="fa fa-minus"></i></a>
-
-                                                    <script>
-                                                        function updateQuantity(change) {
-                                                            let quantityInput = document.getElementById('quantity');
-                                                            let quantity = parseInt(quantityInput.value) || 0;
-                                                            quantity += change;
-                                                            if (quantity < 1) quantity = 1;
-                                                            quantityInput.value = quantity;
-                                                            let subPrice = price * quantity;
-                                                            document.getElementsByClassName("sub-price").innerText = subPrice;
-                                                            totalPrice += subPrice;
-                                                            document.getElementsByClassName("total-price").innerText = totalPrice;
-                                                        }
-                                                    </script>
                                                 </div>
                                             </div>
                                         </td>
@@ -644,7 +606,7 @@
                         </div>
                         <div class="cart-actions">
                             <button type="submit" class="btn-continue">
-                                <span>Continue Shopping</span>
+                                <a href="/" style="color: white">Continue Shopping</a>
                             </button>
                             <button type="submit" class="btn-clean">
                                 <span>Update Shopping Cart</span>

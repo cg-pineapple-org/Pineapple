@@ -7,7 +7,6 @@ public class CartItem {
     private Integer quantity;
     private Double subTotal;
     private String productName;
-    private String color;
     private ProductDetail productDetail;
 
     public CartItem() {

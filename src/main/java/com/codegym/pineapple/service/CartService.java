@@ -2,9 +2,6 @@ package com.codegym.pineapple.service;
 
 import com.codegym.pineapple.dao.CartDao;
 import com.codegym.pineapple.model.Cart;
-import com.codegym.pineapple.model.CartItem;
-
-import java.util.List;
 import java.util.Optional;
 
 public class CartService {
@@ -22,13 +19,5 @@ public class CartService {
             return cart;
         }
         return null;
-    }
-
-//    public boolean addToCart(CartItem cartItem) {
-//        cartDao.addToCart(cartItem);
-//    }
-
-    public boolean deleteCartItem(Integer cartItemId) {
-        return cartDao.deleteCartItem(cartItemId);
     }
 }
