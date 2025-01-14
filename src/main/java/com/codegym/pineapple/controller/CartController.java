@@ -23,7 +23,8 @@ public class CartController extends HttpServlet {
         String action = req.getServletPath();
         switch (action) {
             case "/cart":
-                req.setAttribute("cart", cartService.getCart(1));
+                Integer defaultCartId = 1;
+                req.setAttribute("cart", cartService.getCart(defaultCartId));
                 req.getRequestDispatcher("/WEB-INF/view/cart/cart.jsp").forward(req, resp);
                 break;
         }
