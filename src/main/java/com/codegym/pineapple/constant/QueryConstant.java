@@ -10,4 +10,29 @@ public class QueryConstant {
     public static final String QUERY_GET_EMAIL_BY_EMAIL = "SELECT email FROM users WHERE email = ?";
     public static final String QUERY_ADD_USER = "INSERT INTO users (first_name, last_name, country, day_of_birth, email, phone, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
     public static final String QUERY_ADD_ACCOUNT = "INSERT INTO accounts (user_id, username, password) VALUES (LAST_INSERT_ID(), ?, ?)";
+    public static final String QUERY_LIST_CART_ITEMS = "SELECT p.name, pd.color, pd.price, pd.id, sum(ci.quantity) AS quantity, (sum(ci.quantity) * pd.price) AS sub_total\n" +
+            "FROM carts c\n" +
+            "JOIN users u ON u.cart_id = c.id\n" +
+            "JOIN cart_items ci ON ci.cart_id = c.id\n" +
+            "JOIN product_details pd ON ci.product_detail_id = pd.id\n" +
+            "JOIN products p ON p.id = pd.product_id\n" +
+            "GROUP BY  pd.id\n" +
+            "ORDER BY p.id";
+
+    public static final String QUERY_CALCULATE_CART_TOTAL_PRICE = "SELECT sum(subquery.sub_total) AS cart_total\n" +
+            "FROM (SELECT (sum(ci.quantity) * pd.price) AS sub_total\n" +
+            "FROM carts c\n" +
+            "JOIN users u ON u.cart_id = c.id\n" +
+            "JOIN cart_items ci ON ci.cart_id = c.id\n" +
+            "JOIN product_details pd ON ci.product_detail_id = pd.id\n" +
+            "GROUP BY pd.id) AS subquery";
+
+    public static final String QUERY_CALCULATE_NUBER_CART_ITEM = "SELECT count(subquery.id) AS number_item\n" +
+            "FROM (SELECT pd.id AS id\n" +
+            "FROM carts c\n" +
+            "JOIN users u ON u.cart_id = c.id\n" +
+            "JOIN cart_items ci ON ci.cart_id = c.id\n" +
+            "JOIN product_details pd ON ci.product_detail_id = pd.id\n" +
+            "JOIN products p ON p.id = pd.product_id\n" +
+            "GROUP BY  pd.id) AS subquery";
 }
