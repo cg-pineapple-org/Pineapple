@@ -34,6 +34,22 @@
       border-left: 1.5px solid #e3e3e3;
     }
 
+    .box-group .btn-search {
+      /* height: 51px; */
+      background-color: #e03737;
+      color: #fff;
+      vertical-align: inherit;
+      margin-right: -1px;
+      font-size: 20px;
+      text-transform: uppercase;
+      width: 52px;
+      border-radius: 90px;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      font-weight: 1000;
+      letter-spacing: 0.1em;
+    }
+
     .block-minicart .minicart {
       margin-left: 55px;
     }
@@ -43,6 +59,12 @@
       min-width: 120px;
     }
 
+    .block-minicart .counter-number {
+      position: absolute;
+      top: -8px;
+      left: 8px;
+    }
+
     .block-minicart .counter-price {
       font-size: medium;
       padding: 15px;
@@ -50,6 +72,16 @@
 
     .flaticon-shopping-cart {
       color: black !important;
+    }
+
+    .btn-viewcart, .btn-checkout {
+      font-size: 13px;
+      text-transform: uppercase;
+      color: #fff;
+      font-family: 'sofia_promedium';
+      background-color: #222;
+      padding: 10px 90px;
+      margin: 1px;
     }
 
     ::marker {
@@ -180,7 +212,7 @@
         <ul class="nav-top-left">
           <li>
             <div class="logo-container">
-              <a href="index.html">
+              <a href="<c:url value = "/home"/>">
                 <img
                         class="logo responsive-logo"
                         src="<c:url value = "/assets/images/den-trang.svg"/>"
@@ -212,7 +244,7 @@
                       <span class="title-menu-mobile">Main menu</span>
                     </span>
                 <div class="block-minicart dropdown style2">
-                  <a class="minicart" href="#">
+                  <a class="minicart" href="<c:url value = "/cart"/>">
                         <span class="counter qty">
                           <span class="cart-icon"
                           ><i
@@ -220,18 +252,20 @@
                                   aria-hidden="true"
                           ></i
                           ></span>
-                          <span class="counter-number">2</span>
+                          <span class="counter-number">${cart.numberOfItem}</span>
                         </span>
                     <span class="counter-your-cart">
                           <span class="counter-label">Your Cart:</span>
-                          <span class="counter-price">$00.00</span>
+                          <span class="counter-price"><fmt:formatNumber value="${cart.totalPrice}"
+                                                                        type="number" minFractionDigits="0"
+                                                                        maxFractionDigits="2"/></span>
                         </span>
                   </a>
                   <div class="parent-megamenu">
                     <form>
                       <div class="minicart-content-wrapper">
                         <div class="subtitle">
-                          You have <span>2</span> item(s) in your cart
+                          You have <span>${cart.numberOfItem}</span> item(s) in your cart
                         </div>
                         <div class="minicart-items-wrapper">
                           <ol class="minicart-items">
@@ -295,7 +329,7 @@
                         <div class="actions">
                           <a
                                   class="btn btn-viewcart"
-                                  href="shopping-cart.html"
+                                  href="<c:url value = "/cart"/>"
                           >View cart</a
                           >
                           <a class="btn btn-checkout" href="checkout.html"

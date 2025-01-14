@@ -188,13 +188,13 @@
           <div class="links">
             <h3 class="title-of-section">My account</h3>
             <ul>
-              <li><a href="#">Sign In</a></li>
-              <li><a href="#">View Cart</a></li>
-              <li><a href="#">My Wishlist</a></li>
-              <li><a href="#">Terms & Conditions</a></li>
-              <li><a href="#">Contact us</a></li>
-              <li><a href="#">Track My Order</a></li>
-              <li><a href="#">Help</a></li>
+              <li><a href="<c:url value = "/auth/login"/>">Sign In</a></li>
+              <li><a href="<c:url value = "/cart"/>">View Cart</a></li>
+              <li><a href="<c:url value = "/cart"/>">My Wishlist</a></li>
+              <li><a href="<c:url value = "/home"/>">Terms & Conditions</a></li>
+              <li><a href="<c:url value = "/home"/>">Contact us</a></li>
+              <li><a href="<c:url value = "/home"/>">Track My Order</a></li>
+              <li><a href="<c:url value = "/home"/>">Help</a></li>
             </ul>
           </div>
         </div>
@@ -202,13 +202,13 @@
           <div class="links">
             <h3 class="title-of-section">Information</h3>
             <ul>
-              <li><a href="#">Specials</a></li>
-              <li><a href="#">New products</a></li>
-              <li><a href="#">Best sellers</a></li>
-              <li><a href="#">Our stores</a></li>
-              <li><a href="#">Contact us</a></li>
-              <li><a href="#">Sitemap</a></li>
-              <li><a href="#">Blog</a></li>
+              <li><a href="<c:url value = "/home"/>">Specials</a></li>
+              <li><a href="<c:url value = "/home"/>">New products</a></li>
+              <li><a href="<c:url value = "/home"/>">Best sellers</a></li>
+              <li><a href="<c:url value = "/home"/>">Our stores</a></li>
+              <li><a href="<c:url value = "/home"/>">Contact us</a></li>
+              <li><a href="<c:url value = "/home"/>">Sitemap</a></li>
+              <li><a href="<c:url value = "/home"/>">Blog</a></li>
             </ul>
           </div>
         </div>
@@ -243,16 +243,16 @@
               </form>
             </div>
             <div class="socials">
-              <a href="#" class="social"
+              <a href="<c:url value = "/home"/>" class="social"
               ><i class="fa fa-twitter" aria-hidden="true"></i
               ></a>
-              <a href="#" class="social"
+              <a href="<c:url value = "/home"/>" class="social"
               ><i class="fa fa-facebook" aria-hidden="true"></i
               ></a>
-              <a href="#" class="social"
+              <a href="<c:url value = "/home"/>" class="social"
               ><i class="fa fa-pinterest" aria-hidden="true"></i
               ></a>
-              <a href="#" class="social"
+              <a href="<c:url value = "/home"/>" class="social"
               ><i class="fa fa-instagram" aria-hidden="true"></i
               ></a>
             </div>

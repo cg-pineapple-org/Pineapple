@@ -7,7 +7,7 @@ public class Cart {
     private Integer id;
     private Integer userId;
     private List<CartItem> cartItems;
-    private Double totalPrice;
+    private Double totalPrice = 0d;
     private int numberOfItem;
 
     public Cart() {
