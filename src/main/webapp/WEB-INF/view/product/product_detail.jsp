@@ -85,8 +85,7 @@
         </div>
     </div>
     <!-- HEADER -->
-    <%@ include file="/WEB-INF/view/user/header.jsp" %>
-<!-- end HEADER -->--%>
+    <%@ include file="/WEB-INF/view/header.jsp" %>
     <!-- MAIN -->
     <main class="site-main color-${product_details[0].id}" id="site-main">
         <div class="container">
@@ -366,6 +365,9 @@
 <script type="text/javascript" src=" <c:url value="/assets/js/jquery.countdown.js"/>"></script>
 
 <script>
+    $('#test-press').click(function (){
+        console.log("test");
+    });
     <c:forEach items="${product_details}" var="product_detail">
     $('.color-${product_detail.id}-btn').click(function () {
         $('#site-main').removeAttr('class').addClass('site-main color-${product_detail.id}');
