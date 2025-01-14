@@ -553,7 +553,7 @@
                                         <a href="checkout.html">Checkout</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="shopping-cart.html">Shopping Cart</a>
+                                        <a href="/cart">Shopping Cart</a>
                                     </li>
                                     <li class="menu-item">
                                         <a href="wishlist.html">Wishlist</a>
