@@ -20,7 +20,6 @@ public class CartDao {
         try {
             Connection connection = JdbcConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_LIST_CART_ITEMS);
-//            preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -48,7 +47,6 @@ public class CartDao {
         try {
             Connection connection = JdbcConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_CALCULATE_CART_TOTAL_PRICE);
-//            preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -65,7 +63,6 @@ public class CartDao {
         try {
             Connection connection = JdbcConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_CALCULATE_NUBER_CART_ITEM);
-//            preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -77,54 +74,4 @@ public class CartDao {
         }
         return cart.getNumberOfItem();
     }
-//    public boolean addToCart(Cart cart, ProductDetail productDetail) {
-//        try {
-//            for (CartItem item : cart.getCartItems()) {
-//                if (item.getProductDetailId() == productDetail.getProductId()) {
-//                    CartItem existingItem = item;
-//                break; } }
-//
-//            Connection connection = JdbcConnection.getConnection();
-//            String query = "INSERT INTO cart_items (cart_id, product_detail_id, quantity) " +
-//                            "VALUES (?, ?, ?);";
-//            PreparedStatement preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setInt(1, cartItem.getCartId());
-//            preparedStatement.setInt(2, cartItem.getProductDetailId());
-//            preparedStatement.setInt(3, cartItem.getQuantity());
-//
-//            if (preparedStatement.executeUpdate() > 0) {
-//                System.out.println("Added successfully.");
-//                return true;
-//            } else {
-//                System.out.println("Failed to insert.");
-//                return false;
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return false;
-//    }
-
-    public boolean deleteCartItem(Integer cartItemId) {
-        Cart cart = new Cart();
-        CartItem cartItem = new CartItem();
-        try {
-            Connection connection = JdbcConnection.getConnection();
-            String query = "DELETE FROM cart_items WHERE id = ?;";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, cartItemId);
-
-            if (preparedStatement.executeUpdate() > 0) {
-                log.info("Delete cart item successful");
-                return true;
-            } else {
-                log.info("Delete cart item failed");
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
 }

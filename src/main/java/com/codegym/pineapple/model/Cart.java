@@ -68,4 +68,8 @@ public class Cart {
     public void setNumberOfItem(int numberOfItem) {
         this.numberOfItem = numberOfItem;
     }
+
+    public void add(CartItem item) {
+        this.cartItems.add(item);
+    }
 }
