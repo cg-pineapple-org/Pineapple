@@ -309,7 +309,7 @@
                                                 <div class="actions">
                                                     <a
                                                             class="btn btn-viewcart"
-                                                            href="shopping-cart.html"
+                                                            href="/cart"
                                                     >View cart</a
                                                     >
                                                     <a class="btn btn-checkout" href="checkout.html"
