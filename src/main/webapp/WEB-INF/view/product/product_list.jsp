@@ -105,7 +105,7 @@
         </div>
     </div>
     <!-- HEADER -->
-    <%@ include file="/WEB-INF/view/user/header.jsp" %>
+    <%@ include file="/WEB-INF/view/header.jsp" %>
     <!-- end HEADER -->
     <!-- MAIN -->
     <main class="site-main" id="site-main">
@@ -141,12 +141,12 @@
                         <tbody>
                         <c:forEach items="${product_list}" var="product">
                             <tr>
-                                <td class="pineapple-id">${product['product_detail'].id}</td>
+                                <td class="pineapple-id" id="id-${product['product_detail'].id}">${product['product_detail'].id}</td>
                                 <td>${product['category'].name}</td>
                                 <td>${product['product'].name}</td>
-                                <td class="pineapple-color"><input type="text" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].color}"></td>
-                                <td class="pineapple-amount"><input type="text" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].amount}"></td>
-                                <td class="pineapple-price"><input type="text" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].price}"></td>
+                                <td class="pineapple-color"><input type="text" id="color-${product['product_detail'].id}" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].color}"></td>
+                                <td class="pineapple-amount"><input type="text" id="amount-${product['product_detail'].id}" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].amount}"></td>
+                                <td class="pineapple-price"><input type="text" id="price-${product['product_detail'].id}" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].price}"></td>
                                 <td class="pineapple-description"><input type="text" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].description}"></td>
                                 <td>
                                     <a class="btn btn-primary"
@@ -170,142 +170,13 @@
                         <input id="pageNumber" type="number" value="${page}" name="page" placeholder="Page"
                                class="input-number form-text">
                         <button type="button" class="btn" id="next-btn">Next</button>
-                        <button type="button" class="btn" id="change-btn">Confirm changes</button>
-                        <button type="button" class="btn" id="rest-btn">Reset changes</button>
                     </form>
                 </div>
             </div>
         </div>
     </main><!-- end MAIN -->
     <!-- FOOTER -->
-    <footer class="site-footer footer-opt-2">
-        <div class="footer-top full-width">
-            <div class="owl-carousel instagram" data-nav="false"
-                 data-autoplay="false" data-dots="false" data-loop="true" data-margin="0"
-                 data-responsive='{"0":{"items":2},"480":{"items":2},"768":{"items":3},"992":{"items":4},"1200":{"items":5}}'>
-                <div class="item-instagram">
-                    <a href="#">
-                        <img src="assets/images/item-instagram-1.jpg" alt="img">
-                    </a>
-                    <span class="text">
-                        <i class="icon fa fa-instagram" aria-hidden="true"></i>
-			        </span>
-                </div>
-                <div class="item-instagram">
-                    <a href="#">
-                        <img src="assets/images/item-instagram-2.jpg" alt="img">
-                    </a>
-                    <span class="text">
-                        <i class="icon fa fa-instagram" aria-hidden="true"></i>
-			        </span>
-                </div>
-                <div class="item-instagram">
-                    <a href="#">
-                        <img src="assets/images/item-instagram-3.jpg" alt="img">
-                    </a>
-                    <span class="text">
-                        <i class="icon fa fa-instagram" aria-hidden="true"></i>
-			        </span>
-                </div>
-                <div class="item-instagram">
-                    <a href="#">
-                        <img src="assets/images/item-instagram-4.jpg" alt="img">
-                    </a>
-                    <span class="text">
-                        <i class="icon fa fa-instagram" aria-hidden="true"></i>
-			        </span>
-                </div>
-                <div class="item-instagram">
-                    <a href="#">
-                        <img src="assets/images/item-instagram-5.jpg" alt="img">
-                    </a>
-                    <span class="text">
-                        <i class="icon fa fa-instagram" aria-hidden="true"></i>
-			        </span>
-                </div>
-            </div>
-        </div>
-        <div class="footer-column equal-container">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-sm-6 equal-elem">
-                        <div class="logo-footer"><img src="assets/images/logo-light.png" alt="logo"></div>
-                        <div class="contacts">
-                            <p class="contacts-info">Nullam tristique tortor nibh, in viverra libero sollicitudin ac.
-                                Suspendisse quis lacinia ipsum. Etiam scelerisque sit amet lectus quis lacinia. Sed.</p>
-                            <span class="contacts-info info-address ">218 Fifth Avenue, HeavenTower NewYork City</span>
-                            <span class="contacts-info info-phone">(+68) 123 456 7890</span>
-                            <span class="contacts-info info-support">Hot-Support@Dagon.com</span>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-sm-6 equal-elem">
-                        <div class="links">
-                            <h3 class="title-of-section">My account</h3>
-                            <ul>
-                                <li><a href="#">Sign In</a></li>
-                                <li><a href="#">View Cart</a></li>
-                                <li><a href="#">My Wishlist</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Contact us</a></li>
-                                <li><a href="#">Track My Order</a></li>
-                                <li><a href="#">Help</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-sm-6 equal-elem">
-                        <div class="links">
-                            <h3 class="title-of-section">Information</h3>
-                            <ul>
-                                <li><a href="#">Specials</a></li>
-                                <li><a href="#">New products</a></li>
-                                <li><a href="#">Best sellers</a></li>
-                                <li><a href="#">Our stores</a></li>
-                                <li><a href="#">Contact us</a></li>
-                                <li><a href="#">Sitemap</a></li>
-                                <li><a href="#">Blog</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 equal-elem">
-                        <div class="links">
-                            <h3 class="title-of-section">Newsletter</h3>
-                            <span class="span-newsletter">Get notified of new products, limited releases, and more.</span>
-                            <div class="newsletter-form">
-                                <form id="newsletter-validate-detail" class="form subscribe">
-                                    <div class="control">
-                                        <input type="email" placeholder="Enter your email" id="newsletter" name="email"
-                                               class="input-subscribe">
-                                        <button type="submit" title="Subscribe" class="btn subscribe">
-                                            <span>Sign Up</span>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="socials">
-                                <a href="#" class="social"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#" class="social"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#" class="social"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                <a href="#" class="social"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright full-width">
-            <div class="container">
-                <div class="copyright-right">
-                    © Copyright 2020<span> Dagon</span>. All Rights Reserved.
-                </div>
-                <div class="pay-men">
-                    <a href="#"><img src="assets/images/general/pay1.jpg" alt="pay1"></a>
-                    <a href="#"><img src="assets/images/general/pay2.jpg" alt="pay2"></a>
-                    <a href="#"><img src="assets/images/general/pay3.jpg" alt="pay3"></a>
-                    <a href="#"><img src="assets/images/general/pay4.jpg" alt="pay4"></a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <%@ include file="/WEB-INF/view/footer.jsp" %>
     <!-- end FOOTER -->
 </div>
 <a href="#" id="scrollup" title="Scroll to Top">Scroll</a>
@@ -334,19 +205,16 @@
         $('.pineapple-table').addClass('section-${product['product_detail'].id}');
     });
 
-    let map = new Map();
-
     $('.confirm-${product['product_detail'].id}-btn').click(function () {
         $('.pineapple-table').removeClass('section-${product['product_detail'].id}');
-        let id = $('.confirm-${product['product_detail'].id}-btn').parent().parent().children(".child").eq(1).children(".child").eq(1);
-        let color = $('.confirm-${product['product_detail'].id}-btn').parent().parent().children(".child").eq(3).children(".child").eq(1);
-        let amount = $('.confirm-${product['product_detail'].id}-btn').parent().parent().children(".child").eq(4).children(".child").eq(1);
-        let price = $('.confirm-${product['product_detail'].id}-btn').parent().parent().children(".child").eq(5).children(".child").eq(1);
-        let description = $('.confirm-${product['product_detail'].id}-btn').parent().parent().children(".child").eq(6).children(".child").eq(1);
-
-        let list = [color, amount, price, description];
-        map.set(id, list);
-
+        let id = $('#id-${product['product_detail'].id}').text();
+        let color = $('#color-${product['product_detail'].id}').val();
+        color = color.substring(1);
+        let amount = $('#amount-${product['product_detail'].id}').val();
+        let price = $('#price-${product['product_detail'].id}').val();
+        let pageSize = document.getElementById("pageSize").value;
+        let page = document.getElementById("pageNumber").value;
+        window.location.href = '/products/edit?page_size=' + pageSize + '&page=' + page + '&id='+ id + '&color=' + color + '&amount=' + amount + '&price=' + price;
     });
     </c:forEach>
 </script>

@@ -226,4 +226,51 @@ public class ProductDao {
         }
         return resultList;
     }
+
+    public void updateProduct(Integer id, String color, Integer amount, Double price) {
+        Connection connection = JdbcConnection.getConnection();
+
+        try{
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_EDIT_PRODUCT);
+            preparedStatement.setString(1, color);
+            preparedStatement.setInt(2, amount);
+            preparedStatement.setDouble(3, price);
+            preparedStatement.setInt(4, id);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        }
+        catch (SQLException e){
+            try{
+                if (Optional.ofNullable(connection).isPresent()){
+                    connection.rollback();
+                }
+            }
+            catch (SQLException ei){
+                ei.printStackTrace();
+            }
+            logger.error("Database error while editing product details{}", e.getMessage());
+        }
+        catch (Exception e){
+            try{
+                if (Optional.ofNullable(connection).isPresent()){
+                    connection.rollback();
+                }
+            }
+            catch (SQLException ei){
+                ei.printStackTrace();
+            }
+            logger.error("Some thing went wrong{}", e.getMessage());
+        }
+        finally {
+            try{
+                if (Optional.ofNullable(connection).isPresent()){
+                    connection.close();
+                }
+            }
+            catch (SQLException e){
+                logger.error("Closing connecting error{}", e.getMessage());
+            }
+        }
+    }
 }

@@ -38,4 +38,8 @@ public class ProductService {
         if (resultList.isEmpty()) return null;
         return resultList;
     }
+
+    public void editProduct(Integer id, String color, Integer amount, Double price){
+        ProductDao.getInstance().updateProduct(id, color, amount, price);
+    }
 }

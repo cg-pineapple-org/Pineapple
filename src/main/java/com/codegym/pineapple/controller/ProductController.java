@@ -13,17 +13,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@WebServlet(name = "ProductController", urlPatterns = {"/products/list"})
+@WebServlet(name = "ProductController", urlPatterns = {"/products/list", "/products/edit"})
 public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getServletPath();
         HttpSession httpSession;
+        Integer pageSize;
+        Integer page;
 
         switch (action){
             case "/products/list":
-                Integer pageSize = Integer.parseInt(req.getParameter("page_size"));
-                Integer page = Integer.parseInt(req.getParameter("page"));
+                pageSize = Integer.parseInt(req.getParameter("page_size"));
+                page = Integer.parseInt(req.getParameter("page"));
 
                 if (page == 0){
                     resp.sendRedirect("/products/list?page_size=" + pageSize + "&page=1");
@@ -46,6 +48,18 @@ public class ProductController extends HttpServlet {
                     }
                 }
                 break;
+
+            case "/products/edit":
+                pageSize = Integer.parseInt(req.getParameter("page_size"));
+                page = Integer.parseInt(req.getParameter("page"));
+                Integer id = Integer.valueOf(req.getParameter("id"));
+                String color = req.getParameter("color");
+                color = "#" + color;
+                Integer amount = Integer.valueOf(req.getParameter("amount"));
+                Double price = Double.valueOf(req.getParameter("price"));
+
+                ProductService.getInstance().editProduct(id, color, amount, price);
+                resp.sendRedirect("/products/list?page_size=" + pageSize + "&page=" + page);
         }
     }
 }
