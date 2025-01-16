@@ -39,5 +39,10 @@ public class QueryConstant {
             "JOIN products p ON p.id = pd.product_id\n" +
             "GROUP BY  pd.id) AS subquery";
 
-    public static final String QUERY_DELETE_CART_ITEM_BY_ID = "DELETE FROM cart_items WHERE id = ?;";
+    public static final String QUERY_ADD_TO_CART = "INSERT INTO cart_items(cart_id, product_detail_id,quantity)\n" +
+                                                    "VALUES(?, ?, ?)";
+
+    public static final String QUERY_DELETE_CART_ITEM_BY_PRODUCT_DETAIL_ID = "DELETE FROM cart_items WHERE product_detail_id = ?;";
+
+    public static final String QUERY_DELETE_ALL_CART_ITEM = "DELETE FROM cart_items WHERE cart_id = ?;";
 }

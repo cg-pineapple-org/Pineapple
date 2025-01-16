@@ -21,7 +21,19 @@ public class CartService {
         return null;
     }
 
-    public boolean deleteCartItem(Cart cart, Integer cartItemId) {
-        return cartDao.deleteCartItem(cart, cartItemId);
+    public Double getTotalPrice(Integer userId, Cart cart) {
+        return cartDao.getCartTotalPrice(userId, cart);
+    }
+
+    public boolean addToCart(Integer cartd, Integer productDetailId, Integer quantity){
+        return cartDao.addToCart(cartd, productDetailId, quantity);
+    }
+
+    public boolean deleteCartItem(Cart cart, Integer producDetailId) {
+        return cartDao.deleteCartItem(cart, producDetailId);
+    }
+
+    public boolean deleteAllCartItem(Cart cart) {
+        return cartDao.deleteAllCartItem(cart);
     }
 }

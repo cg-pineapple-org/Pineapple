@@ -555,9 +555,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <%
-                                    int totalPrice;
-                                %>
                                 <c:forEach var="item" items="${sessionScope.cart.cartItems}">
                                     <tr>
                                         <td class="tb-image"><a href="#" class="item-photo"><img
@@ -602,9 +599,23 @@
                                             </span>
                                         </td>
                                         <td class="tb-remove">
-                                            <a href="<c:url value= "/cart/remove?id=${item.id}"/>" class="action-remove">
+                                                <%--                                            <a href="<c:url value= "/cart/remove?id=${item.productDetailId}"/>" class="action-remove">--%>
+                                                <%--                                                <span><i class="flaticon-close" aria-hidden="true"></i></span>--%>
+                                                <%--                                            </a>--%>
+
+                                            <a href="#" class="action-remove"
+                                               onclick="postRemoveItem(${item.productDetailId});">
                                                 <span><i class="flaticon-close" aria-hidden="true"></i></span>
                                             </a>
+                                            <script>
+                                                function postRemoveItem(productId) {
+                                                    var form = document.createElement('form');
+                                                    form.method = 'POST';
+                                                    form.action = '/cart/remove?id=' + productId;
+                                                    document.body.appendChild(form);
+                                                    form.submit();
+                                                }
+                                            </script>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -615,12 +626,18 @@
                             <button type="submit" class="btn-continue">
                                 <a href="/" style="color: white">Continue Shopping</a>
                             </button>
-                            <button type="submit" class="btn-clean">
-                                <span>Update Shopping Cart</span>
-                            </button>
-                            <button type="submit" class="btn-update">
+                            <button type="submit" class="btn-update" onclick="postClear();">
                                 <span>Clear Shopping Cart</span>
                             </button>
+                            <script>
+                                function postClear() {
+                                    var form = document.createElement('form');
+                                    form.method = 'POST';
+                                    form.action = '/cart/clear';
+                                    document.body.appendChild(form);
+                                    form.submit();
+                                }
+                            </script>
                         </div>
                     </form>
                 </div>

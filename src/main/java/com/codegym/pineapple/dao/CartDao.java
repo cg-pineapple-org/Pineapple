@@ -32,6 +32,7 @@ public class CartDao {
                 cartItem.setProductDetail(productDetail);
                 cartItem.setProductName(resultSet.getString("name"));
                 cartItem.setSubTotal(resultSet.getDouble("sub_total"));
+                cartItem.setProductDetailId(resultSet.getInt("id"));
                 Double subTotal = cartItem.getSubTotal();
                 cart.setTotalPrice(cart.getTotalPrice() + subTotal);
                 cart.add(cartItem);
@@ -75,22 +76,67 @@ public class CartDao {
         return cart.getNumberOfItem();
     }
 
-    public boolean deleteCartItem(Cart cart, Integer cartItemId) {
+    public boolean addToCart(Integer cartd, Integer productDetailId, Integer quantity) {
         try {
             Connection connection = JdbcConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_DELETE_CART_ITEM_BY_ID);
-            preparedStatement.setInt(1, cartItemId);
+            CartItem cartItem = new CartItem();
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_ADD_TO_CART);
+            preparedStatement.setInt(1, cartd);
+            preparedStatement.setInt(2, productDetailId);
+            preparedStatement.setInt(3, quantity);
+
+            if (preparedStatement.executeUpdate() > 0) {
+                cartItem.setProductDetailId(productDetailId);
+                System.out.println("Added to cart successfully.");
+                return true;
+            } else {
+                System.out.println("Failed to add to cart.");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deleteCartItem(Cart cart, Integer productDetailId) {
+        try {
+            Connection connection = JdbcConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_DELETE_CART_ITEM_BY_PRODUCT_DETAIL_ID);
+            preparedStatement.setInt(1, productDetailId);
 
             if (preparedStatement.executeUpdate() > 0) {
                 log.info("Delete cart item successful");
-                for (CartItem cartItem : cart.getCartItems()) {
-                    if(cartItem.getId() == cartItemId) {
-                        cart.remove(cartItem);
+                for (int i = 0; i < cart.getCartItems().size(); i++) {
+                    if (cart.getCartItems().get(i).getProductDetailId().equals(productDetailId)) {
+                        cart.getCartItems().remove(i);
                     }
                 }
                 return true;
             } else {
                 log.info("Delete cart item failed");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deleteAllCartItem(Cart cart) {
+        try {
+            Connection connection = JdbcConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_DELETE_ALL_CART_ITEM);
+            preparedStatement.setInt(1, cart.getId());
+
+            if (preparedStatement.executeUpdate() > 0) {
+                log.info("Delete all cart item successful");
+                for (int i = 0; i < cart.getCartItems().size(); i++) {
+                    cart.getCartItems().remove(i);
+                }
+                return true;
+            } else {
+                log.info("Delete all cart item failed");
                 return false;
             }
         } catch (Exception e) {

@@ -24,10 +24,10 @@ public class CartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getServletPath();
+        HttpSession session = req.getSession(false);
+        Cart cart = (Cart) session.getAttribute("cart");
         switch (action) {
             case "/cart":
-                HttpSession session = req.getSession(false);
-                Cart cart = (Cart) session.getAttribute("cart");
                 req.getRequestDispatcher("/WEB-INF/view/cart/cart1.jsp").forward(req, resp);
                 break;
         }
@@ -36,26 +36,39 @@ public class CartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getServletPath();
+        HttpSession session = req.getSession(false);
+        Cart cart = (Cart) session.getAttribute("cart");
         switch (action) {
-            case "/cart/remove":
-//                Integer id = Integer.parseInt(req.getParameter("id"));
-//                boolean isDeleted = cartService.deleteCartItem(id);
-//                if(isDeleted){
-//                    req.setAttribute("message", "Deleted successfully");
-//                    req.getRequestDispatcher("/WEB-INF/view/cart/delete.jsp").forward(req, resp);
-//                }else{
-//                    req.setAttribute("message", "Delete failed");
-//                }
-//                resp.sendRedirect("/cart");
-//                break;
+            case "/cart":
+                Integer cartId = cart.getId();
+                Integer productDetailId = Integer.valueOf(req.getParameter("productDetailId"));
+                Integer quantity = Integer.valueOf(req.getParameter("quantity"));
 
-                HttpSession session = req.getSession();
-                Cart cart = (Cart) session.getAttribute("cart");
-                Integer id = Integer.parseInt(req.getParameter("id"));
-                cartService.deleteCartItem(cart, id);
-                session.setAttribute("cart",cart);
-//                resp.sendRedirect("cart1.jsp");
+                cartService.addToCart(cartId, productDetailId, quantity);
+
+                req.setAttribute("message", "Added to cart successfully");
                 req.getRequestDispatcher("/WEB-INF/view/cart/cart1.jsp").forward(req, resp);
+                break;
+
+            case "/cart/remove":
+                Integer id = Integer.parseInt(req.getParameter("id"));
+                boolean isRemoved = cartService.deleteCartItem(cart, id);
+                if (isRemoved) {
+                    cart.setNumberOfItem(cart.getNumberOfItem() - 1);
+                    cart.setTotalPrice(cartService.getTotalPrice(1, cart));
+                    session.setAttribute("cart", cart);
+                    resp.sendRedirect("/cart");
+                }
+                break;
+
+            case "/cart/clear":
+                boolean isRemoved1 = cartService.deleteAllCartItem(cart);
+                if (isRemoved1) {
+                    cart.setNumberOfItem(0);
+                    cart.setTotalPrice(0d);
+                    session.setAttribute("cart", cart);
+                    resp.sendRedirect("/cart");
+                }
                 break;
         }
     }
