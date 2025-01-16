@@ -11,23 +11,52 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class AuthDAO {
 
     private static final Logger logger = LogManager.getLogger(AuthDAO.class);
 
-
-    public String getPasswordByUsername(String username) {
-        try {
-            Connection connection = JdbcConnection.getConnection();
-            PreparedStatement statement = connection.prepareStatement(QueryConstant.QUERY_GET_PASSWORD_BY_USERNAME);
+    public Account getAccountByUsername(String username) {
+        try (Connection connection = JdbcConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(QueryConstant.GET_ACCOUNT_BY_USERNAME_QUERY)) {
             statement.setString(1, username);
+
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return resultSet.getString("password");
+                Account account = new Account();
+                account.setUserId(resultSet.getInt("user_id"));
+                account.setUsername(resultSet.getString("username"));
+                account.setPassword(resultSet.getString("password"));
+                return account;
             }
-        } catch (SQLException e) {
-            logger.error("Error retrieving password: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public User getUserById(int userId) {
+        try (Connection connection = JdbcConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(QueryConstant.GET_USER_BY_ID_QUERY)) {
+            statement.setInt(1, userId);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                User user = new User();
+                user.setId(resultSet.getInt("id"));
+                user.setFirstName(resultSet.getString("first_name"));
+                user.setLastName(resultSet.getString("last_name"));
+                user.setCountry(resultSet.getString("country"));
+                user.setDateOfBirth(resultSet.getString("day_of_birth"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPhone(resultSet.getString("phone"));
+                user.setRoleId(resultSet.getInt("role_id"));
+                user.setCartId(resultSet.getInt("cart_id"));
+                return user;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
@@ -91,11 +120,10 @@ public class AuthDAO {
     }
 
     public Account findUserByUsername(String username) {
-        String query = "SELECT password FROM accounts WHERE username = ?";
         Account account = null;
         try {
             Connection connection = JdbcConnection.getConnection();
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(QueryConstant.QUERY_GET_PASSWORD_USERNAME);
             statement.setString(1, username);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -106,5 +134,57 @@ public class AuthDAO {
             logger.error("Error retrieving email: " + e.getMessage());
         }
         return account;
+    }
+
+    public void saveResetToken(String username, String token) {
+        try (Connection connection = JdbcConnection.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(QueryConstant.QUERY_RESET_TOKEN);
+            statement.setString(1, token);
+            statement.setTimestamp(2, new Timestamp(System.currentTimeMillis() + 60 * 1000));
+            statement.setString(3, username);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            logger.error("Error saving reset token: " + e.getMessage());
+        }
+    }
+
+    public void deleteOldTokens(String username) {
+        try (Connection connection = JdbcConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(QueryConstant.QUERY_DELETE_OLD_TOKEN)) {
+
+            statement.setString(1, username);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            logger.error("Error deleting old tokens for username: " + username, e);
+        }
+    }
+
+
+    public void updatePassword(String username, String hashedPassword) {
+        try (Connection connection = JdbcConnection.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(QueryConstant.QUERY_UPDATE_PASSWORD);
+            statement.setString(1, hashedPassword);
+            statement.setString(2, username);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            logger.error("Error updating password: " + e.getMessage());
+        }
+    }
+
+    public boolean isUsernameEmailMatch(String username, String email) {
+        try (Connection connection = JdbcConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(QueryConstant.QUERY_GET_GMAIL_AND_USERNAME)) {
+
+            statement.setString(1, username);
+            statement.setString(2, email);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next();
+            }
+        } catch (SQLException e) {
+            logger.error("Error checking username and email match: " + e.getMessage());
+        }
+        return false;
     }
 }

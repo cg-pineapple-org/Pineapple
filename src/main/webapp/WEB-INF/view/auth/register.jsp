@@ -90,9 +90,9 @@
                     <div class="col-sm-6 border-after">
                         <h5 class="title-login">Great an account</h5>
                         <c:if test="${not empty message}">
-                            <div class="error-message">${errorMessage}</div>
+                            <div class="error-message">${message}</div>
                         </c:if>
-                        <form class="register" method="post" action="<c:url value='/auth/register' />">
+                        <form class="register" method="post" action="<c:url value="/auth/register" />">
                             <p class="form-row form-row-wide col-md-6 padding-left">
                                 <label>First name<span class="required">*</span></label>
                                 <input type="text" value="" name="first_name" placeholder="First name" class="input-text">
