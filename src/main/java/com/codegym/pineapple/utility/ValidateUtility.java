@@ -1,6 +1,19 @@
 package com.codegym.pineapple.utility;
 
+import java.util.Optional;
+
 public class ValidateUtility {
+    private static ValidateUtility validateUtility = null;
+
+    private ValidateUtility(){}
+
+    public static ValidateUtility getInstance(){
+        if (!Optional.ofNullable(validateUtility).isPresent()){
+            validateUtility = new ValidateUtility();
+        }
+        return  validateUtility;
+    }
+
     public boolean checkEmail(String email) {
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         return email.matches(regex);
