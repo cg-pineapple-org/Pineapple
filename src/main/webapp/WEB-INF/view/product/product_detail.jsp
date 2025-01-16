@@ -94,8 +94,8 @@
                 <li class="active"><a href="#">Detail</a></li>
             </ol>
         </div>
-        <c:if test="${message != null}">
-            <div class="alert bg-success text-center" role="alert">
+        <c:if test="${not empty message}">
+            <div class="alert bg-primary text-center" role="alert">
                 Successfully added to cart!
             </div>
         </c:if>
@@ -128,6 +128,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="product-info-main">
                                 <form action="/cart" method="post">
+                                    <input type="hidden" name="id" value="${product_detail.id}">
                                     <div class="product-name"><a href="#"><c:out value="${product.name}"/> </a></div>
                                     <div class="product-info-stock-sku">
                                         <div class="stock available">
