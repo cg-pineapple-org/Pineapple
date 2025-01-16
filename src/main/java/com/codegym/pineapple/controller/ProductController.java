@@ -24,8 +24,16 @@ public class ProductController extends HttpServlet {
 
         switch (action){
             case "/products/list":
-                pageSize = Integer.parseInt(req.getParameter("page_size"));
-                page = Integer.parseInt(req.getParameter("page"));
+                String pageSizeStr = req.getParameter("page_size");
+                String pageStr = req.getParameter("page");
+
+                if (!Optional.ofNullable(pageSizeStr).isPresent() && !Optional.ofNullable(pageStr).isPresent()){
+                    resp.sendRedirect("/products/list?page_size=10&page=1");
+                    return;
+                }
+
+                pageSize = Integer.parseInt(pageSizeStr);
+                page = Integer.parseInt(pageStr);
 
                 if (page == 0){
                     resp.sendRedirect("/products/list?page_size=" + pageSize + "&page=1");
@@ -40,6 +48,7 @@ public class ProductController extends HttpServlet {
                     } else {
                         httpSession = req.getSession();
                         httpSession.setAttribute("currentPage", page);
+                        httpSession.setAttribute("currentPageSize", pageSize);
 
                         req.setAttribute("product_list", productList);
                         req.setAttribute("page_size", pageSize);
@@ -48,18 +57,28 @@ public class ProductController extends HttpServlet {
                     }
                 }
                 break;
+        }
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getServletPath();
+
+        switch (action){
             case "/products/edit":
-                pageSize = Integer.parseInt(req.getParameter("page_size"));
-                page = Integer.parseInt(req.getParameter("page"));
                 Integer id = Integer.valueOf(req.getParameter("id"));
                 String color = req.getParameter("color");
-                color = "#" + color;
                 Integer amount = Integer.valueOf(req.getParameter("amount"));
                 Double price = Double.valueOf(req.getParameter("price"));
+                String description = req.getParameter("description");
 
-                ProductService.getInstance().editProduct(id, color, amount, price);
+                ProductService.getInstance().editProduct(id, color, amount, price, description);
+
+                HttpSession httpSession = req.getSession(false);
+                String pageSize = String.valueOf(httpSession.getAttribute("currentPageSize"));
+                String page = String.valueOf(httpSession.getAttribute("currentPage"));
                 resp.sendRedirect("/products/list?page_size=" + pageSize + "&page=" + page);
+                break;
         }
     }
 }

@@ -94,6 +94,11 @@
                 <li class="active"><a href="#">Detail</a></li>
             </ol>
         </div>
+        <c:if test="${message != null}">
+            <div class="alert bg-success text-center" role="alert">
+                Successfully added to cart!
+            </div>
+        </c:if>
         <c:forEach items="${product_details}" var="product_detail">
             <div class="container pineapple-custom color-${product_detail.id}">
                 <div class="product-content-single">
@@ -122,48 +127,53 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="product-info-main">
-                                <div class="product-name"><a href="#"><c:out value="${product.name}"/> </a></div>
-                                <div class="product-info-stock-sku">
-                                    <div class="stock available">
-                                        <span class="label-stock">Availability: </span>
-                                        <c:choose>
-                                            <c:when test="${product_detail.amount > 0}">
-                                                In Stock
-                                            </c:when>
-                                            <c:otherwise>
-                                                Out of stock
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </div>
-                                </div>
-                                <div class="product-infomation">
-                                    <c:forEach items="${product_details}" var="product_detail_color">
-                                        <button type="button" class="block btn color-${product_detail_color.id}-btn"
-                                                style="background-color: ${product_detail_color.color}; color: ${product_detail_color.color}">
-                                            a
-                                        </button>
-                                    </c:forEach>
-
-                                </div>
-                                <div class="product-info-price">
-                                <span class="price">
-
-                                    <ins>$<c:out value="${product_detail.price}"/></ins>
-
-                                </span>
-                                    <div class="quantity">
-                                        <h6 class="quantity-title">Quantity:</h6>
-                                        <div class="buttons-added">
-                                            <input type="text" value="1" max="${product_detail.amount}" title="Qty"
-                                                   class="input-text qty text" size="1">
-                                            <a href="#" class="sign plus"><i class="fa fa-plus"></i></a>
-                                            <a href="#" class="sign minus"><i class="fa fa-minus"></i></a>
+                                <form action="/cart" method="post">
+                                    <div class="product-name"><a href="#"><c:out value="${product.name}"/> </a></div>
+                                    <div class="product-info-stock-sku">
+                                        <div class="stock available">
+                                            <span class="label-stock">Availability: </span>
+                                            <c:choose>
+                                                <c:when test="${product_detail.amount > 0}">
+                                                    In Stock
+                                                </c:when>
+                                                <c:otherwise>
+                                                    Out of stock
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </div>
-                                    <div class="single-add-to-cart">
-                                        <a href="#" class="btn-add-to-cart">Add to cart</a>
+                                    <div class="product-infomation">
+                                        <c:forEach items="${product_details}" var="product_detail_color">
+                                            <button type="button" class="block btn color-${product_detail_color.id}-btn"
+                                                    style="background-color: ${product_detail_color.color}; color: ${product_detail_color.color}">
+                                                a
+                                            </button>
+                                        </c:forEach>
+                                        <input type="hidden" name="color" value="${product_detail.color}">
                                     </div>
-                                </div>
+                                    <div class="product-info-price">
+                                <span class="price">
+
+                                    <ins id="price-${product_detail.id}">$<c:out value="${product_detail.price}"/></ins>
+                                    <input type="hidden" name="price" value="${product_detail.price}">
+
+                                </span>
+                                        <div class="quantity">
+                                            <h6 class="quantity-title">Quantity:</h6>
+                                            <div class="buttons-added">
+                                                <input type="text" id="amount-${product_detail.id}"
+                                                       style="pointer-events: none" name="amount" value="1"
+                                                       max="${product_detail.amount}" title="Qty"
+                                                       class="input-text qty text" size="1">
+                                                <a href="#" class="sign plus"><i class="fa fa-plus"></i></a>
+                                                <a href="#" class="sign minus"><i class="fa fa-minus"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="single-add-to-cart">
+                                            <button class="btn-add-to-cart">Add to cart</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -195,15 +205,17 @@
                             <div class="product-inner equal-elem">
                                 <div class="product-thumb">
                                     <div class="thumb-inner">
-<%--                                        <a href="#"><img src="assets/images/home1/r1.jpg" alt="r1"></a>--%>
+                                            <%--                                        <a href="#"><img src="assets/images/home1/r1.jpg" alt="r1"></a>--%>
                                     </div>
                                 </div>
                                 <div class="product-innfo">
-                                    <div class="product-name"><a href="<c:url value="/products/detail?id=${related_product.id}"/>">${related_product.name}</a></div>
-<%--                                    <div class="group-btn-hover style2">--%>
-<%--                                        <a href="#" class="add-to-cart"><i class="flaticon-shopping-cart"--%>
-<%--                                                                           aria-hidden="true"></i></a>--%>
-<%--                                    </div>--%>
+                                    <div class="product-name"><a
+                                            href="<c:url value="/products/detail?id=${related_product.id}"/>">${related_product.name}</a>
+                                    </div>
+                                        <%--                                    <div class="group-btn-hover style2">--%>
+                                        <%--                                        <a href="#" class="add-to-cart"><i class="flaticon-shopping-cart"--%>
+                                        <%--                                                                           aria-hidden="true"></i></a>--%>
+                                        <%--                                    </div>--%>
                                 </div>
                             </div>
                         </div>
@@ -238,13 +250,17 @@
 <script type="text/javascript" src=" <c:url value="/assets/js/jquery.countdown.js"/>"></script>
 
 <script>
-    $('#test-press').click(function (){
-        console.log("test");
-    });
     <c:forEach items="${product_details}" var="product_detail">
     $('.color-${product_detail.id}-btn').click(function () {
         $('#site-main').removeAttr('class').addClass('site-main color-${product_detail.id}');
     });
+
+    $('#amount-${product_detail.id}').change(function () {
+        let price = ${product_detail.price};
+        let amount = $('#amount-${product_detail.id}').val()
+        let total = parseFloat(price * amount)
+        $('#price-${product_detail.id}').text('$' + total);
+    })
     </c:forEach>
 </script>
 </body>

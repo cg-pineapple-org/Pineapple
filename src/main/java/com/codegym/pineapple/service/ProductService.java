@@ -39,7 +39,7 @@ public class ProductService {
         return resultList;
     }
 
-    public void editProduct(Integer id, String color, Integer amount, Double price){
-        ProductDao.getInstance().updateProduct(id, color, amount, price);
+    public void editProduct(Integer id, String color, Integer amount, Double price, String description){
+        ProductDao.getInstance().updateProduct(id, color, amount, price, description);
     }
 }

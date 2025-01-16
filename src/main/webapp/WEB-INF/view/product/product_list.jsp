@@ -141,24 +141,39 @@
                         <tbody>
                         <c:forEach items="${product_list}" var="product">
                             <tr>
-                                <td class="pineapple-id" id="id-${product['product_detail'].id}">${product['product_detail'].id}</td>
-                                <td>${product['category'].name}</td>
-                                <td>${product['product'].name}</td>
-                                <td class="pineapple-color"><input type="text" id="color-${product['product_detail'].id}" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].color}"></td>
-                                <td class="pineapple-amount"><input type="text" id="amount-${product['product_detail'].id}" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].amount}"></td>
-                                <td class="pineapple-price"><input type="text" id="price-${product['product_detail'].id}" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].price}"></td>
-                                <td class="pineapple-description"><input type="text" class="input-text input-${product['product_detail'].id}" value="${product['product_detail'].description}"></td>
-                                <td>
-                                    <a class="btn btn-primary"
-                                       href="<c:url value="/products/detail?id=${product['product_detail'].productId}"/>">Detail</a>
-                                    <button type="button"
-                                            class="btn btn-warning edit-${product['product_detail'].id}-btn">Edit
-                                    </button>
-                                    <button type="button"
-                                            class="btn btn-warning confirm-${product['product_detail'].id}-btn">Confirm
-                                    </button>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                </td>
+                                <form action="/products/edit" method="post">
+                                    <td class="pineapple-id"><input type="text" name="id"
+                                                                    id="id-${product['product_detail'].id}"
+                                                                    value="${product['product_detail'].id}"></td>
+                                    <td>${product['category'].name}</td>
+                                    <td>${product['product'].name}</td>
+                                    <td class="pineapple-color"><input type="color" name="color" id="color-${product['product_detail'].id}" class="form-control form-control-color input-${product['product_detail'].id}" value="${product['product_detail'].color}"></td>
+                                    <td class="pineapple-amount"><input type="number" name="amount"
+                                                                        id="amount-${product['product_detail'].id}"
+                                                                        class="input-text input-${product['product_detail'].id}"
+                                                                        value="${product['product_detail'].amount}">
+                                    </td>
+                                    <td class="pineapple-price"><input type="number" name="price"
+                                                                       id="price-${product['product_detail'].id}"
+                                                                       class="input-text input-${product['product_detail'].id}"
+                                                                       value="${product['product_detail'].price}"></td>
+                                    <td class="pineapple-description"><input type="text" name="description"
+                                                                             class="input-text input-${product['product_detail'].id}"
+                                                                             value="${product['product_detail'].description}">
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary"
+                                           href="<c:url value="/products/detail?id=${product['product_detail'].productId}"/>">Detail</a>
+                                        <button type="button"
+                                                class="btn btn-warning edit-${product['product_detail'].id}-btn">Edit
+                                        </button>
+                                        <button type="submit"
+                                                class="btn btn-warning confirm-${product['product_detail'].id}-btn">
+                                            Confirm
+                                        </button>
+<%--                                        <button type="button" class="btn btn-danger">Delete</button>--%>
+                                    </td>
+                                </form>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -203,18 +218,6 @@
     <c:forEach items="${product_list}" var="product">
     $('.edit-${product['product_detail'].id}-btn').click(function () {
         $('.pineapple-table').addClass('section-${product['product_detail'].id}');
-    });
-
-    $('.confirm-${product['product_detail'].id}-btn').click(function () {
-        $('.pineapple-table').removeClass('section-${product['product_detail'].id}');
-        let id = $('#id-${product['product_detail'].id}').text();
-        let color = $('#color-${product['product_detail'].id}').val();
-        color = color.substring(1);
-        let amount = $('#amount-${product['product_detail'].id}').val();
-        let price = $('#price-${product['product_detail'].id}').val();
-        let pageSize = document.getElementById("pageSize").value;
-        let page = document.getElementById("pageNumber").value;
-        window.location.href = '/products/edit?page_size=' + pageSize + '&page=' + page + '&id='+ id + '&color=' + color + '&amount=' + amount + '&price=' + price;
     });
     </c:forEach>
 </script>

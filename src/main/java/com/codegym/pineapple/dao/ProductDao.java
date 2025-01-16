@@ -227,7 +227,7 @@ public class ProductDao {
         return resultList;
     }
 
-    public void updateProduct(Integer id, String color, Integer amount, Double price) {
+    public void updateProduct(Integer id, String color, Integer amount, Double price, String description) {
         Connection connection = JdbcConnection.getConnection();
 
         try{
@@ -236,7 +236,8 @@ public class ProductDao {
             preparedStatement.setString(1, color);
             preparedStatement.setInt(2, amount);
             preparedStatement.setDouble(3, price);
-            preparedStatement.setInt(4, id);
+            preparedStatement.setString(4, description);
+            preparedStatement.setInt(5, id);
             preparedStatement.executeUpdate();
             connection.commit();
         }
