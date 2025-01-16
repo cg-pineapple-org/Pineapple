@@ -21,22 +21,28 @@ public class ProductController extends HttpServlet {
         HttpSession httpSession;
         Integer pageSize;
         Integer page;
+        Integer defaultPageSize = 10;
+        Integer defaultPage = 1;
+        Integer minInvalidPage = 0;
 
         switch (action){
             case "/products/list":
                 String pageSizeStr = req.getParameter("page_size");
                 String pageStr = req.getParameter("page");
 
-                if (!Optional.ofNullable(pageSizeStr).isPresent() && !Optional.ofNullable(pageStr).isPresent()){
-                    resp.sendRedirect("/products/list?page_size=10&page=1");
+                boolean isPageSizePresent = !Optional.ofNullable(pageSizeStr).isPresent();
+                boolean isPagePresent = !Optional.ofNullable(pageStr).isPresent();
+
+                if (isPageSizePresent || isPagePresent){
+                    resp.sendRedirect("/products/list?page_size=" + defaultPageSize + "&page=" + defaultPage);
                     return;
                 }
 
                 pageSize = Integer.parseInt(pageSizeStr);
                 page = Integer.parseInt(pageStr);
 
-                if (page == 0){
-                    resp.sendRedirect("/products/list?page_size=" + pageSize + "&page=1");
+                if (page <= minInvalidPage){
+                    resp.sendRedirect("/products/list?page_size=" + pageSize + "&page=" + defaultPage);
                 }
                 else {
                     List<Map<String, Object>> productList = ProductService.getInstance().getAllProducts(pageSize, page);
