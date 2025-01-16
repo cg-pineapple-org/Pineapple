@@ -558,7 +558,7 @@
                                 <%
                                     int totalPrice;
                                 %>
-                                <c:forEach var="item" items="${cart.cartItems}">
+                                <c:forEach var="item" items="${sessionScope.cart.cartItems}">
                                     <tr>
                                         <td class="tb-image"><a href="#" class="item-photo"><img
                                                 src="assets/images/cart1.jpg"

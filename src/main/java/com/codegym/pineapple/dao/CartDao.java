@@ -74,4 +74,28 @@ public class CartDao {
         }
         return cart.getNumberOfItem();
     }
+
+    public boolean deleteCartItem(Cart cart, Integer cartItemId) {
+        try {
+            Connection connection = JdbcConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_DELETE_CART_ITEM_BY_ID);
+            preparedStatement.setInt(1, cartItemId);
+
+            if (preparedStatement.executeUpdate() > 0) {
+                log.info("Delete cart item successful");
+                for (CartItem cartItem : cart.getCartItems()) {
+                    if(cartItem.getId() == cartItemId) {
+                        cart.remove(cartItem);
+                    }
+                }
+                return true;
+            } else {
+                log.info("Delete cart item failed");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

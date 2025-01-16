@@ -35,4 +35,6 @@ public class QueryConstant {
             "JOIN product_details pd ON ci.product_detail_id = pd.id\n" +
             "JOIN products p ON p.id = pd.product_id\n" +
             "GROUP BY  pd.id) AS subquery";
+
+    public static final String QUERY_DELETE_CART_ITEM_BY_ID = "DELETE FROM cart_items WHERE id = ?;";
 }
