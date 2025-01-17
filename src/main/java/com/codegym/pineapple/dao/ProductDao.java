@@ -13,7 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class ProductDao {
@@ -49,6 +51,9 @@ public class ProductDao {
         catch (SQLException e){
             logger.error("Database error while finding product{}", e.getMessage());
         }
+        catch (Exception e){
+            logger.error("Some thing went wrong{}", e.getMessage());
+        }
         return product;
     }
 
@@ -72,6 +77,9 @@ public class ProductDao {
         }
         catch (SQLException e){
             logger.error("Database error while finding product detail{}", e.getMessage());
+        }
+        catch (Exception e){
+            logger.error("Some thing went wrong{}", e.getMessage());
         }
         return productDetail;
     }
@@ -120,6 +128,9 @@ public class ProductDao {
         catch (SQLException e){
             logger.error("Database error while finding product detail related to product{}", e.getMessage());
         }
+        catch (Exception e){
+            logger.error("Some thing went wrong{}", e.getMessage());
+        }
         List<List> resultList = new ArrayList<>();
         resultList.add(productDetailList);
         resultList.add(productList);
@@ -162,5 +173,105 @@ public class ProductDao {
         resultList.add(productList);
         resultList.add(categoryList);
         return resultList;
+    }
+
+    public List<Map<String, Object>> findAllProduct(Integer pageSize, Integer page){
+        List<Map<String, Object>> resultList = new ArrayList();
+
+        Map<String, Object> objectMap;
+
+        Category category;
+        Product product;
+        ProductDetail productDetail;
+
+        int offset = (pageSize * (page - 1));
+
+        try{
+            Connection connection = JdbcConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_FIND_ALL_PRODUCT);
+            preparedStatement.setInt(1, pageSize);
+            preparedStatement.setInt(2, offset);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                objectMap = new HashMap<>();
+                category = new Category();
+                product = new Product();
+                productDetail = new ProductDetail();
+
+                category.setName(resultSet.getString("c.name"));
+
+                product.setName(resultSet.getString("p.name"));
+
+                productDetail.setId(resultSet.getInt("pd.id"));
+                productDetail.setColor(resultSet.getString("pd.color"));
+                productDetail.setAmount(resultSet.getInt("pd.amount"));
+                productDetail.setPrice(resultSet.getDouble("pd.price"));
+                productDetail.setDescription(resultSet.getString("pd.description"));
+                productDetail.setProductId(resultSet.getInt("pd.product_id"));
+
+                objectMap.put("category", category);
+                objectMap.put("product", product);
+                objectMap.put("product_detail", productDetail);
+
+                resultList.add(objectMap);
+            }
+            connection.close();
+        }
+        catch (SQLException e){
+            logger.error("Database error while finding all products{}", e.getMessage());
+        }
+        catch (Exception e){
+            logger.error("Some thing went wrong{}", e.getMessage());
+        }
+        return resultList;
+    }
+
+    public void updateProduct(Integer id, String color, Integer amount, Double price, String description) {
+        Connection connection = JdbcConnection.getConnection();
+
+        try{
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_EDIT_PRODUCT);
+            preparedStatement.setString(1, color);
+            preparedStatement.setInt(2, amount);
+            preparedStatement.setDouble(3, price);
+            preparedStatement.setString(4, description);
+            preparedStatement.setInt(5, id);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        }
+        catch (SQLException e){
+            try{
+                if (Optional.ofNullable(connection).isPresent()){
+                    connection.rollback();
+                }
+            }
+            catch (SQLException ei){
+                ei.printStackTrace();
+            }
+            logger.error("Database error while editing product details{}", e.getMessage());
+        }
+        catch (Exception e){
+            try{
+                if (Optional.ofNullable(connection).isPresent()){
+                    connection.rollback();
+                }
+            }
+            catch (SQLException ei){
+                ei.printStackTrace();
+            }
+            logger.error("Some thing went wrong{}", e.getMessage());
+        }
+        finally {
+            try{
+                if (Optional.ofNullable(connection).isPresent()){
+                    connection.close();
+                }
+            }
+            catch (SQLException e){
+                logger.error("Closing connecting error{}", e.getMessage());
+            }
+        }
     }
 }

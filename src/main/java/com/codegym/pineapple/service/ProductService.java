@@ -5,6 +5,7 @@ import com.codegym.pineapple.model.Product;
 import com.codegym.pineapple.model.ProductDetail;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class ProductService {
@@ -29,5 +30,16 @@ public class ProductService {
 
     public List<List> getProductDetailByProductId(Integer id){
         return ProductDao.getInstance().findProductDetailByProductId(id);
+    }
+
+    public List<Map<String, Object>> getAllProducts(Integer pageSize, Integer page){
+        List<Map<String, Object>> resultList = ProductDao.getInstance().findAllProduct(pageSize, page);
+
+        if (resultList.isEmpty()) return null;
+        return resultList;
+    }
+
+    public void editProduct(Integer id, String color, Integer amount, Double price, String description){
+        ProductDao.getInstance().updateProduct(id, color, amount, price, description);
     }
 }

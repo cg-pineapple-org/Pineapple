@@ -100,23 +100,27 @@ public class AuthController extends HttpServlet {
                 firstName = req.getParameter("first_name");
                 lastName = req.getParameter("last_name");
                 country = req.getParameter("country");
-                dayOfBirth = req.getParameter("day_of_birth");
+                String day =req.getParameter("birth_day");
+                String mouth =req.getParameter("birth_month");
+                String year =req.getParameter("birth_year");
                 email = req.getParameter("email");
                 phone = req.getParameter("phone");
                 username = req.getParameter("username");
                 password = req.getParameter("password");
                 confirmPassword = req.getParameter("confirmPassword");
 
+                dayOfBirth = year + "-" + mouth + "-" + day;
+
                 try {
                     if (authService.register(firstName, lastName, country, dayOfBirth, email, phone, username, password, confirmPassword)) {
                         req.setAttribute("errorMessage", "Registration successful!");
                         logger.info("Registration successful");
                         resp.sendRedirect("/auth/login");
-                        break;
                     }
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
+                break;
             case "/auth/forgot-password":
                 email = req.getParameter("email").trim();
                 username = req.getParameter("username").trim();

@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Optional;
 import java.util.UUID;
 
 public class AuthService {
