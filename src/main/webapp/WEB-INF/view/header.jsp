@@ -109,6 +109,8 @@
       gap: 15px; /* Thêm khoảng cách giữa các phần tử */
     }
 
+
+
     /* Media Query: Màn hình nhỏ */
     @media (max-width: 768px) {
       .header {
@@ -274,14 +276,14 @@
                                 <div class="thumb-inner">
                                   <a href="#"
                                   ><img
-                                          src="assets/images/home2/c1.jpg"
+                                          src="#"
                                           alt="c1"
                                   /></a>
                                 </div>
                               </div>
                               <div class="product-innfo">
                                 <div class="product-name">
-                                  <a href="#">Notebook Pro</a>
+                                  <a href="#"></a>
                                 </div>
                                 <a href="#" class="remove"
                                 ><i
@@ -290,33 +292,7 @@
                                 ></i
                                 ></a>
                                 <span class="price price-dark">
-                                      <ins>$229.00</ins>
-                                    </span>
-                              </div>
-                            </li>
-                            <li class="product-inner">
-                              <div class="product-thumb style1">
-                                <div class="thumb-inner">
-                                  <a href="#"
-                                  ><img
-                                          src="assets/images/home2/c2.jpg"
-                                          alt="c2"
-                                  /></a>
-                                </div>
-                              </div>
-                              <div class="product-innfo">
-                                <div class="product-name">
-                                  <a href="#">Bluetooth Speaker</a>
-                                </div>
-                                <a href="#" class="remove"
-                                ><i
-                                        class="flaticon-close"
-                                        aria-hidden="true"
-                                ></i
-                                ></a>
-                                <span class="price">
-                                      <ins>$229.00</ins>
-                                      <del>$259.00</del>
+                                      <ins></ins>
                                     </span>
                               </div>
                             </li>
@@ -324,7 +300,7 @@
                         </div>
                         <div class="subtotal">
                           <span class="label">Total :</span>
-                          <span class="price">$480.00</span>
+                          <span class="price"></span>
                         </div>
                         <div class="actions">
                           <a
@@ -345,7 +321,7 @@
           </div>
         </ul>
         <ul class="nav-top-right">
-          <li><a href="<c:url value = "/auth/login"/>"><i class="flaticon-profile" aria-hidden="true"> Register / Sign in</i></a></li>
+          <li><a href="<c:url value = "/auth/login"/>"><i class="flaticon-profile" aria-hidden="true"> Sign in</i></a></li>
         </ul>
       </div>
     </div>
@@ -375,32 +351,18 @@
                 </ul>
               </li>
               <li class="menu-item-has-children arrow">
-                <a href="grid-product.html">Mac</a>
+                <a href="<c:url value = "/products?id=1"/>">Mac</a>
                 <span class="toggle-submenu hidden-md"></span>
                 <ul class="submenu parent-megamenu">
+                  <c:forEach var="product" items="${products}">
                   <li class="menu-item">
-                    <a href="grid-product.html">Grid Product</a>
+                    <a href="<c:url value = "/products?${product.id}/"/>"></a>
                   </li>
-                  <li class="menu-item">
-                    <a href="list-product.html">List Product</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="list-product-right.html"
-                    >List Product Right</a
-                    >
-                  </li>
-                  <li class="menu-item">
-                    <a href="grid-product-right.html"
-                    >Grid Product Right</a
-                    >
-                  </li>
-                  <li class="menu-item">
-                    <a href="detail.html">Detail Product</a>
-                  </li>
+                  </c:forEach>
                 </ul>
               </li>
               <li class="menu-item-has-children arrow item-megamenu">
-                <a href="#">iPad</a>
+                <a href="<c:url value = "/products?id=3"/>">iPad</a>
                 <span class="toggle-submenu hidden-md"></span>
                 <div class="submenu parent-megamenu megamenu">
                   <div class="row">
@@ -467,7 +429,7 @@
                 </div>
               </li>
               <li class="menu-item-has-children arrow item-megamenu">
-                <a href="#">iPhone</a>
+                <a href="<c:url value = "/products?id=2"/>">iPhone</a>
                 <span class="toggle-submenu hidden-md"></span>
                 <div class="submenu parent-megamenu megamenu">
                   <div class="row">
@@ -562,7 +524,7 @@
                 </div>
               </li>
               <li class="menu-item-has-children arrow">
-                <a href="#">Watch</a>
+                <a href="<c:url value = "/products?id=4"/>">Watch</a>
                 <span class="toggle-submenu hidden-md"></span>
                 <ul class="submenu parent-megamenu">
                   <li class="menu-item">
@@ -580,7 +542,7 @@
                 </ul>
               </li>
               <li class="menu-item-has-children arrow">
-                <a href="#">Airpods</a>
+                <a href="<c:url value = "/products?id=5"/>">Airpods</a>
                 <span class="toggle-submenu hidden-md"></span>
                 <ul class="submenu parent-megamenu">
                   <li class="menu-item">
@@ -595,7 +557,7 @@
                 </ul>
               </li>
               <li class="menu-item-has-children arrow">
-                <a href="#">Airtag</a>
+                <a href="<c:url value = "/products?id=6"/>">Airtag</a>
                 <span class="toggle-submenu hidden-md"></span>
                 <ul class="submenu parent-megamenu">
                   <li class="menu-item">
@@ -610,7 +572,7 @@
                 </ul>
               </li>
               <li class="menu-item-has-children arrow">
-                <a href="#">Apple TV</a>
+                <a href="<c:url value = "/products?id=7"/>">Apple TV</a>
                 <span class="toggle-submenu hidden-md"></span>
                 <ul class="submenu parent-megamenu">
                   <li class="menu-item">
@@ -625,7 +587,7 @@
                 </ul>
               </li>
               <li class="menu-item-has-children arrow">
-                <a href="#">Accessories</a>
+                <a href="<c:url value = "/products?id=8"/>">Accessories</a>
                 <span class="toggle-submenu hidden-md"></span>
                 <ul class="submenu parent-megamenu">
                   <li class="menu-item">

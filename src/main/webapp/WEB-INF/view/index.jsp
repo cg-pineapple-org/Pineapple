@@ -69,6 +69,10 @@
             color: #f9f9fc;
         }
 
+        .main-slide.slide-opt-1 .item-slide {
+            height: 390px;
+        }
+
 
         /* Logo container */
         .logo-container {
@@ -201,16 +205,17 @@
                         data-margin="0"
                         data-responsive='{"0":{"items":1},"600":{"items":1},"1000":{"items":1}}'
                 >
+
                     <div class="item-slide item-slide-1">
+                        <img  src="<c:url value = "/assets/images/iphone 1920x548.png"/>" alt="img">
                         <div class="slide-desc slide-desc-1">
                             <div class="container">
                                 <div class="container-inner">
-                                    <div class="p-primary">Discovery And Explore Digital</div>
+                                    <div class="p-primary">iPhone New Collection</div>
                                     <p>
-                                        Vehicula curae mi senectus sodales proin, ultricies
-                                        gravida.
+                                        Discovery And Explore Digital
                                     </p>
-                                    <a href="grid-product.html" class="btn-shop-now"
+                                    <a href="<c:url value = "/products?id=2"/>" class="btn-shop-now"
                                     >Shop Now</a
                                     >
                                 </div>
@@ -218,14 +223,15 @@
                         </div>
                     </div>
                     <div class="item-slide item-slide-2">
+                        <img  src="<c:url value = "/assets/images/ipad 1920x548.png"/>" alt="img">
                         <div class="slide-desc slide-desc-2">
                             <div class="container">
                                 <div class="container-inner">
-                                    <div class="p-primary">Smart Watches New Collection</div>
+                                    <div class="p-primary">iPad New Collection</div>
                                     <p>
-                                        Inceptos aptent eleifend metus. Porta montes nibh mollis
+                                        Discovery And Explore Digital
                                     </p>
-                                    <a href="grid-product.html" class="btn-shop-now"
+                                    <a href="<c:url value = "/products?id=3"/>" class="btn-shop-now"
                                     >Shop Now</a
                                     >
                                 </div>
@@ -233,17 +239,17 @@
                         </div>
                     </div>
                     <div class="item-slide item-slide-3">
+                        <img  src="<c:url value = "/assets/images/macbook 1920x548.png"/>" alt="img">
                         <div class="slide-desc slide-desc-3">
                             <div class="container">
                                 <div class="container-inner">
                                     <div class="p-primary">
-                                        Follow Keeping through Control
+                                        Macbook New Collection
                                     </div>
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur, adipiscing
-                                        turpis
+                                        Discovery And Explore Digital
                                     </p>
-                                    <a href="grid-product.html" class="btn-shop-now"
+                                    <a href="<c:url value = "/products?id=1"/>" class="btn-shop-now"
                                     >Shop Now</a
                                     >
                                 </div>
@@ -289,7 +295,7 @@
                                     <span class="flaticon-quality-badge"></span>
                                 </div>
                                 <div class="content">
-                                    <h4 class="title">BEST FURNITURE</h4>
+                                    <h4 class="title">BEST TECHNICAL</h4>
                                     <p class="text">Online retailer for home</p>
                                 </div>
                             </div>
@@ -300,7 +306,7 @@
         </div>
         <div class="block-daily-deals style1">
             <div class="container">
-                <div class="title-of-section main-title">Daily deals</div>
+                <div class="title-of-section main-title">Explore New Tech</div>
                 <div
                         class="owl-carousel nav-style2 border-background equal-container"
                         data-nav="true"
@@ -313,19 +319,17 @@
                     <div class="deal-of-day equal-elem">
                         <div class="product-thumb style1">
                             <div class="thumb-inner">
-                                <a href="#"
-                                ><img src="assets/images/home2/d1.jpg" alt="d1"
+                                <a href="<c:url value = "/products?id=2"/>"
+                                ><img src="<c:url value = "/assets/images/store-card-50-cny-iphone-pro-202501_GEO_VN.jpg"/>" alt="d1"
                                 /></a>
                             </div>
                         </div>
                         <div class="product-innfo">
                             <div class="product-name">
-                                <a href="#">Ultra HD Roku Smart</a>
+                                <a href="<c:url value = "/products?id=2"/>">iPhone 16 Pro</a>
                             </div>
                             <span class="price">
-                    <ins>$229.00</ins>
-                    <del>$259.00</del>
-                    <span class="onsale">-50%</span>
+                    <ins>$299</ins>
                   </span>
                             <span class="star-rating">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -352,19 +356,18 @@
                     <div class="deal-of-day equal-elem">
                         <div class="product-thumb style1">
                             <div class="thumb-inner">
-                                <a href="#"
-                                ><img src="assets/images/home2/d2.jpg" alt="d2"
+                                <a href="<c:url value = "/products?id=1"/>"
+                                ><img src="<c:url value = "/assets/images/store-card-50-cny-macbook-pro-202501_GEO_VN.jpg"/>" alt="d2"
                                 /></a>
                             </div>
                         </div>
                         <div class="product-innfo">
                             <div class="product-name">
-                                <a href="#">Cellphone Factory</a>
+                                <a href="<c:url value = "/products?id=1"/>">Macbook Pro</a>
                             </div>
                             <span class="price">
                     <ins>$229.00</ins>
                     <del>$259.00</del>
-                    <span class="onsale">-50%</span>
                   </span>
                             <span class="star-rating">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -391,19 +394,18 @@
                     <div class="deal-of-day equal-elem">
                         <div class="product-thumb style1">
                             <div class="thumb-inner">
-                                <a href="#"
-                                ><img src="assets/images/home2/d1.jpg" alt="d1"
+                                <a href="<c:url value = "/products?id=3"/>"
+                                ><img src="<c:url value = "/assets/images/store-card-50-cny-ipad-pro-202501_GEO_VN.jpg"/>" alt="d1"
                                 /></a>
                             </div>
                         </div>
                         <div class="product-innfo">
                             <div class="product-name">
-                                <a href="#">Ultra HD Roku Smart</a>
+                                <a href="<c:url value = "/products?id=3"/>">iPad Pro</a>
                             </div>
                             <span class="price">
                     <ins>$229.00</ins>
                     <del>$259.00</del>
-                    <span class="onsale">-50%</span>
                   </span>
                             <span class="star-rating">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -413,36 +415,25 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <span class="review">5 Review(s)</span>
                   </span>
-                            <div class="product-count-down">
-                                <div
-                                        class="kt-countdown"
-                                        data-y="2020"
-                                        data-m="6"
-                                        data-d="1"
-                                        data-h="10"
-                                        data-i="0"
-                                        data-s="0"
-                                ></div>
-                            </div>
+
                             <a href="#" class="btn-add-to-cart">Add to cart</a>
                         </div>
                     </div>
                     <div class="deal-of-day equal-elem">
                         <div class="product-thumb style1">
                             <div class="thumb-inner">
-                                <a href="#"
-                                ><img src="assets/images/home2/d2.jpg" alt="d2"
+                                <a href="<c:url value = "/products?id=4"/>"
+                                ><img src="<c:url value = "/assets/images/store-card-50-cny-watch-ultra-2-202501_GEO_VN.jpg"/>" alt="d2"
                                 /></a>
                             </div>
                         </div>
                         <div class="product-innfo">
                             <div class="product-name">
-                                <a href="#">Cellphone Factory</a>
+                                <a href="<c:url value = "/products?id=4"/>">Pineapple Watch Ultra</a>
                             </div>
                             <span class="price">
                     <ins>$229.00</ins>
                     <del>$259.00</del>
-                    <span class="onsale">-50%</span>
                   </span>
                             <span class="star-rating">
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -513,10 +504,10 @@
                             >
                         </li>
                         <li>
-                            <a data-animated="" data-toggle="tab" href="#tab-2">Camera</a>
+                            <a data-animated="" data-toggle="tab" href="#tab-2">Airpods</a>
                         </li>
                         <li>
-                            <a data-animated="" data-toggle="tab" href="#tab-3">Laptop</a>
+                            <a data-animated="" data-toggle="tab" href="#tab-3">Assesorries </a>
                         </li>
                         <li>
                             <a data-animated="" data-toggle="tab" href="#tab-4"
@@ -1033,18 +1024,18 @@
                                             <div class="product-inner equal-elem">
                                                 <div class="product-thumb">
                                                     <div class="thumb-inner">
-                                                        <a href="#"
+                                                        <a href="<c:url value = "/products?id=5"/>"
                                                         ><img
-                                                                src="assets/images/home2/p6.jpg"
+                                                                src="<c:url value = "/assets/images/airpods-4-hero-select-202409.png"/>"
                                                                 alt="p6"
                                                         /></a>
                                                     </div>
                                                     <span class="onsale">-50%</span>
-                                                    <a href="#" class="quick-view">Quick View</a>
+                                                    <a href="<c:url value = "/products?id=5"/>" class="quick-view">Quick View</a>
                                                 </div>
                                                 <div class="product-innfo">
                                                     <div class="product-name">
-                                                        <a href="#">Retina Laptop </a>
+                                                        <a href="<c:url value = "/products?id=5"/>">Airpods 4 </a>
                                                     </div>
                                                     <span class="price price-dark">
                                 <ins>$229.00</ins>
@@ -1059,13 +1050,13 @@
                               </span>
                                                     <div class="group-btn-hover">
                                                         <div class="inner">
-                                                            <a href="compare.html" class="compare"
+                                                            <a href="<c:url value = "/products?id=5"/>" class="compare"
                                                             ><i class="fa fa-exchange"></i
                                                             ></a>
                                                             <a href="#" class="add-to-cart"
                                                             >Add to cart</a
                                                             >
-                                                            <a href="wishlist.html" class="wishlist"
+                                                            <a href="<c:url value = "/products?id=5"/>" class="wishlist"
                                                             ><i
                                                                     class="fa fa-heart-o"
                                                                     aria-hidden="true"
@@ -1076,22 +1067,24 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="owl-one-row">
                                         <div class="product-item style1">
                                             <div class="product-inner equal-elem">
                                                 <div class="product-thumb">
                                                     <div class="thumb-inner">
-                                                        <a href="#"
+                                                        <a href="<c:url value = "/products?id=5"/>"
                                                         ><img
-                                                                src="assets/images/home2/p2.jpg"
+                                                                src="<c:url value = "/assets/images/airpods-pro-2-hero-select-202409_FV1.png"/>"
                                                                 alt="p2"
                                                         /></a>
                                                     </div>
                                                     <span class="onsale">-50%</span>
-                                                    <a href="#" class="quick-view">Quick View</a>
+                                                    <a href="<c:url value = "/products?id=5"/>" class="quick-view">Quick View</a>
                                                 </div>
                                                 <div class="product-innfo">
                                                     <div class="product-name">
-                                                        <a href="#">Photo Camera </a>
+                                                        <a href="<c:url value = "/products?id=5"/>">Airpods Pro </a>
                                                     </div>
                                                     <span class="price">
                                 <ins>$229.00</ins>
@@ -1107,13 +1100,13 @@
                               </span>
                                                     <div class="group-btn-hover">
                                                         <div class="inner">
-                                                            <a href="compare.html" class="compare"
+                                                            <a href="<c:url value = "/products?id=5"/>" class="compare"
                                                             ><i class="fa fa-exchange"></i
                                                             ></a>
                                                             <a href="#" class="add-to-cart"
                                                             >Add to cart</a
                                                             >
-                                                            <a href="wishlist.html" class="wishlist"
+                                                            <a href="<c:url value = "/products?id=5"/>" class="wishlist"
                                                             ><i
                                                                     class="fa fa-heart-o"
                                                                     aria-hidden="true"
@@ -1130,17 +1123,17 @@
                                             <div class="product-inner equal-elem">
                                                 <div class="product-thumb">
                                                     <div class="thumb-inner">
-                                                        <a href="#"
+                                                        <a href="<c:url value = "/products?id=5"/>"
                                                         ><img
-                                                                src="assets/images/home2/p7.jpg"
+                                                                src="<c:url value = "/assets/images/airpods-max-select-202409.png"/>"
                                                                 alt="p7"
                                                         /></a>
                                                     </div>
-                                                    <a href="#" class="quick-view">Quick View</a>
+                                                    <a href="<c:url value = "/products?id=5"/>" class="quick-view">Quick View</a>
                                                 </div>
                                                 <div class="product-innfo">
                                                     <div class="product-name">
-                                                        <a href="#">Ring Video Doorbell </a>
+                                                        <a href="<c:url value = "/products?id=5"/>">Airpods Max </a>
                                                     </div>
                                                     <span class="price price-dark">
                                 <ins>$229.00</ins>
@@ -1155,348 +1148,13 @@
                               </span>
                                                     <div class="group-btn-hover">
                                                         <div class="inner">
-                                                            <a href="compare.html" class="compare"
+                                                            <a href="<c:url value = "/products?id=5"/>" class="compare"
                                                             ><i class="fa fa-exchange"></i
                                                             ></a>
                                                             <a href="#" class="add-to-cart"
                                                             >Add to cart</a
                                                             >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p1.jpg"
-                                                                alt="p1"
-                                                        /></a>
-                                                    </div>
-                                                    <span class="onsale">-50%</span>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Game Controller </a>
-                                                    </div>
-                                                    <span class="price">
-                                <ins>$229.00</ins>
-                                <del>$259.00</del>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-one-row">
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p8.jpg"
-                                                                alt="p8"
-                                                        /></a>
-                                                    </div>
-                                                    <span class="onsale">-50%</span>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Retina Laptop </a>
-                                                    </div>
-                                                    <span class="price">
-                                <ins>$229.00</ins>
-                                <del>$259.00</del>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p4.jpg"
-                                                                alt="p4"
-                                                        /></a>
-                                                    </div>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Smartphone New </a>
-                                                    </div>
-                                                    <span class="price price-dark">
-                                <ins>$229.00</ins>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-one-row">
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p3.jpg"
-                                                                alt="p3"
-                                                        /></a>
-                                                    </div>
-                                                    <span class="onnew">new</span>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Smartphone 4 GB </a>
-                                                    </div>
-                                                    <span class="price price-dark">
-                                <ins>$229.00</ins>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p9.jpg"
-                                                                alt="p9"
-                                                        /></a>
-                                                    </div>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Smartphone New </a>
-                                                    </div>
-                                                    <span class="price price-dark">
-                                <ins>$229.00</ins>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-one-row">
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p5.jpg"
-                                                                alt="p5"
-                                                        /></a>
-                                                    </div>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Notebook Pro </a>
-                                                    </div>
-                                                    <span class="price price-dark">
-                                <ins>$229.00</ins>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p10.jpg"
-                                                                alt="p10"
-                                                        /></a>
-                                                    </div>
-                                                    <span class="onsale">-50%</span>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Notebook Pro </a>
-                                                    </div>
-                                                    <span class="price">
-                                <ins>$229.00</ins>
-                                <del>$259.00</del>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
+                                                            <a href="<c:url value = "/products?id=5"/>" class="wishlist"
                                                             ><i
                                                                     class="fa fa-heart-o"
                                                                     aria-hidden="true"
@@ -1520,488 +1178,53 @@
                                         data-margin="30"
                                         data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4},"1200":{"items":4}}'
                                 >
-                                    <div class="owl-one-row">
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p3.jpg"
-                                                                alt="p3"
-                                                        /></a>
+                                    <c:forEach var="product" items="${featuredProducts}">
+                                        <div class="owl-one-row">
+                                            <div class="product-item style1">
+                                                <div class="product-inner equal-elem">
+                                                    <div class="product-thumb">
+                                                        <div class="thumb-inner">
+                                                            <a href="<c:url value = "/products?id=${product.categoryId}"/>">
+                                                                <img src="#" alt="${product.name}" />
+                                                            </a>
+                                                        </div>
+                                                        <span class="onnew">new</span>
+                                                        <a href="<c:url value = "/products?id=${product.categoryId}"/>" class="quick-view">Quick View</a>
                                                     </div>
-                                                    <span class="onnew">new</span>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Smartphone 4 GB </a>
-                                                    </div>
-                                                    <span class="price price-dark">
-                                <ins>$229.00</ins>
-                              </span>
-                                                    <span class="star-rating">
+                                                    <div class="product-innfo">
+                                                        <div class="product-name">
+                                                            <a href="<c:url value = "/products?id=${product.categoryId}"/>" ><c:out value="${product.name}"/></a>
+                                                        </div>
+                                                        <span class="price price-dark">
+                                <ins>$0</ins>
+                            </span>
+                                                        <span class="star-rating">
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
+                            </span>
+                                                        <div class="group-btn-hover">
+                                                            <div class="inner">
+                                                                <a href="<c:url value = "/products?id=${product.categoryId}"/>" class="compare">
+                                                                    <i class="fa fa-exchange"></i>
+                                                                </a>
+                                                                <a href="<c:url value = "/products?id=${product.categoryId}"/>" class="add-to-cart">Add to cart</a>
+                                                                <a href="<c:url value = "/products?id=${product.categoryId}"/>" class="wishlist">
+                                                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p2.jpg"
-                                                                alt="p2"
-                                                        /></a>
-                                                    </div>
-                                                    <span class="onsale">-50%</span>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Photo Camera </a>
-                                                    </div>
-                                                    <span class="price">
-                                <ins>$229.00</ins>
-                                <del>$259.00</del>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-one-row">
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p10.jpg"
-                                                                alt="p10"
-                                                        /></a>
-                                                    </div>
-                                                    <span class="onsale">-50%</span>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Notebook Pro </a>
-                                                    </div>
-                                                    <span class="price">
-                                <ins>$229.00</ins>
-                                <del>$259.00</del>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p1.jpg"
-                                                                alt="p1"
-                                                        /></a>
-                                                    </div>
-                                                    <span class="onsale">-50%</span>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Game Controller </a>
-                                                    </div>
-                                                    <span class="price">
-                                <ins>$229.00</ins>
-                                <del>$259.00</del>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-one-row">
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p8.jpg"
-                                                                alt="p8"
-                                                        /></a>
-                                                    </div>
-                                                    <span class="onsale">-50%</span>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Retina Laptop </a>
-                                                    </div>
-                                                    <span class="price">
-                                <ins>$229.00</ins>
-                                <del>$259.00</del>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p4.jpg"
-                                                                alt="p4"
-                                                        /></a>
-                                                    </div>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Smartphone New </a>
-                                                    </div>
-                                                    <span class="price price-dark">
-                                <ins>$229.00</ins>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-one-row">
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p6.jpg"
-                                                                alt="p6"
-                                                        /></a>
-                                                    </div>
-                                                    <span class="onsale">-50%</span>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Retina Laptop </a>
-                                                    </div>
-                                                    <span class="price price-dark">
-                                <ins>$229.00</ins>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p9.jpg"
-                                                                alt="p9"
-                                                        /></a>
-                                                    </div>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Smartphone New </a>
-                                                    </div>
-                                                    <span class="price price-dark">
-                                <ins>$229.00</ins>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-one-row">
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p5.jpg"
-                                                                alt="p5"
-                                                        /></a>
-                                                    </div>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Notebook Pro </a>
-                                                    </div>
-                                                    <span class="price price-dark">
-                                <ins>$229.00</ins>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-item style1">
-                                            <div class="product-inner equal-elem">
-                                                <div class="product-thumb">
-                                                    <div class="thumb-inner">
-                                                        <a href="#"
-                                                        ><img
-                                                                src="assets/images/home2/p7.jpg"
-                                                                alt="p7"
-                                                        /></a>
-                                                    </div>
-                                                    <a href="#" class="quick-view">Quick View</a>
-                                                </div>
-                                                <div class="product-innfo">
-                                                    <div class="product-name">
-                                                        <a href="#">Ring Video Doorbell </a>
-                                                    </div>
-                                                    <span class="price price-dark">
-                                <ins>$229.00</ins>
-                              </span>
-                                                    <span class="star-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span class="review">5 Review(s)</span>
-                              </span>
-                                                    <div class="group-btn-hover">
-                                                        <div class="inner">
-                                                            <a href="compare.html" class="compare"
-                                                            ><i class="fa fa-exchange"></i
-                                                            ></a>
-                                                            <a href="#" class="add-to-cart"
-                                                            >Add to cart</a
-                                                            >
-                                                            <a href="wishlist.html" class="wishlist"
-                                                            ><i
-                                                                    class="fa fa-heart-o"
-                                                                    aria-hidden="true"
-                                                            ></i
-                                                            ></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </c:forEach>
                                 </div>
                             </div>
+
                             <div id="tab-4" class="tab-panel">
                                 <div
                                         class="owl-carousel nav-style2 border-background equal-container"
@@ -2509,237 +1732,6 @@
                         <h4>Top Collection</h4>
                         <h3>All New Smart Watches</h3>
                         <a class="banner-link" href="grid-product.html">Shop now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="block-the-blog">
-            <div class="container">
-                <div class="title-of-section"><span>From The Blog</span></div>
-                <div
-                        class="owl-carousel nav-style2"
-                        data-nav="true"
-                        data-autoplay="false"
-                        data-dots="true"
-                        data-loop="true"
-                        data-margin="30"
-                        data-responsive='{"0":{"items":1},"480":{"items":2},"600":{"items":2},"992":{"items":3}}'
-                >
-                    <div class="blog-item">
-                        <div class="post-thumb">
-                            <a href="#"
-                            ><img src="assets/images/home1/blog1.jpg" alt="blog1"
-                            /></a>
-                        </div>
-                        <div class="post-item-info">
-                            <h3 class="post-name">
-                                <a href="#">It’s all about the bread: whole grain home</a>
-                            </h3>
-                            <div class="post-metas">
-                                <span class="author">Post by: <span>Admin</span></span>
-                                <span class="comment"
-                                ><i class="fa fa-comment" aria-hidden="true"></i>36
-                      Comments</span
-                                >
-                            </div>
-                            <div>
-                                Lorem ipsum dolor sit amet consectetur adipiscing, elit
-                                integer urna placerat donec, cum viverra egestas ac
-                                luctus...
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="post-thumb">
-                            <a href="#"
-                            ><img src="assets/images/home1/blog2.jpg" alt="blog2"
-                            /></a>
-                        </div>
-                        <div class="post-item-info">
-                            <h3 class="post-name">
-                                <a href="#">Ridiculus nascetur, malesuada non in netus.</a>
-                            </h3>
-                            <div class="post-metas">
-                                <span class="author">Post by: <span>Admin</span></span>
-                                <span class="comment"
-                                ><i class="fa fa-comment" aria-hidden="true"></i>36
-                      Comments</span
-                                >
-                            </div>
-                            <div>
-                                Lorem ipsum dolor sit amet consectetur adipiscing, elit
-                                integer urna placerat donec, cum viverra egestas ac
-                                luctus...
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="post-thumb">
-                            <a href="#"
-                            ><img src="assets/images/home1/blog3.jpg" alt="blog3"
-                            /></a>
-                        </div>
-                        <div class="post-item-info">
-                            <h3 class="post-name">
-                                <a href="#">Using Lorem Ipsum allows designers to put</a>
-                            </h3>
-                            <div class="post-metas">
-                                <span class="author">Post by: <span>Admin</span></span>
-                                <span class="comment"
-                                ><i class="fa fa-comment" aria-hidden="true"></i>36
-                      Comments</span
-                                >
-                            </div>
-                            <div>
-                                Lorem ipsum dolor sit amet consectetur adipiscing, elit
-                                integer urna placerat donec, cum viverra egestas ac
-                                luctus...
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="post-thumb">
-                            <a href="#"
-                            ><img src="assets/images/home1/blog1.jpg" alt="blog1"
-                            /></a>
-                        </div>
-                        <div class="post-item-info">
-                            <h3 class="post-name">
-                                <a href="#">It’s all about the bread: whole grain home</a>
-                            </h3>
-                            <div class="post-metas">
-                                <span class="author">Post by: <span>Admin</span></span>
-                                <span class="comment"
-                                ><i class="fa fa-comment" aria-hidden="true"></i>36
-                      Comments</span
-                                >
-                            </div>
-                            <div>
-                                Lorem ipsum dolor sit amet consectetur adipiscing, elit
-                                integer urna placerat donec, cum viverra egestas ac
-                                luctus...
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="post-thumb">
-                            <a href="#"
-                            ><img src="assets/images/home1/blog2.jpg" alt="blog2"
-                            /></a>
-                        </div>
-                        <div class="post-item-info">
-                            <h3 class="post-name">
-                                <a href="#">Ridiculus nascetur, malesuada non in netus.</a>
-                            </h3>
-                            <div class="post-metas">
-                                <span class="author">Post by: <span>Admin</span></span>
-                                <span class="comment"
-                                ><i class="fa fa-comment" aria-hidden="true"></i>36
-                      Comments</span
-                                >
-                            </div>
-                            <div>
-                                Lorem ipsum dolor sit amet consectetur adipiscing, elit
-                                integer urna placerat donec, cum viverra egestas ac
-                                luctus...
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="post-thumb">
-                            <a href="#"
-                            ><img src="assets/images/home1/blog3.jpg" alt="blog3"
-                            /></a>
-                        </div>
-                        <div class="post-item-info">
-                            <h3 class="post-name">
-                                <a href="#">Using Lorem Ipsum allows designers to put</a>
-                            </h3>
-                            <div class="post-metas">
-                                <span class="author">Post by: <span>Admin</span></span>
-                                <span class="comment"
-                                ><i class="fa fa-comment" aria-hidden="true"></i>36
-                      Comments</span
-                                >
-                            </div>
-                            <div>
-                                Lorem ipsum dolor sit amet consectetur adipiscing, elit
-                                integer urna placerat donec, cum viverra egestas ac
-                                luctus...
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="post-thumb">
-                            <a href="#"
-                            ><img src="assets/images/home1/blog1.jpg" alt="blog1"
-                            /></a>
-                        </div>
-                        <div class="post-item-info">
-                            <h3 class="post-name">
-                                <a href="#">It’s all about the bread: whole grain home</a>
-                            </h3>
-                            <div class="post-metas">
-                                <span class="author">Post by: <span>Admin</span></span>
-                                <span class="comment"
-                                ><i class="fa fa-comment" aria-hidden="true"></i>36
-                      Comments</span
-                                >
-                            </div>
-                            <div>
-                                Lorem ipsum dolor sit amet consectetur adipiscing, elit
-                                integer urna placerat donec, cum viverra egestas ac
-                                luctus...
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="post-thumb">
-                            <a href="#"
-                            ><img src="assets/images/home1/blog2.jpg" alt="blog2"
-                            /></a>
-                        </div>
-                        <div class="post-item-info">
-                            <h3 class="post-name">
-                                <a href="#">Ridiculus nascetur, malesuada non in netus.</a>
-                            </h3>
-                            <div class="post-metas">
-                                <span class="author">Post by: <span>Admin</span></span>
-                                <span class="comment"
-                                ><i class="fa fa-comment" aria-hidden="true"></i>36
-                      Comments</span
-                                >
-                            </div>
-                            <div>
-                                Lorem ipsum dolor sit amet consectetur adipiscing, elit
-                                integer urna placerat donec, cum viverra egestas ac
-                                luctus...
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-item">
-                        <div class="post-thumb">
-                            <a href="#"
-                            ><img src="assets/images/home1/blog3.jpg" alt="blog3"
-                            /></a>
-                        </div>
-                        <div class="post-item-info">
-                            <h3 class="post-name">
-                                <a href="#">Using Lorem Ipsum allows designers to put</a>
-                            </h3>
-                            <div class="post-metas">
-                                <span class="author">Post by: <span>Admin</span></span>
-                                <span class="comment"
-                                ><i class="fa fa-comment" aria-hidden="true"></i>36
-                      Comments</span
-                                >
-                            </div>
-                            <div>
-                                Lorem ipsum dolor sit amet consectetur adipiscing, elit
-                                integer urna placerat donec, cum viverra egestas ac
-                                luctus...
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
