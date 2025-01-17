@@ -89,8 +89,8 @@
     <main class="site-main site-login">
         <div class="container">
             <ol class="breadcrumb-page">
-                <li><a href="index.html">Home </a></li>
-                <li class="active"><a href="#">Register</a></li>
+                <li><a href="<c:url value="/"/>">Home </a></li>
+                <li class="active"><a href="#">Add product</a></li>
             </ol>
         </div>
         <div class="customer-login">
