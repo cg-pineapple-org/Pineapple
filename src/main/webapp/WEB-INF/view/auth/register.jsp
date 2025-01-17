@@ -89,7 +89,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 border-after">
-                        <h5 class="title-login">Great an account</h5>
+                        <h5 class="title-login">Create an account</h5>
                         <c:if test="${not empty message}">
                             <div class="error-message">${message}</div>
                         </c:if>

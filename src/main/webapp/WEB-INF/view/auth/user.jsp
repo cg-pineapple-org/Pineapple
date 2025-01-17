@@ -95,47 +95,128 @@
             <a href="#" class="list-group-item list-group-item-action">Những Thiết Lập Riêng Tư</a>
           </div>
         </div>
+<%--        <div class="col-md-9">--%>
+<%--          <h1 class="mb-4">Hồ Sơ Của Tôi</h1>--%>
+<%--          <form action="updateProfile" method="post" enctype="multipart/form-data">--%>
+<%--            <div class="mb-3">--%>
+<%--              <label for="username" class="form-label">Tên đăng nhập</label>--%>
+<%--              <input type="text" id="username" name="username" class="form-control" value="hoangngoctuan143" readonly>--%>
+<%--            </div>--%>
+<%--            <div class="mb-3">--%>
+<%--              <label for="name" class="form-label">Tên</label>--%>
+<%--              <div class="mb-3 d-flex align-items-center">--%>
+<%--                <input type="text" id="name" name="name" class="form-control me-1" value="Hoàng Ngọc Tuấn" readonly>--%>
+<%--                <button type="button" class="btn btn-warning ms-2" id="editNameBtn">Sửa</button>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--            <div class="mb-3">--%>
+<%--              <label for="email" class="form-label ">Email</label>--%>
+<%--              <div class="mb-3 d-flex align-items-center">--%>
+<%--                <input type="email" id="email" name="email" class="form-control me-1" value="ng**********@gmail.com" readonly>--%>
+<%--                <button type="button" class="btn btn-warning ms-2" id="editEmailBtn">Sửa</button>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--            <div class="mb-3 ">--%>
+<%--              <label for="phone" class="form-label me-2">Số điện thoại</label>--%>
+<%--              <div class="mb-3 d-flex align-items-center">--%>
+<%--                <input type="text" id="phone" name="phone" class="form-control" value="********63" readonly>--%>
+<%--                <button type="button" class="btn btn-warning ms-2" id="editPhoneBtn">Sửa</button>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--            <div class="mb-3">--%>
+<%--              <label for="address" class="form-label">Địa chỉ</label>--%>
+<%--              <textarea id="address" name="address" class="form-control" rows="3" readonly>Địa chỉ cũ</textarea>--%>
+<%--              <button type="button" class="btn btn-warning mt-2" id="editAddressBtn">Sửa đổi</button>--%>
+<%--            </div>--%>
+<%--            <div class="mb-3">--%>
+<%--              <label for="dob" class="form-label">Ngày sinh</label>--%>
+<%--              <div class="row">--%>
+<%--                <div class="col">--%>
+<%--                  <select name="dob_day" id="dob_day" class="form-select" required>--%>
+<%--                    <option value="">Day</option>--%>
+<%--                    <c:forEach var="i" begin="1" end="31">--%>
+<%--                      <option value="${i}">${i}</option>--%>
+<%--                    </c:forEach>--%>
+<%--                  </select>--%>
+<%--                </div>--%>
+<%--                <div class="col">--%>
+<%--                  <select name="dob_month" id="dob_month" class="form-select" required>--%>
+<%--                    <option value="">Month</option>--%>
+<%--                    <c:forEach var="i" begin="1" end="12">--%>
+<%--                      <option value="${i}">${i}</option>--%>
+<%--                    </c:forEach>--%>
+<%--                  </select>--%>
+<%--                </div>--%>
+<%--                <div class="col">--%>
+<%--                  <select name="dob_year" id="dob_year" class="form-select" required>--%>
+<%--                    <option value="">Year</option>--%>
+<%--                    <c:forEach var="i" begin="1980" end="2025">--%>
+<%--                      <option value="${i}">${i}</option>--%>
+<%--                    </c:forEach>--%>
+<%--                  </select>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+
+<%--            <div class="mb-3">--%>
+<%--              <label for="avatar" class="form-label">Ảnh đại diện</label>--%>
+<%--              <input type="file" id="avatar" name="avatar" class="form-control" accept="image/jpeg, image/png">--%>
+<%--            </div>--%>
+
+<%--            <div class="text-end">--%>
+<%--              <button type="submit" class="btn btn-primary">Lưu</button>--%>
+<%--            </div>--%>
+<%--          </form>--%>
+<%--        </div>--%>
+
         <div class="col-md-9">
           <h1 class="mb-4">Hồ Sơ Của Tôi</h1>
           <form action="updateProfile" method="post" enctype="multipart/form-data">
             <div class="mb-3">
               <label for="username" class="form-label">Tên đăng nhập</label>
-              <input type="text" id="username" name="username" class="form-control" value="hoangngoctuan143" readonly>
+              <input type="text" id="username" name="username" class="form-control" value="${account.username}" readonly>
             </div>
             <div class="mb-3">
-              <label for="name" class="form-label">Tên</label>
+              <label for="firstName" class="form-label">Tên</label>
               <div class="mb-3 d-flex align-items-center">
-                <input type="text" id="name" name="name" class="form-control me-1" value="Hoàng Ngọc Tuấn" readonly>
-                <button type="button" class="btn btn-warning ms-2" id="editNameBtn">Sửa</button>
+                <input type="text" id="firstName" name="firstName" class="form-control me-1" value="${user.firstName}" readonly>
+                <button type="button" class="btn btn-warning ms-2" id="editFirstNameBtn">Sửa</button>
               </div>
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label ">Email</label>
+              <label for="lastName" class="form-label">Tên</label>
               <div class="mb-3 d-flex align-items-center">
-                <input type="email" id="email" name="email" class="form-control me-1" value="ng**********@gmail.com" readonly>
+                <input type="text" id="lastName" name="lastName" class="form-control me-1" value="${user.lastName}" readonly>
+                <button type="button" class="btn btn-warning ms-2" id="editLastNameBtn">Sửa</button>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <div class="mb-3 d-flex align-items-center">
+                <input type="email" id="email" name="email" class="form-control me-1" value="${user.email}" readonly>
                 <button type="button" class="btn btn-warning ms-2" id="editEmailBtn">Sửa</button>
               </div>
             </div>
-            <div class="mb-3 ">
-              <label for="phone" class="form-label me-2">Số điện thoại</label>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Số điện thoại</label>
               <div class="mb-3 d-flex align-items-center">
-                <input type="text" id="phone" name="phone" class="form-control" value="********63" readonly>
+                <input type="text" id="phone" name="phone" class="form-control" value="${user.phone}" readonly>
                 <button type="button" class="btn btn-warning ms-2" id="editPhoneBtn">Sửa</button>
               </div>
             </div>
             <div class="mb-3">
               <label for="address" class="form-label">Địa chỉ</label>
-              <textarea id="address" name="address" class="form-control" rows="3" readonly>Địa chỉ cũ</textarea>
+              <textarea id="address" name="address" class="form-control" rows="3" readonly>${user.address}</textarea>
               <button type="button" class="btn btn-warning mt-2" id="editAddressBtn">Sửa đổi</button>
             </div>
             <div class="mb-3">
-              <label for="dob" class="form-label">Ngày sinh</label>
+              <label for="day_of_birth" class="form-label">Ngày sinh</label>
               <div class="row">
                 <div class="col">
-                  <select name="dob_day" id="dob_day" class="form-select" required>
+                  <select name="day_of_birth" id="day_of_birth" class="form-select" required>
                     <option value="">Day</option>
                     <c:forEach var="i" begin="1" end="31">
-                      <option value="${i}">${i}</option>
+                      <option value="${i}" ${user.dob.split('-')[2] == i ? 'selected' : ''}>${i}</option>
                     </c:forEach>
                   </select>
                 </div>
@@ -143,7 +224,7 @@
                   <select name="dob_month" id="dob_month" class="form-select" required>
                     <option value="">Month</option>
                     <c:forEach var="i" begin="1" end="12">
-                      <option value="${i}">${i}</option>
+                      <option value="${i}" ${user.dob.split('/')[1] == i ? 'selected' : ''}>${i}</option>
                     </c:forEach>
                   </select>
                 </div>
@@ -151,23 +232,23 @@
                   <select name="dob_year" id="dob_year" class="form-select" required>
                     <option value="">Year</option>
                     <c:forEach var="i" begin="1980" end="2025">
-                      <option value="${i}">${i}</option>
+                      <option value="${i}" ${user.dob.split('/')[0] == i ? 'selected' : ''}>${i}</option>
                     </c:forEach>
                   </select>
                 </div>
               </div>
             </div>
-
             <div class="mb-3">
               <label for="avatar" class="form-label">Ảnh đại diện</label>
               <input type="file" id="avatar" name="avatar" class="form-control" accept="image/jpeg, image/png">
+              <img src="${user.avatarUrl}" alt="Avatar" class="mt-3" style="width: 100px; height: auto;">
             </div>
-
             <div class="text-end">
               <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
           </form>
         </div>
+
       </div>
     </div>
   </div>

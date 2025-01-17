@@ -11,6 +11,9 @@ import org.jetbrains.annotations.NotNull;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 public class AuthService {
@@ -22,12 +25,16 @@ public class AuthService {
         this.authDAO = new AuthDAO();
     }
 
-    public User login(String username, String password) {
+    public Map<String, Object> login(String username, String password) {
 
         Account account = authDAO.getAccountByUsername(username);
 
         if (account != null && BCrypt.checkpw(password, account.getPassword())) {
-            return authDAO.getUserById(account.getUserId());
+            User user = authDAO.getUserById(account.getUserId());
+            Map< String, Object> map = new HashMap<>();
+            map.put("user", user);
+            map.put("account", account);
+            return map;
         }
         return null;
     }
