@@ -32,8 +32,8 @@ public class ProductService {
         return ProductDao.getInstance().findProductDetailByProductId(id);
     }
 
-    public List<Map<String, Object>> getAllProducts(Integer pageSize, Integer page){
-        List<Map<String, Object>> resultList = ProductDao.getInstance().findAllProduct(pageSize, page);
+    public List<Map<String, Object>> getAllProducts(Integer pageSize, Integer page, String order){
+        List<Map<String, Object>> resultList = ProductDao.getInstance().findAllProduct(pageSize, page, order);
 
         if (resultList.isEmpty()) return null;
         return resultList;
@@ -51,4 +51,12 @@ public class ProductService {
         return ProductDao.getInstance().findProductByCategoryId(id);
     }
 
+
+    public List<List> getAllCategoryProduct(){
+        return ProductDao.getInstance().findAllCategoryProduct();
+    }
+
+    public void addProduct(String color, Integer amount, Double price, String description, Integer productId){
+        ProductDao.getInstance().insertProductDetail(color, amount, price, description, productId);
+    }
 }

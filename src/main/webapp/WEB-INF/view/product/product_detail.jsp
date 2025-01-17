@@ -94,8 +94,8 @@
                 <li class="active"><a href="#">Detail</a></li>
             </ol>
         </div>
-        <c:if test="${message != null}">
-            <div class="alert bg-success text-center" role="alert">
+        <c:if test="${not empty message}">
+            <div class="alert bg-primary text-center" role="alert">
                 Successfully added to cart!
             </div>
         </c:if>
@@ -128,6 +128,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="product-info-main">
                                 <form action="/cart" method="post">
+                                    <input type="hidden" name="id" value="${product_detail.id}">
                                     <div class="product-name"><a href="#"><c:out value="${product.name}"/> </a></div>
                                     <div class="product-info-stock-sku">
                                         <div class="stock available">
@@ -153,18 +154,36 @@
                                     </div>
                                     <div class="product-info-price">
                                 <span class="price">
-
-                                    <ins id="price-${product_detail.id}">$<c:out value="${product_detail.price}"/></ins>
-                                    <input type="hidden" name="price" value="${product_detail.price}">
+                                    <c:choose>
+                                        <c:when test="${product_detail.amount > 0}">
+                                            <ins id="price-${product_detail.id}">$<c:out value="${product_detail.price}"/></ins>
+                                            <input type="hidden" name="price" value="${product_detail.price}">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <ins id="price-${product_detail.id}">$0</ins>
+                                            <input type="hidden" name="price" value="0">
+                                        </c:otherwise>
+                                    </c:choose>
 
                                 </span>
                                         <div class="quantity">
                                             <h6 class="quantity-title">Quantity:</h6>
                                             <div class="buttons-added">
-                                                <input type="text" id="amount-${product_detail.id}"
-                                                       style="pointer-events: none" name="amount" value="1"
-                                                       max="${product_detail.amount}" title="Qty"
-                                                       class="input-text qty text" size="1">
+                                                <c:choose>
+                                                    <c:when test="${product_detail.amount > 0}">
+                                                        <input type="text" id="amount-${product_detail.id}"
+                                                               style="pointer-events: none" name="amount" value="1"
+                                                               max="${product_detail.amount}" title="Qty"
+                                                               class="input-text qty text" size="1">
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="text" id="amount-${product_detail.id}"
+                                                               style="pointer-events: none" name="amount" value="0"
+                                                               max="${product_detail.amount}" title="Qty"
+                                                               class="input-text text" size="1">
+                                                    </c:otherwise>
+                                                </c:choose>
+
                                                 <a href="#" class="sign plus"><i class="fa fa-plus"></i></a>
                                                 <a href="#" class="sign minus"><i class="fa fa-minus"></i></a>
                                             </div>
