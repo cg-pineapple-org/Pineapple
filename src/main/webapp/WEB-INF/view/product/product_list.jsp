@@ -22,6 +22,10 @@
           rel="stylesheet">
 
     <style>
+        .w-100 {
+            width: 100%;
+        }
+
         <c:forEach items="${product_list}" var="product">
         .pineapple-table:not(.section-${product['product_detail'].id}) .confirm-${product['product_detail'].id}-btn,
         </c:forEach> .default .default {
@@ -122,6 +126,11 @@
                     Product table
                 </div>
                 <div class="card-body">
+                    <c:if test="${not empty message}">
+                        <div class="alert bg-success text-center" role="alert">
+                            <c:out value="${message}"/>
+                        </div>
+                    </c:if>
                     <table id="datatablesSimple" class="pineapple-table table table-bordered">
                         <thead>
                         <tr>
@@ -142,23 +151,27 @@
                         <c:forEach items="${product_list}" var="product">
                             <tr>
                                 <form action="/products/edit" method="post">
-                                    <td class="pineapple-id"><input type="text" name="id"
-                                                                    id="id-${product['product_detail'].id}"
-                                                                    value="${product['product_detail'].id}"></td>
+                                    <td class="pineapple-id">${product['product_detail'].id}
+                                        <input type="hidden" name="id" id="id-${product['product_detail'].id}"
+                                               value="${product['product_detail'].id}">
+                                    </td>
                                     <td>${product['category'].name}</td>
                                     <td>${product['product'].name}</td>
-                                    <td class="pineapple-color"><input type="color" name="color" id="color-${product['product_detail'].id}" class="form-control form-control-color input-${product['product_detail'].id}" value="${product['product_detail'].color}"></td>
+                                    <td class="pineapple-color"><input type="color" name="color"
+                                                                       id="color-${product['product_detail'].id}"
+                                                                       class="w-100 padding-0 form-control form-control-color input-${product['product_detail'].id}"
+                                                                       value="${product['product_detail'].color}"></td>
                                     <td class="pineapple-amount"><input type="number" name="amount"
                                                                         id="amount-${product['product_detail'].id}"
-                                                                        class="input-text input-${product['product_detail'].id}"
+                                                                        class="w-100 input-text input-${product['product_detail'].id}"
                                                                         value="${product['product_detail'].amount}">
                                     </td>
                                     <td class="pineapple-price"><input type="number" name="price"
                                                                        id="price-${product['product_detail'].id}"
-                                                                       class="input-text input-${product['product_detail'].id}"
+                                                                       class="w-100 input-text input-${product['product_detail'].id}"
                                                                        value="${product['product_detail'].price}"></td>
                                     <td class="pineapple-description"><input type="text" name="description"
-                                                                             class="input-text input-${product['product_detail'].id}"
+                                                                             class="w-100 input-text input-${product['product_detail'].id}"
                                                                              value="${product['product_detail'].description}">
                                     </td>
                                     <td>
@@ -171,7 +184,7 @@
                                                 class="btn btn-warning confirm-${product['product_detail'].id}-btn">
                                             Confirm
                                         </button>
-<%--                                        <button type="button" class="btn btn-danger">Delete</button>--%>
+                                            <%--                                        <button type="button" class="btn btn-danger">Delete</button>--%>
                                     </td>
                                 </form>
                             </tr>
