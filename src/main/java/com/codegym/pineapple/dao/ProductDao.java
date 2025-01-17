@@ -8,6 +8,7 @@ import com.codegym.pineapple.model.ProductDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -274,4 +275,45 @@ public class ProductDao {
             }
         }
     }
+    public List<Product> findProductsInRange(int startId, int endId) {
+        List<Product> productList = new ArrayList<>();
+        String query = "SELECT id, name, category_id FROM products WHERE id BETWEEN ? AND ?";
+
+        try (Connection connection = JdbcConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, startId);
+            preparedStatement.setInt(2, endId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getInt("id"));
+                product.setName(resultSet.getString("name"));
+                product.setCategoryId(resultSet.getInt("category_id"));
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            logger.error("Database error while finding products in range{}", e.getMessage());
+        } catch (Exception e) {
+            logger.error("Something went wrong{}", e.getMessage());
+        }
+
+        return productList;
+    }
+
+    public List<List> findProductByCategoryId(Integer id){
+        List<List> resultList = new ArrayList<>();
+        try{
+            Connection connection = JdbcConnection.getConnection();
+            assert connection != null;
+            resultList = findProductByCategory(id, connection);
+            connection.close();
+        }
+        catch (Exception e){
+            logger.error("Something went wrong{}", e.getMessage());
+        }
+        return resultList;
+    }
+
 }

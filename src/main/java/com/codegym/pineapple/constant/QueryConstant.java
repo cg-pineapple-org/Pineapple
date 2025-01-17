@@ -38,4 +38,8 @@ public class QueryConstant {
             "JOIN product_details pd ON ci.product_detail_id = pd.id\n" +
             "JOIN products p ON p.id = pd.product_id\n" +
             "GROUP BY  pd.id) AS subquery";
+
+    public static final String QUERY_FIND_CATEGORY_BY_ID = "SELECT id, name FROM categories WHERE id = ?";
+    ;
+
 }

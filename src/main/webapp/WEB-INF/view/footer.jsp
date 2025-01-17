@@ -51,43 +51,43 @@
             data-responsive='{"0":{"items":2},"480":{"items":2},"768":{"items":3},"992":{"items":4},"1200":{"items":5}}'
     >
       <div class="item-instagram">
-        <a href="#">
-          <img src="<c:url value = "/assets/images/store-card-13-iphone-nav-202409.png" />"alt="img">
+        <a href="<c:url value = "/products?id=2"/>">
+          <img src="<c:url value = "/assets/images/store-card-13-iphone-nav-202409.png"/>"alt="img">
         </a>
         <span class="text">
-                <i class="icon fa fa-instagram" aria-hidden="true"></i>
+                <i class="icon fa fa-shopping-basket" aria-hidden="true"></i>
               </span>
       </div>
       <div class="item-instagram">
-        <a href="#">
+        <a href="<c:url value = "/products?id=5"/>">
           <img src="<c:url value = "/assets/images/store-card-13-airpods-nav-202409.png"  />"alt="img">
         </a>
         <span class="text">
-                <i class="icon fa fa-instagram" aria-hidden="true"></i>
+                <i class="icon fa fa-shopping-basket" aria-hidden="true"></i>
               </span>
       </div>
       <div class="item-instagram">
-        <a href="#">
+        <a href="<c:url value = "/products?id=3"/>">
           <img src="<c:url value = "/assets/images/store-card-13-ipad-nav-202405.png"  />"alt="img">
         </a>
         <span class="text">
-                <i class="icon fa fa-instagram" aria-hidden="true"></i>
+                <i class="icon fa fa-shopping-basket" aria-hidden="true"></i>
               </span>
       </div>
       <div class="item-instagram">
-        <a href="#">
+        <a href="<c:url value = "/products?id=1"/>">
           <img src="<c:url value = "/assets/images/store-card-13-mac-nav-202410.png"  />"alt="img">
         </a>
         <span class="text">
-                <i class="icon fa fa-instagram" aria-hidden="true"></i>
+                <i class="icon fa fa-shopping-basket" aria-hidden="true"></i>
               </span>
       </div>
       <div class="item-instagram">
-        <a href="#">
+        <a href="<c:url value = "/products?id=4"/>">
           <img src="<c:url value = "/assets/images/store-card-13-watch-nav-202409.png"  />"alt="img">
         </a>
         <span class="text">
-                <i class="icon fa fa-instagram" aria-hidden="true"></i>
+                <i class="icon fa fa-shopping-basket" aria-hidden="true"></i>
               </span>
       </div>
 
@@ -202,9 +202,9 @@
           <div class="links">
             <h3 class="title-of-section">Information</h3>
             <ul>
-              <li><a href="<c:url value = "/home"/>">Specials</a></li>
-              <li><a href="<c:url value = "/home"/>">New products</a></li>
-              <li><a href="<c:url value = "/home"/>">Best sellers</a></li>
+              <li><a href="<c:url value = "/products"/>">Specials</a></li>
+              <li><a href="<c:url value = "/products"/>">New products</a></li>
+              <li><a href="<c:url value = "/products"/>">Best sellers</a></li>
               <li><a href="<c:url value = "/home"/>">Our stores</a></li>
               <li><a href="<c:url value = "/home"/>">Contact us</a></li>
               <li><a href="<c:url value = "/home"/>">Sitemap</a></li>

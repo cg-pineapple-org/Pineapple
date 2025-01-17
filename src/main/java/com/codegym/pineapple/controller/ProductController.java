@@ -1,5 +1,8 @@
 package com.codegym.pineapple.controller;
 
+import com.codegym.pineapple.model.Category;
+import com.codegym.pineapple.model.Product;
+import com.codegym.pineapple.service.CategoryService;
 import com.codegym.pineapple.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -13,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@WebServlet(name = "ProductController", urlPatterns = {"/products/list", "/products/edit"})
+@WebServlet(name = "ProductController", urlPatterns = {"/products","/products/list", "/products/edit","/index"})
 public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -63,7 +66,23 @@ public class ProductController extends HttpServlet {
                     }
                 }
                 break;
+
+            case "/products":
+                Integer id = Integer.valueOf(req.getParameter("id"));
+
+                List<List> combinedList = ProductService.getInstance().getProductByCategoryId(id);
+                List<Product> productList = combinedList.get(0);
+                List<Category> categoryList = combinedList.get(1);
+
+                Category category = categoryList.get(0);
+
+                req.setAttribute("product_list", productList);
+                req.setAttribute("category_list", categoryList);
+                req.setAttribute("category", category);
+                req.getRequestDispatcher("/WEB-INF/view/product/product.jsp").forward(req, resp);
+                break;
         }
+
     }
 
     @Override
