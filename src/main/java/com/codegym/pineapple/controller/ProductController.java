@@ -1,5 +1,7 @@
 package com.codegym.pineapple.controller;
 
+import com.codegym.pineapple.model.Category;
+import com.codegym.pineapple.model.Product;
 import com.codegym.pineapple.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -13,39 +15,43 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@WebServlet(name = "ProductController", urlPatterns = {"/products/list", "/products/edit"})
+@WebServlet(name = "ProductController", urlPatterns = {"/products/list", "/products/edit", "/products/add"})
 public class ProductController extends HttpServlet {
+    private final Integer DEFAULT_PAGE_SIZE = 10;
+    private final Integer DEFAULT_PAGE = 1;
+    private final Integer MIN_INVALID_PAGE = 0;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getServletPath();
         HttpSession httpSession;
         Integer pageSize;
         Integer page;
-        Integer defaultPageSize = 10;
-        Integer defaultPage = 1;
-        Integer minInvalidPage = 0;
 
         switch (action){
             case "/products/list":
                 String pageSizeStr = req.getParameter("page_size");
                 String pageStr = req.getParameter("page");
+                String order = req.getParameter("order");
 
                 boolean isPageSizePresent = !Optional.ofNullable(pageSizeStr).isPresent();
                 boolean isPagePresent = !Optional.ofNullable(pageStr).isPresent();
+                boolean isOrderPresent = Optional.ofNullable(order).isPresent();
 
                 if (isPageSizePresent || isPagePresent){
-                    resp.sendRedirect("/products/list?page_size=" + defaultPageSize + "&page=" + defaultPage);
+                    resp.sendRedirect("/products/list?page_size=" + DEFAULT_PAGE_SIZE + "&page=" + DEFAULT_PAGE);
                     return;
                 }
 
                 pageSize = Integer.parseInt(pageSizeStr);
                 page = Integer.parseInt(pageStr);
 
-                if (page <= minInvalidPage){
-                    resp.sendRedirect("/products/list?page_size=" + pageSize + "&page=" + defaultPage);
+                if (page <= MIN_INVALID_PAGE){
+                    resp.sendRedirect("/products/list?page_size=" + pageSize + "&page=" + DEFAULT_PAGE);
                 }
                 else {
-                    List<Map<String, Object>> productList = ProductService.getInstance().getAllProducts(pageSize, page);
+                    if (!isOrderPresent) order = "ASC";
+                    List<Map<String, Object>> productList = ProductService.getInstance().getAllProducts(pageSize, page, order);
 
                     if (!Optional.ofNullable(productList).isPresent()) {
                         httpSession = req.getSession(false);
@@ -55,7 +61,10 @@ public class ProductController extends HttpServlet {
                         httpSession = req.getSession();
                         httpSession.setAttribute("currentPage", page);
                         httpSession.setAttribute("currentPageSize", pageSize);
+                        String addedProductMsg = String.valueOf(httpSession.getAttribute("add_product_msg"));
+                        httpSession.removeAttribute("add_product_msg");
 
+                        req.setAttribute("message", addedProductMsg);
                         req.setAttribute("product_list", productList);
                         req.setAttribute("page_size", pageSize);
                         req.setAttribute("page", page);
@@ -63,20 +72,35 @@ public class ProductController extends HttpServlet {
                     }
                 }
                 break;
+
+            case "/products/add":
+                List<List> combinedList = ProductService.getInstance().getAllCategoryProduct();
+                List<Category> categoryList = combinedList.get(0);
+                List<Product> productList = combinedList.get(1);
+
+                req.setAttribute("category_list", categoryList);
+                req.setAttribute("product_list", productList);
+                req.getRequestDispatcher("/WEB-INF/view/product/product_add.jsp").forward(req, resp);
+                break;
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getServletPath();
+        Integer id;
+        String color;
+        Integer amount;
+        Double price;
+        String description;
 
         switch (action){
             case "/products/edit":
-                Integer id = Integer.valueOf(req.getParameter("id"));
-                String color = req.getParameter("color");
-                Integer amount = Integer.valueOf(req.getParameter("amount"));
-                Double price = Double.valueOf(req.getParameter("price"));
-                String description = req.getParameter("description");
+                id = Integer.valueOf(req.getParameter("id"));
+                color = req.getParameter("color");
+                amount = Integer.valueOf(req.getParameter("amount"));
+                price = Double.valueOf(req.getParameter("price"));
+                description = req.getParameter("description");
 
                 ProductService.getInstance().editProduct(id, color, amount, price, description);
 
@@ -85,6 +109,23 @@ public class ProductController extends HttpServlet {
                 String page = String.valueOf(httpSession.getAttribute("currentPage"));
                 resp.sendRedirect("/products/list?page_size=" + pageSize + "&page=" + page);
                 break;
+
+            case "/products/add":
+                Integer categoryId = Integer.valueOf(req.getParameter("category_id"));
+                Integer productId = Integer.valueOf(req.getParameter("product_id"));
+                color = req.getParameter("color");
+                amount = Integer.valueOf(req.getParameter("amount"));
+                price = Double.valueOf(req.getParameter("price"));
+                description = req.getParameter("description");
+
+                ProductService.getInstance().addProduct(color, amount, price, description, productId);
+                httpSession = req.getSession(false);
+                Integer currentPage = 1;
+                String currentPageSize = String.valueOf(httpSession.getAttribute("currentPageSize"));
+                String order = "DESC";
+
+                httpSession.setAttribute("add_product_msg", "Added new product successfully!");
+                resp.sendRedirect("/products/list?page_size=" + currentPageSize + "&page=" + currentPage + "&order=" + order);
         }
     }
 }
