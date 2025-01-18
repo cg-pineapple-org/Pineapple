@@ -2,9 +2,6 @@ package com.codegym.pineapple.controller;
 
 import com.codegym.pineapple.model.Category;
 import com.codegym.pineapple.model.Product;
-import com.codegym.pineapple.service.CategoryService;
-import com.codegym.pineapple.model.Category;
-import com.codegym.pineapple.model.Product;
 import com.codegym.pineapple.service.ProductService;
 
 import javax.servlet.ServletException;
