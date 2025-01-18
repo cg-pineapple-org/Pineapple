@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 import static com.codegym.pineapple.service.AuthService.getEmailMessage;
 
@@ -88,7 +89,7 @@ public class AuthController extends HttpServlet {
 
                 User user = (User) map.get("user");
                 Account account = (Account) map.get("account");
-                if (user != null) {
+                if (Optional.ofNullable(user).isPresent()) {
                     HttpSession session = req.getSession();
                     session.setAttribute("userId", user.getId());
                     session.setAttribute("userRole", user.getRoleId());
@@ -121,8 +122,12 @@ public class AuthController extends HttpServlet {
                         req.setAttribute("errorMessage", "Registration successful!");
                         logger.info("Registration successful");
                         resp.sendRedirect("/auth/login");
+                    } else {
+                        req.setAttribute("errorMessage", "Registration failed!");
+                        logger.error("Registration failed");
                     }
                 } catch (Exception e) {
+                    resp.sendRedirect("/auth/login");
                     throw new RuntimeException(e);
                 }
                 break;
@@ -130,7 +135,7 @@ public class AuthController extends HttpServlet {
                 email = req.getParameter("email").trim();
                 username = req.getParameter("username").trim();
 
-                if (email == null || email.isEmpty() || username.isEmpty()) {
+                if (!Optional.ofNullable(email).isPresent() || email.isEmpty() || username.isEmpty()) {
                     req.setAttribute("errorMessage", "Username or email cannot be null.");
                     req.getRequestDispatcher("/WEB-INF/view/auth/forgotPassword.jsp").forward(req, resp);
                     return;
@@ -160,7 +165,7 @@ public class AuthController extends HttpServlet {
 
             case "/auth/reset-password":
                 session = req.getSession(false);
-                if (session == null || session.getAttribute("resetUsername") == null) {
+                if (Optional.ofNullable(session).isPresent() || !Optional.ofNullable(session.getAttribute("resetUsername")).isPresent()) {
                     req.setAttribute("errorMessage", "Session expired or invalid access.");
                     req.getRequestDispatcher("/WEB-INF/view/auth/forgotPassword.jsp").forward(req, resp);
                     return;

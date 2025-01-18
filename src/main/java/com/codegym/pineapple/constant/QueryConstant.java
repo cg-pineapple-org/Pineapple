@@ -20,8 +20,8 @@ public class QueryConstant {
     public static final String QUERY_UPDATE_PASSWORD = "UPDATE accounts SET password = ? WHERE username = ?";
     public static final String QUERY_GET_GMAIL_AND_USERNAME = "SELECT 1 FROM accounts a JOIN users u ON a.user_id = u.id WHERE a.username = ? AND u.email = ?";
     public static final String QUERY_RESET_TOKEN = "UPDATE accounts SET reset_token = ?, reset_token_expiry = ? WHERE username = ?";
-    public static final String QUERY_GET_PASSWORD_USERNAME = "SELECT password FROM accounts WHERE username = ?";
     public static final String QUERY_DELETE_OLD_TOKEN = "DELETE FROM reset_tokens WHERE username = ?";
+    public static final int TIME_EXPIRY_TOKEN = 60 * 1000;
     public static final String GET_ACCOUNT_BY_USERNAME_QUERY = "" +
             "SELECT user_id, username, password  \n" +
             "        FROM accounts \n" +

@@ -5,7 +5,7 @@ import java.util.Optional;
 public class ValidateUtility {
     private static ValidateUtility validateUtility = null;
 
-    public ValidateUtility(){}
+    private ValidateUtility(){}
 
     public static ValidateUtility getInstance(){
         if (!Optional.ofNullable(validateUtility).isPresent()){

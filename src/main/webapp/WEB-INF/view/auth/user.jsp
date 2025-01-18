@@ -170,21 +170,21 @@
 <%--        </div>--%>
 
         <div class="col-md-9">
-          <h1 class="mb-4">Hồ Sơ Của Tôi</h1>
+          <h1 class="mb-4">My Profile</h1>
           <form action="updateProfile" method="post" enctype="multipart/form-data">
             <div class="mb-3">
-              <label for="username" class="form-label">Tên đăng nhập</label>
+              <label for="username" class="form-label">Username</label>
               <input type="text" id="username" name="username" class="form-control" value="${account.username}" readonly>
             </div>
             <div class="mb-3">
-              <label for="firstName" class="form-label">Tên</label>
+              <label for="firstName" class="form-label">First Name</label>
               <div class="mb-3 d-flex align-items-center">
                 <input type="text" id="firstName" name="firstName" class="form-control me-1" value="${user.firstName}" readonly>
                 <button type="button" class="btn btn-warning ms-2" id="editFirstNameBtn">Sửa</button>
               </div>
             </div>
             <div class="mb-3">
-              <label for="lastName" class="form-label">Tên</label>
+              <label for="lastName" class="form-label">Last Name</label>
               <div class="mb-3 d-flex align-items-center">
                 <input type="text" id="lastName" name="lastName" class="form-control me-1" value="${user.lastName}" readonly>
                 <button type="button" class="btn btn-warning ms-2" id="editLastNameBtn">Sửa</button>
@@ -198,25 +198,20 @@
               </div>
             </div>
             <div class="mb-3">
-              <label for="phone" class="form-label">Số điện thoại</label>
+              <label for="phone" class="form-label">Phone Number</label>
               <div class="mb-3 d-flex align-items-center">
                 <input type="text" id="phone" name="phone" class="form-control" value="${user.phone}" readonly>
                 <button type="button" class="btn btn-warning ms-2" id="editPhoneBtn">Sửa</button>
               </div>
             </div>
             <div class="mb-3">
-              <label for="address" class="form-label">Địa chỉ</label>
-              <textarea id="address" name="address" class="form-control" rows="3" readonly>${user.address}</textarea>
-              <button type="button" class="btn btn-warning mt-2" id="editAddressBtn">Sửa đổi</button>
-            </div>
-            <div class="mb-3">
-              <label for="day_of_birth" class="form-label">Ngày sinh</label>
+              <label for="day_of_birth" class="form-label">Day of Birth</label>
               <div class="row">
                 <div class="col">
                   <select name="day_of_birth" id="day_of_birth" class="form-select" required>
                     <option value="">Day</option>
                     <c:forEach var="i" begin="1" end="31">
-                      <option value="${i}" ${user.dob.split('-')[2] == i ? 'selected' : ''}>${i}</option>
+                      <option value="${i}" ${user.dateOfBirth.split('-')[2] == i ? 'selected' : ''}>${i}</option>
                     </c:forEach>
                   </select>
                 </div>
@@ -224,7 +219,7 @@
                   <select name="dob_month" id="dob_month" class="form-select" required>
                     <option value="">Month</option>
                     <c:forEach var="i" begin="1" end="12">
-                      <option value="${i}" ${user.dob.split('/')[1] == i ? 'selected' : ''}>${i}</option>
+                      <option value="${i}" ${user.dateOfBirth.split('-')[1] == i ? 'selected' : ''}>${i}</option>
                     </c:forEach>
                   </select>
                 </div>
@@ -232,19 +227,20 @@
                   <select name="dob_year" id="dob_year" class="form-select" required>
                     <option value="">Year</option>
                     <c:forEach var="i" begin="1980" end="2025">
-                      <option value="${i}" ${user.dob.split('/')[0] == i ? 'selected' : ''}>${i}</option>
+                      <option value="${i}" ${user.dateOfBirth.split('-')[0] == i ? 'selected' : ''}>${i}</option>
                     </c:forEach>
                   </select>
                 </div>
               </div>
             </div>
-            <div class="mb-3">
-              <label for="avatar" class="form-label">Ảnh đại diện</label>
-              <input type="file" id="avatar" name="avatar" class="form-control" accept="image/jpeg, image/png">
-              <img src="${user.avatarUrl}" alt="Avatar" class="mt-3" style="width: 100px; height: auto;">
-            </div>
+<%--            <div class="mb-3">--%>
+<%--              <label for="avatar" class="form-label">Ảnh đại diện</label>--%>
+<%--              <input type="file" id="avatar" name="avatar" class="form-control" accept="image/jpeg, image/png">--%>
+<%--              <img src="${user.avatarUrl}" alt="Avatar" class="mt-3" style="width: 100px; height: auto;">--%>
+<%--            </div>--%>
             <div class="text-end">
-              <button type="submit" class="btn btn-primary">Lưu</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="submit" class="btn btn-primary">Log out</button>
             </div>
           </form>
         </div>

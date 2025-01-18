@@ -4,6 +4,7 @@ import com.codegym.pineapple.dao.AuthDAO;
 import com.codegym.pineapple.model.Account;
 import com.codegym.pineapple.model.User;
 import com.codegym.pineapple.utility.EmailMessage;
+import com.codegym.pineapple.utility.HashPasswordUtility;
 import com.codegym.pineapple.utility.ValidateUtility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,12 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 public class AuthService {
     private final AuthDAO authDAO;
     private static final Logger logger = LogManager.getLogger(AuthDAO.class);
-    private ValidateUtility validateUtility = new ValidateUtility();
+    private ValidateUtility validateUtility = ValidateUtility.getInstance();
 
     public AuthService() {
         this.authDAO = new AuthDAO();
@@ -29,7 +31,7 @@ public class AuthService {
 
         Account account = authDAO.getAccountByUsername(username);
 
-        if (account != null && BCrypt.checkpw(password, account.getPassword())) {
+        if (Optional.ofNullable(account).isPresent() && BCrypt.checkpw(password, account.getPassword())) {
             User user = authDAO.getUserById(account.getUserId());
             Map< String, Object> map = new HashMap<>();
             map.put("user", user);
@@ -65,19 +67,36 @@ public class AuthService {
             return false;
         }
 
-        String hashedPassword = hashPassword(password);
+        if (!validateUtility.checkEmail(email)) {
+            logger.error("Invalid email!");
+            return false;
+        }
+
+        if (!validateUtility.checkPhone(phone)) {
+            logger.error("Invalid phone number!");
+            return false;
+        }
+
+        if (!validateUtility.checkDayOfBirth(dayOfBirth)) {
+            logger.error("Invalid date of birth!");
+            return false;
+        }
+
+        if (!validateUtility.checkPassword(password)) {
+            logger.error("Invalid password!");
+            return false;
+        }
+
+        if (!validateUtility.checkUsername(username)) {
+            logger.error("Invalid username!");
+            return false;
+        }
+
+        String hashedPassword = HashPasswordUtility.hashPassword(password);
 
         authDAO.createUser(firstName, lastName, country, dayOfBirth, email, phone, username, hashedPassword);
 
         return true;
-    }
-
-    private String hashPassword(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt());
-    }
-
-    public Account getUserByUsername(String username) {
-        return authDAO.findUserByUsername(username);
     }
 
     public String generateResetToken(String username) {
@@ -92,7 +111,7 @@ public class AuthService {
     }
 
     public boolean updatePassword(String username, String newPassword) {
-        String hashedPassword = hashPassword(newPassword);
+        String hashedPassword = HashPasswordUtility.hashPassword(newPassword);
         authDAO.updatePassword(username, hashedPassword);
         return true;
     }

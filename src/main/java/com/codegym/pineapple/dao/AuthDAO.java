@@ -17,6 +17,7 @@ public class AuthDAO {
 
     private static final Logger logger = LogManager.getLogger(AuthDAO.class);
 
+
     public Account getAccountByUsername(String username) {
         try (Connection connection = JdbcConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(QueryConstant.GET_ACCOUNT_BY_USERNAME_QUERY)) {
@@ -119,28 +120,11 @@ public class AuthDAO {
         return false;
     }
 
-    public Account findUserByUsername(String username) {
-        Account account = null;
-        try {
-            Connection connection = JdbcConnection.getConnection();
-            PreparedStatement statement = connection.prepareStatement(QueryConstant.QUERY_GET_PASSWORD_USERNAME);
-            statement.setString(1, username);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                account = new Account();
-                account.setPassword(resultSet.getString("password"));
-            }
-        } catch (SQLException e) {
-            logger.error("Error retrieving email: " + e.getMessage());
-        }
-        return account;
-    }
-
     public void saveResetToken(String username, String token) {
         try (Connection connection = JdbcConnection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(QueryConstant.QUERY_RESET_TOKEN);
             statement.setString(1, token);
-            statement.setTimestamp(2, new Timestamp(System.currentTimeMillis() + 60 * 1000));
+            statement.setTimestamp(2, new Timestamp(System.currentTimeMillis() + QueryConstant.TIME_EXPIRY_TOKEN));
             statement.setString(3, username);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -180,7 +164,11 @@ public class AuthDAO {
             statement.setString(2, email);
 
             try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next();
+                if (resultSet.next()) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         } catch (SQLException e) {
             logger.error("Error checking username and email match: " + e.getMessage());
