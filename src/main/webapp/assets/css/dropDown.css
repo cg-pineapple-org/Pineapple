@@ -1,0 +1,38 @@
+/* Tạo viền tròn cho dropdown */
+.form-select {
+    border-radius: 8px; /* Viền tròn */
+    padding: 10px 15px; /* Điều chỉnh khoảng cách trong dropdown */
+    font-size: 16px; /* Thay đổi kích thước font chữ */
+    background-color: #f8f9fa; /* Màu nền nhẹ */
+    border: 1px solid #ced4da; /* Viền xám nhạt */
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Thêm hiệu ứng chuyển động */
+}
+
+/* Hiệu ứng khi người dùng hover qua dropdown */
+.form-select:hover {
+    background-color: #e9ecef; /* Màu nền thay đổi khi hover */
+    border-color: #80bdff; /* Thay đổi màu viền khi hover */
+}
+
+/* Hiệu ứng khi dropdown được focus (chọn vào) */
+.form-select:focus {
+    outline: none; /* Bỏ viền focus mặc định */
+    border-color: #007bff; /* Màu viền focus */
+    background-color: #ffffff; /* Màu nền trắng khi focus */
+}
+
+/* Thêm khoảng cách giữa các ô dropdown */
+.d-flex .form-select {
+    margin-right: 10px; /* Thêm khoảng cách giữa các dropdown */
+}
+
+/* Thêm hiệu ứng khi người dùng chọn một mục trong dropdown */
+.form-select option {
+    padding: 10px; /* Thêm khoảng cách giữa các mục trong dropdown */
+}
+
+/* Thay đổi màu sắc của option khi hover */
+.form-select option:hover {
+    background-color: #007bff; /* Màu nền thay đổi khi hover qua các option */
+    color: white; /* Màu chữ thay đổi khi hover qua option */
+}

@@ -1,5 +1,7 @@
 package com.codegym.pineapple.model;
 
+import java.sql.Date;
+
 public class User {
     private Integer id;
     private String firstName;
