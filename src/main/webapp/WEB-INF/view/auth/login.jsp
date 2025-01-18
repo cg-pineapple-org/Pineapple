@@ -80,46 +80,60 @@
     <main class="site-main site-login">
         <div class="container">
             <ol class="breadcrumb-page">
-                <li><a href="index.html">Home </a></li>
-                <li class="active"><a href="#">Login</a></li>
+                <li><a href="/">Home </a></li>
+                <li class="active"><a href="/auth/login">Login</a></li>
             </ol>
         </div>
-        <div class="customer-login">
+        <div class="vh-100 d-flex justify-content-center align-items-center bg-light">
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h5 class="title-login">Log in to your account</h5>
-                        <p class="p-title-login">Wellcome to your account.</p>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <!-- Tiêu đề Form -->
+                        <h3 class="text-center mb-4">Log in to your account</h3>
+
+                        <!-- Thông báo lỗi -->
                         <c:if test="${not empty errorMessage}">
-                            <div class="error-message">${errorMessage}</div>
+                            <div class="alert alert-danger text-center">${errorMessage}</div>
                         </c:if>
-                        <form class="login" method="post" action="<c:url value='/auth/login' />">
-                            <p class="form-row form-row-wide">
-                                <label>Username or Email Address:<span class="required"></span></label>
-                                <input type="text" value="" name="username"
-                                       placeholder="Type your username or email address" class="input-text" required>
-                            </p>
-                            <p class="form-row form-row-wide">
-                                <label>Password:<span class="required"></span></label>
-                                <input type="password" name="password" placeholder="************" class="input-text" required>
-                            </p>
-                            <ul class="inline-block">
-                                <li>
-                                    <label class="inline">
-                                        <input type="checkbox" name="rememberMe">
-                                        <span class="input"></span> Remember me
-                                    </label>
-                                </li>
-                            </ul>
-                            <a href="#" class="forgot-password">Forgotten password?</a>
-                            <p class="form-row">
-                                <input type="submit" value="Login" name="login" class="button-submit">
-                            </p>
+
+                        <!-- Form đăng nhập -->
+                        <form class="p-4 rounded shadow-lg bg-white" method="post" action="<c:url value='/auth/login'/>">
+                            <!-- Username -->
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username or Email Address:</label>
+                                <input type="text" id="username" name="username" placeholder="Enter your username or email address"
+                                       class="form-control form-control-lg" required>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password:</label>
+                                <input type="password" id="password" name="password" placeholder="************"
+                                       class="form-control form-control-lg" required>
+                            </div>
+
+                            <!-- Forgot Password -->
+                            <div class="mb-3 text-end">
+                                <a href="/auth/forgot-password" class="text-decoration-none text-primary">Forgotten password?</a>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="d-grid mb-3">
+                                <button type="submit" class="btn btn-primary btn-lg" name="login">Login</button>
+                            </div>
+
+                            <!-- Register Link -->
+                            <div class="text-center">
+                                <span>Don't have an account?</span>
+                                <a href="/auth/register" class="text-decoration-none text-primary fw-bold">Register</a>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </main><!-- end MAIN -->
     <!-- FOOTER -->
     <%@ include file="/WEB-INF/view/footer.jsp" %>
