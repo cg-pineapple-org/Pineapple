@@ -29,6 +29,15 @@ dependencies {
 
     implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.20.0'
     implementation 'org.mindrot:jbcrypt:0.4'
+//    implementation 'javax.mail:mail:1.4.7'
+    // https://mvnrepository.com/artifact/jakarta.mail/jakarta.mail-api
+    implementation 'jakarta.mail:jakarta.mail-api:2.1.3'
+    // https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail
+    implementation 'com.sun.mail:jakarta.mail:2.0.1'
+// https://mvnrepository.com/artifact/jakarta.activation/jakarta.activation-api
+    implementation 'jakarta.activation:jakarta.activation-api:2.1.2'
+
+
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

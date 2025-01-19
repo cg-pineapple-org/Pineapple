@@ -1,25 +1,25 @@
 package com.codegym.pineapple.model;
 
 public class Account {
-    private Integer user_id;
+    private Integer userId;
     private String username;
     private String password;
 
     public Account() {
     }
 
-    public Account(Integer user_id, String username, String password) {
-        this.user_id = user_id;
+    public Account(Integer userId, String username, String password) {
+        this.userId = userId;
         this.username = username;
         this.password = password;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {

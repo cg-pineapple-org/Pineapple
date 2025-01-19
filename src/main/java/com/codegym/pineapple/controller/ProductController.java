@@ -2,6 +2,9 @@ package com.codegym.pineapple.controller;
 
 import com.codegym.pineapple.model.Category;
 import com.codegym.pineapple.model.Product;
+import com.codegym.pineapple.service.CategoryService;
+import com.codegym.pineapple.model.Category;
+import com.codegym.pineapple.model.Product;
 import com.codegym.pineapple.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -15,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@WebServlet(name = "ProductController", urlPatterns = {"/products/list", "/products/edit", "/products/add"})
+@WebServlet(name = "ProductController", urlPatterns = {"/products","/products/list", "/products/edit", "/products/add","/index"})
 public class ProductController extends HttpServlet {
     private final Integer DEFAULT_PAGE_SIZE = 10;
     private final Integer DEFAULT_PAGE = 1;
@@ -27,6 +30,9 @@ public class ProductController extends HttpServlet {
         HttpSession httpSession;
         Integer pageSize;
         Integer page;
+        List<List> combinedList;
+        List<Category> categoryList;
+        List<Product> productList;
 
         switch (action){
             case "/products/list":
@@ -51,9 +57,9 @@ public class ProductController extends HttpServlet {
                 }
                 else {
                     if (!isOrderPresent) order = "ASC";
-                    List<Map<String, Object>> productList = ProductService.getInstance().getAllProducts(pageSize, page, order);
+                    List<Map<String, Object>> productDetailList = ProductService.getInstance().getAllProducts(pageSize, page, order);
 
-                    if (!Optional.ofNullable(productList).isPresent()) {
+                    if (!Optional.ofNullable(productDetailList).isPresent()) {
                         httpSession = req.getSession(false);
                         String currentPage = String.valueOf(httpSession.getAttribute("currentPage"));
                         resp.sendRedirect("/products/list?page_size=" + pageSize + "&page=" + currentPage);
@@ -65,7 +71,7 @@ public class ProductController extends HttpServlet {
                         httpSession.removeAttribute("add_product_msg");
 
                         req.setAttribute("message", addedProductMsg);
-                        req.setAttribute("product_list", productList);
+                        req.setAttribute("product_list", productDetailList);
                         req.setAttribute("page_size", pageSize);
                         req.setAttribute("page", page);
                         req.getRequestDispatcher("/WEB-INF/view/product/product_list.jsp").forward(req, resp);
@@ -73,10 +79,25 @@ public class ProductController extends HttpServlet {
                 }
                 break;
 
+            case "/products":
+                Integer id = Integer.valueOf(req.getParameter("id"));
+
+                combinedList = ProductService.getInstance().getProductByCategoryId(id);
+                productList = combinedList.get(0);
+                categoryList = combinedList.get(1);
+
+                Category category = categoryList.get(0);
+
+                req.setAttribute("product_list", productList);
+                req.setAttribute("category_list", categoryList);
+                req.setAttribute("category", category);
+                req.getRequestDispatcher("/WEB-INF/view/product/product.jsp").forward(req, resp);
+                break;
+
             case "/products/add":
-                List<List> combinedList = ProductService.getInstance().getAllCategoryProduct();
-                List<Category> categoryList = combinedList.get(0);
-                List<Product> productList = combinedList.get(1);
+                combinedList = ProductService.getInstance().getAllCategoryProduct();
+                categoryList = combinedList.get(0);
+                productList = combinedList.get(1);
 
                 req.setAttribute("category_list", categoryList);
                 req.setAttribute("product_list", productList);

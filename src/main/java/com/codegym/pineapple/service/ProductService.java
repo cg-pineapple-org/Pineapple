@@ -43,6 +43,15 @@ public class ProductService {
         ProductDao.getInstance().updateProduct(id, color, amount, price, description);
     }
 
+    public List<Product> getProductsInRange(int startId, int endId) {
+        return ProductDao.getInstance().findProductsInRange(startId, endId);
+    }
+
+    public List<List> getProductByCategoryId(Integer id){
+        return ProductDao.getInstance().findProductByCategoryId(id);
+    }
+
+
     public List<List> getAllCategoryProduct(){
         return ProductDao.getInstance().findAllCategoryProduct();
     }

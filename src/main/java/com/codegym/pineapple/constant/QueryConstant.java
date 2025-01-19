@@ -17,6 +17,21 @@ public class QueryConstant {
     public static final String QUERY_GET_EMAIL_BY_EMAIL = "SELECT email FROM users WHERE email = ?";
     public static final String QUERY_ADD_USER = "INSERT INTO users (first_name, last_name, country, day_of_birth, email, phone, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
     public static final String QUERY_ADD_ACCOUNT = "INSERT INTO accounts (user_id, username, password) VALUES (LAST_INSERT_ID(), ?, ?)";
+    public static final String QUERY_UPDATE_PASSWORD = "UPDATE accounts SET password = ? WHERE username = ?";
+    public static final String QUERY_GET_GMAIL_AND_USERNAME = "SELECT 1 FROM accounts a JOIN users u ON a.user_id = u.id WHERE a.username = ? AND u.email = ?";
+    public static final String QUERY_RESET_TOKEN = "UPDATE accounts SET reset_token = ?, reset_token_expiry = ? WHERE username = ?";
+    public static final String QUERY_DELETE_OLD_TOKEN = "DELETE FROM reset_tokens WHERE username = ?";
+    public static final int TIME_EXPIRY_TOKEN = 60 * 1000;
+    public static final String GET_ACCOUNT_BY_USERNAME_QUERY = "" +
+            "SELECT user_id, username, password  \n" +
+            "        FROM accounts \n" +
+            "        WHERE username = ?;";
+
+    public static final String GET_USER_BY_ID_QUERY = "" +
+            "SELECT id, first_name, last_name,country, day_of_birth, email, \n" +
+            "               phone, role_id, cart_id \n" +
+            "        FROM users \n" +
+            "        WHERE id = ?;";
     public static final String QUERY_LIST_CART_ITEMS = "SELECT p.name, pd.color, pd.price, pd.id, sum(ci.quantity) AS quantity, (sum(ci.quantity) * pd.price) AS sub_total\n" +
             "FROM carts c\n" +
             "JOIN users u ON u.cart_id = c.id\n" +
@@ -49,4 +64,8 @@ public class QueryConstant {
     public static final String QUERY_DELETE_CART_ITEM_BY_PRODUCT_DETAIL_ID = "DELETE FROM cart_items WHERE product_detail_id = ?;";
 
     public static final String QUERY_DELETE_ALL_CART_ITEM = "DELETE FROM cart_items WHERE cart_id = ?;";
+
+    public static final String QUERY_FIND_CATEGORY_BY_ID = "SELECT id, name FROM categories WHERE id = ?";
+    ;
+
 }
