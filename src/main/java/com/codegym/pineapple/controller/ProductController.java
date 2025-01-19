@@ -2,9 +2,6 @@ package com.codegym.pineapple.controller;
 
 import com.codegym.pineapple.model.Category;
 import com.codegym.pineapple.model.Product;
-import com.codegym.pineapple.service.CategoryService;
-import com.codegym.pineapple.model.Category;
-import com.codegym.pineapple.model.Product;
 import com.codegym.pineapple.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -23,6 +20,8 @@ public class ProductController extends HttpServlet {
     private final Integer DEFAULT_PAGE_SIZE = 10;
     private final Integer DEFAULT_PAGE = 1;
     private final Integer MIN_INVALID_PAGE = 0;
+    private final Integer MIN_PAGE_SIZE = 5;
+    private final Integer MAX_PAGE_SIZE = 15;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,6 +49,8 @@ public class ProductController extends HttpServlet {
                 }
 
                 pageSize = Integer.parseInt(pageSizeStr);
+                if (pageSize > MAX_PAGE_SIZE) pageSize = MAX_PAGE_SIZE;
+                else if (pageSize < MIN_PAGE_SIZE) pageSize = MIN_PAGE_SIZE;
                 page = Integer.parseInt(pageStr);
 
                 if (page <= MIN_INVALID_PAGE){
@@ -61,12 +62,12 @@ public class ProductController extends HttpServlet {
 
                     if (!Optional.ofNullable(productDetailList).isPresent()) {
                         httpSession = req.getSession(false);
-                        String currentPage = String.valueOf(httpSession.getAttribute("currentPage"));
+                        String currentPage = String.valueOf(httpSession.getAttribute("currentListPage"));
                         resp.sendRedirect("/products/list?page_size=" + pageSize + "&page=" + currentPage);
                     } else {
                         httpSession = req.getSession();
-                        httpSession.setAttribute("currentPage", page);
-                        httpSession.setAttribute("currentPageSize", pageSize);
+                        httpSession.setAttribute("currentListPage", page);
+                        httpSession.setAttribute("currentListPageSize", pageSize);
                         String addedProductMsg = String.valueOf(httpSession.getAttribute("add_product_msg"));
                         httpSession.removeAttribute("add_product_msg");
 
@@ -126,8 +127,8 @@ public class ProductController extends HttpServlet {
                 ProductService.getInstance().editProduct(id, color, amount, price, description);
 
                 HttpSession httpSession = req.getSession(false);
-                String pageSize = String.valueOf(httpSession.getAttribute("currentPageSize"));
-                String page = String.valueOf(httpSession.getAttribute("currentPage"));
+                String pageSize = String.valueOf(httpSession.getAttribute("currentListPageSize"));
+                String page = String.valueOf(httpSession.getAttribute("currentListPage"));
                 resp.sendRedirect("/products/list?page_size=" + pageSize + "&page=" + page);
                 break;
 
@@ -142,7 +143,7 @@ public class ProductController extends HttpServlet {
                 ProductService.getInstance().addProduct(color, amount, price, description, productId);
                 httpSession = req.getSession(false);
                 Integer currentPage = 1;
-                String currentPageSize = String.valueOf(httpSession.getAttribute("currentPageSize"));
+                String currentPageSize = String.valueOf(httpSession.getAttribute("currentListPageSize"));
                 String order = "DESC";
 
                 httpSession.setAttribute("add_product_msg", "Added new product successfully!");
