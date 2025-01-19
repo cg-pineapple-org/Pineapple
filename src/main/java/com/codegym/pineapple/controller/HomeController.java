@@ -29,19 +29,18 @@ public class HomeController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         List<Product> productList = ProductService.getInstance().getProductsInRange(129, 138);
-
         req.setAttribute("featuredProducts", productList);
-
-        req.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(req, resp);
 
         try {
             HttpSession session = req.getSession();
-            Cart cart = cartService.getCart(1);
+            Integer userId = (Integer) session.getAttribute("userId");
+            Integer defaultUserId = 1;
+            Cart cart = cartService.getCart(userId != null ? userId : defaultUserId);
             session.setAttribute("cart", cart);
             req.getRequestDispatcher("WEB-INF/view/index.jsp").forward(req, resp);
-        }catch(Exception e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
-

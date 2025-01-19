@@ -1,6 +1,7 @@
 package com.codegym.pineapple.controller;
 
 import com.codegym.pineapple.model.Cart;
+import com.codegym.pineapple.model.CartItem;
 import com.codegym.pineapple.service.CartService;
 
 import javax.servlet.ServletConfig;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "CartController", urlPatterns = {"/cart", "/cart/remove"})
+@WebServlet(name = "CartController", urlPatterns = {"/cart", "/cart/remove", "/cart/clear", "/cart/update"})
 public class CartController extends HttpServlet {
     private CartService cartService;
 
@@ -28,7 +29,13 @@ public class CartController extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
         switch (action) {
             case "/cart":
-                req.getRequestDispatcher("/WEB-INF/view/cart/cart1.jsp").forward(req, resp);
+                if (cart == null) {
+                    req.getRequestDispatcher("/WEB-INF/view/cart/signin_cart.jsp").forward(req, resp);
+                } else if (cart.getCartItems().isEmpty()) {
+                    req.getRequestDispatcher("/WEB-INF/view/cart/clear_cart.jsp").forward(req, resp);
+                } else {
+                    req.getRequestDispatcher("/WEB-INF/view/cart/cart.jsp").forward(req, resp);
+                }
                 break;
         }
     }
@@ -38,16 +45,35 @@ public class CartController extends HttpServlet {
         String action = req.getServletPath();
         HttpSession session = req.getSession(false);
         Cart cart = (Cart) session.getAttribute("cart");
+        Integer cartId = (Integer) session.getAttribute("cartId");
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (cartId == null) {
+            cartId = 1;
+        }
+        if (userId == null) {
+            userId = 1;
+        }
+        cart.setId(cartId);
         switch (action) {
             case "/cart":
-                Integer cartId = cart.getId();
-                Integer productDetailId = Integer.valueOf(req.getParameter("productDetailId"));
-                Integer quantity = Integer.valueOf(req.getParameter("quantity"));
+                Integer productDetailId = Integer.parseInt(req.getParameter("id"));
+                Integer quantity = Integer.parseInt(req.getParameter("amount"));
 
-                cartService.addToCart(cartId, productDetailId, quantity);
+                cartService.addToCart(cart, cartId, productDetailId, quantity);
 
                 req.setAttribute("message", "Added to cart successfully");
-                req.getRequestDispatcher("/WEB-INF/view/cart/cart1.jsp").forward(req, resp);
+                cart.setNumberOfItem(cartService.getNumberOfItem(userId, cart));
+                cart.setTotalPrice(cartService.getTotalPrice(userId, cart));
+                Cart addedCart = cartService.getCart(userId);
+                session.setAttribute("cart", addedCart);
+                req.getRequestDispatcher("/WEB-INF/view/product/product_detail.jsp").forward(req, resp);
+                break;
+
+            case "/cart/update":
+                Integer updateProductDetailId = Integer.parseInt(req.getParameter("productDetailId"));
+                Integer updateQuantity = Integer.parseInt(req.getParameter("quantity"));
+                CartItem cartItem = cartService.getCartItem(updateProductDetailId);
+                cartService.updateCartItemWithNewQuantity(cartItem, updateQuantity, updateProductDetailId, cartId);
                 break;
 
             case "/cart/remove":
@@ -55,19 +81,19 @@ public class CartController extends HttpServlet {
                 boolean isRemoved = cartService.deleteCartItem(cart, id);
                 if (isRemoved) {
                     cart.setNumberOfItem(cart.getNumberOfItem() - 1);
-                    cart.setTotalPrice(cartService.getTotalPrice(1, cart));
+                    cart.setTotalPrice(cartService.getTotalPrice(userId, cart));
                     session.setAttribute("cart", cart);
                     resp.sendRedirect("/cart");
                 }
                 break;
 
             case "/cart/clear":
-                boolean isRemoved1 = cartService.deleteAllCartItem(cart);
-                if (isRemoved1) {
+                boolean isCleared = cartService.deleteAllCartItem(cart);
+                if (isCleared) {
                     cart.setNumberOfItem(0);
                     cart.setTotalPrice(0d);
                     session.setAttribute("cart", cart);
-                    resp.sendRedirect("/cart");
+                    req.getRequestDispatcher("/WEB-INF/view/cart/clear_cart.jsp").forward(req, resp);
                 }
                 break;
         }
