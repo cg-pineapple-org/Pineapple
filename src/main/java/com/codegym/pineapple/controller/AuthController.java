@@ -92,7 +92,7 @@ public class AuthController extends HttpServlet {
                 if (Optional.ofNullable(user).isPresent()) {
                     HttpSession session = req.getSession();
                     session.setAttribute("userId", user.getId());
-                    session.setAttribute("userRole", user.getRoleId());
+                    session.setAttribute("RoleId", user.getRoleId());
                     session.setAttribute("cartId", user.getCartId());
                     session.setAttribute("user", user);
                     session.setAttribute("account", account);
@@ -119,15 +119,15 @@ public class AuthController extends HttpServlet {
 
                 try {
                     if (authService.register(firstName, lastName, country, dayOfBirth, email, phone, username, password, confirmPassword)) {
-                        req.setAttribute("errorMessage", "Registration successful!");
+                        req.setAttribute("successMessage", "Registration successful!");
                         logger.info("Registration successful");
                         resp.sendRedirect("/auth/login");
                     } else {
-                        req.setAttribute("errorMessage", "Registration failed!");
+                        req.setAttribute("errorMessage", "Registration failed! Email or username already exists!");
+                        req.getRequestDispatcher("/WEB-INF/view/auth/register.jsp").forward(req, resp);
                         logger.error("Registration failed");
                     }
                 } catch (Exception e) {
-                    resp.sendRedirect("/auth/login");
                     throw new RuntimeException(e);
                 }
                 break;
