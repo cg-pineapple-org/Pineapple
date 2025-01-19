@@ -7,18 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="UTF-8">
   <title>Pineapple</title>
-  <link rel="shortcut icon" type="image/x-icon" href=" <c:url value = "/assets/images/favicon.png"/>">
-  <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/fonts/flaticon/flaticon.css"/>">
-  <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/animate.css"/>">
-  <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/bootstrap.min.css"/>">
-  <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/font-awesome.css" />">
-  <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/pe-icon-7-stroke.css"/>">
-  <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/owl.carousel.css"/>">
-  <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/chosen.css"/>">
-  <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/jquery.bxslider.css"/>">
-  <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/style.css"/>">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="shortcut icon" type="image/x-icon" href="<c:url value = "/assets/images/favicon.png"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/assets/fonts/flaticon/flaticon.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/animate.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/bootstrap.min.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/font-awesome.css" />">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/pe-icon-7-stroke.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/owl.carousel.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/chosen.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/jquery.bxslider.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/style.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/dropDown.css"/>">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
+
 </head>
 <body class="page-inner">
 <div class="wrapper">
@@ -87,87 +88,16 @@
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYqc1LSBqacwVLQyzGK1MZWRJoBVI6t8sE2g&s" alt="Avatar" class="rounded-circle img-fluid w-25"/>
           </div>
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">Hồ Sơ</a>
-            <a href="#" class="list-group-item list-group-item-action">Ngân Hàng</a>
-            <a href="#" class="list-group-item list-group-item-action">Địa Chỉ</a>
-            <a href="#" class="list-group-item list-group-item-action">Đổi Mật Khẩu</a>
-            <a href="#" class="list-group-item list-group-item-action">Cài Đặt Thông Báo</a>
-            <a href="#" class="list-group-item list-group-item-action">Những Thiết Lập Riêng Tư</a>
+            <a href="#" class="list-group-item list-group-item-action">Profile</a>
+            <a href="#" class="list-group-item list-group-item-action">Bank</a>
+            <a href="/auth/forgotPassword" class="list-group-item list-group-item-action">Change Password</a>
+            <a href="#" class="list-group-item list-group-item-action">Settings</a>
+            <c:if test="${RoleId == 1}">
+              <a href="/products/list" class="list-group-item list-group-item-action">View Products List</a>
+              <a href="/users/list" class="list-group-item list-group-item-action">View Users List</a>
+            </c:if>
           </div>
         </div>
-<%--        <div class="col-md-9">--%>
-<%--          <h1 class="mb-4">Hồ Sơ Của Tôi</h1>--%>
-<%--          <form action="updateProfile" method="post" enctype="multipart/form-data">--%>
-<%--            <div class="mb-3">--%>
-<%--              <label for="username" class="form-label">Tên đăng nhập</label>--%>
-<%--              <input type="text" id="username" name="username" class="form-control" value="hoangngoctuan143" readonly>--%>
-<%--            </div>--%>
-<%--            <div class="mb-3">--%>
-<%--              <label for="name" class="form-label">Tên</label>--%>
-<%--              <div class="mb-3 d-flex align-items-center">--%>
-<%--                <input type="text" id="name" name="name" class="form-control me-1" value="Hoàng Ngọc Tuấn" readonly>--%>
-<%--                <button type="button" class="btn btn-warning ms-2" id="editNameBtn">Sửa</button>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-<%--            <div class="mb-3">--%>
-<%--              <label for="email" class="form-label ">Email</label>--%>
-<%--              <div class="mb-3 d-flex align-items-center">--%>
-<%--                <input type="email" id="email" name="email" class="form-control me-1" value="ng**********@gmail.com" readonly>--%>
-<%--                <button type="button" class="btn btn-warning ms-2" id="editEmailBtn">Sửa</button>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-<%--            <div class="mb-3 ">--%>
-<%--              <label for="phone" class="form-label me-2">Số điện thoại</label>--%>
-<%--              <div class="mb-3 d-flex align-items-center">--%>
-<%--                <input type="text" id="phone" name="phone" class="form-control" value="********63" readonly>--%>
-<%--                <button type="button" class="btn btn-warning ms-2" id="editPhoneBtn">Sửa</button>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-<%--            <div class="mb-3">--%>
-<%--              <label for="address" class="form-label">Địa chỉ</label>--%>
-<%--              <textarea id="address" name="address" class="form-control" rows="3" readonly>Địa chỉ cũ</textarea>--%>
-<%--              <button type="button" class="btn btn-warning mt-2" id="editAddressBtn">Sửa đổi</button>--%>
-<%--            </div>--%>
-<%--            <div class="mb-3">--%>
-<%--              <label for="dob" class="form-label">Ngày sinh</label>--%>
-<%--              <div class="row">--%>
-<%--                <div class="col">--%>
-<%--                  <select name="dob_day" id="dob_day" class="form-select" required>--%>
-<%--                    <option value="">Day</option>--%>
-<%--                    <c:forEach var="i" begin="1" end="31">--%>
-<%--                      <option value="${i}">${i}</option>--%>
-<%--                    </c:forEach>--%>
-<%--                  </select>--%>
-<%--                </div>--%>
-<%--                <div class="col">--%>
-<%--                  <select name="dob_month" id="dob_month" class="form-select" required>--%>
-<%--                    <option value="">Month</option>--%>
-<%--                    <c:forEach var="i" begin="1" end="12">--%>
-<%--                      <option value="${i}">${i}</option>--%>
-<%--                    </c:forEach>--%>
-<%--                  </select>--%>
-<%--                </div>--%>
-<%--                <div class="col">--%>
-<%--                  <select name="dob_year" id="dob_year" class="form-select" required>--%>
-<%--                    <option value="">Year</option>--%>
-<%--                    <c:forEach var="i" begin="1980" end="2025">--%>
-<%--                      <option value="${i}">${i}</option>--%>
-<%--                    </c:forEach>--%>
-<%--                  </select>--%>
-<%--                </div>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-
-<%--            <div class="mb-3">--%>
-<%--              <label for="avatar" class="form-label">Ảnh đại diện</label>--%>
-<%--              <input type="file" id="avatar" name="avatar" class="form-control" accept="image/jpeg, image/png">--%>
-<%--            </div>--%>
-
-<%--            <div class="text-end">--%>
-<%--              <button type="submit" class="btn btn-primary">Lưu</button>--%>
-<%--            </div>--%>
-<%--          </form>--%>
-<%--        </div>--%>
 
         <div class="col-md-9">
           <h1 class="mb-4">My Profile</h1>
@@ -233,11 +163,6 @@
                 </div>
               </div>
             </div>
-<%--            <div class="mb-3">--%>
-<%--              <label for="avatar" class="form-label">Ảnh đại diện</label>--%>
-<%--              <input type="file" id="avatar" name="avatar" class="form-control" accept="image/jpeg, image/png">--%>
-<%--              <img src="${user.avatarUrl}" alt="Avatar" class="mt-3" style="width: 100px; height: auto;">--%>
-<%--            </div>--%>
             <div class="text-end">
               <button type="submit" class="btn btn-primary">Save</button>
               <button type="submit" class="btn btn-primary">Log out</button>
