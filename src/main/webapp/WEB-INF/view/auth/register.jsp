@@ -7,20 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Pineapple</title>
-    <link rel="shortcut icon" type="image/x-icon" href=" <c:url value = "/assets/images/favicon.png"/>">
-    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/fonts/flaticon/flaticon.css"/>">
-    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/animate.css"/>">
-    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/bootstrap.min.css"/>">
-    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/font-awesome.css" />">
-    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/pe-icon-7-stroke.css"/>">
-    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/owl.carousel.css"/>">
-    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/chosen.css"/>">
-    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/jquery.bxslider.css"/>">
-    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/style.css"/>">
-    <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/dropDown.css"/>">
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value = "/assets/images/favicon.png"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/assets/fonts/flaticon/flaticon.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/animate.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/bootstrap.min.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/font-awesome.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/pe-icon-7-stroke.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/owl.carousel.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/chosen.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/jquery.bxslider.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/style.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/dropDown.css"/>">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
+
 </head>
-<body class="page-inner">
+<body class="page-inne"
 <div class="wrapper">
     <form id="block-search-mobile" method="get" class="block-search-mobile">
         <div class="form-content">
@@ -90,8 +91,11 @@
                 <div class="row">
                     <div class="col-sm-6 border-after">
                         <h5 class="title-login">Create an account</h5>
-                        <c:if test="${not empty message}">
-                            <div class="error-message">${message}</div>
+                        <c:if test="${not empty successMessage}">
+                            <div class="error-message">${successMessage}</div>
+                        </c:if>
+                        <c:if test="${not empty errorMessage}">
+                            <div class="alert alert-danger">${errorMessage}</div>
                         </c:if>
                         <form class="register" method="post" action="<c:url value="/auth/register" />">
                             <p class="form-row form-row-wide col-md-6 padding-left">
@@ -128,51 +132,57 @@
                             <p class="form-row form-row-wide">
                                 <label>Day of Birth<span class="required">*</span></label>
                             <div class="d-flex gap-3">
-                                <select name="birth_day" class="form-select" required>
+                                <select name="birth_day" class="form-select" id="birthDay" onchange="validateBirthDate()" required>
                                     <option value="">Day</option>
                                     <c:forEach var="i" begin="1" end="31">
                                         <option value="${i}">${i}</option>
                                     </c:forEach>
                                 </select>
-                                <select name="birth_month" class="form-select" required>
+                                <select name="birth_month" class="form-select" id="birthMonth" onchange="validateBirthDate()" required>
                                     <option value="">Month</option>
                                     <c:forEach var="i" begin="1" end="12">
                                         <option value="${i}">${i}</option>
                                     </c:forEach>
                                 </select>
-                                <select name="birth_year" class="form-select" required>
+                                <select name="birth_year" class="form-select" id="birthYear" onchange="validateBirthDate()" required>
                                     <option value="">Year</option>
                                     <c:forEach var="i" begin="1900" end="2025">
                                         <option value="${i}">${i}</option>
                                     </c:forEach>
                                 </select>
                             </div>
+                            <span style="color:red" id="birthDateError" class="error"></span><br>
                             </p>
 
                             <p class="form-row form-row-wide">
                                 <label>Email<span class="required">*</span></label>
-                                <input title="email" type="email" name="email" placeholder="Email address" class="input-text">
-                                <span id="emailError" class="error"></span><br>
-                            </p>
-                            <p class="form-row form-row-wide">
-                                <label>Username<span class="required">*</span></label>
-                                <input title="username" type="text" name="username" placeholder="Username" class="input-text">
-                                <span id="usernameError" class="error"></span><br>
-                            </p>
-                            <p class="form-row form-row-wide col-md-6 padding-left">
-                                <label>Password:<span class="required"></span></label>
-                                <input title="pass" type="password" name="password" class="input-text">
-                                <span id="passwordError" class="error"></span><br>
-                            </p>
-                            <p class="form-row form-row-wide col-md-6 padding-right">
-                                <label>Confirm Password<span class="required">*</span></label>
-                                <input title="pass2" type="password" name="confirmPassword" class="input-text">
-                                <span id="confirmPasswordError" class="error"></span><br>
+                                <input title="email" type="email" name="email" placeholder="Email address" class="input-text"
+                                       onchange="validateEmail(this)">
+                                <span style="color:red" id="emailError" class="error"></span><br>
                             </p>
                             <p class="form-row form-row-wide">
                                 <label>Phone Number<span class="required">*</span></label>
-                                <input title="phone" type="text" name="phone" placeholder="Phone Number" class="input-text">
-                                <span id="phoneError" class="error"></span><br>
+                                <input title="phone" type="text" name="phone" placeholder="Phone Number" class="input-text"
+                                       onchange="validatePhone(this)">
+                                <span style="color:red" id="phoneError" class="error"></span><br>
+                            </p>
+                            <p class="form-row form-row-wide">
+                                <label>Username<span class="required">*</span></label>
+                                <input title="username" type="text" name="username" placeholder="Username" class="input-text"
+                                       onchange="validateUsername(this)">
+                                <span style="color:red" id="usernameError" class="error"></span><br>
+                            </p>
+                            <p class="form-row form-row-wide col-md-6 padding-left">
+                                <label>Password:<span class="required"></span></label>
+                                <input title="pass" type="password" name="password" class="input-text" id="password"
+                                       onchange="validatePassword(this)">
+                                <span style="color:red" id="passwordError" class="error"></span><br>
+                            </p>
+                            <p class="form-row form-row-wide col-md-6 padding-right">
+                                <label>Confirm Password<span class="required">*</span></label>
+                                <input title="pass2" type="password" name="confirmPassword" class="input-text" id="confirmPassword"
+                                       onchange="validateConfirmPassword(this)">
+                                <span style="color:red" id="confirmPasswordError" class="error"></span><br>
                             </p>
                             <p class="form-row">
                                 <input type="submit" value="Submit" name="Submit" class="button-submit">
@@ -189,24 +199,25 @@
 </div>
 <a href="#" id="scrollup" title="Scroll to Top">Scroll</a>
 <!-- jQuery -->
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery-2.1.4.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery-ui.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/owl.carousel.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/wow.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery.actual.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/chosen.jquery.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery.bxslider.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery.sticky.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery.elevateZoom.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery-2.1.4.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery-ui.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/owl.carousel.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/wow.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.actual.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/chosen.jquery.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.bxslider.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.sticky.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.elevateZoom.min.js"/>"></script>
 <script src=" <c:url value="/assets/js/fancybox/source/jquery.fancybox.pack.js"/>"></script>
 <script src=" <c:url value="/assets/js/fancybox/source/helpers/jquery.fancybox-media.js"/>"></script>
 <script src=" <c:url value="/assets/js/fancybox/source/helpers/jquery.fancybox-thumbs.js"/>"></script>
 <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/function.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/Modernizr.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery.plugin.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery.countdown.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/validate.js"/>"</script>
+<script type="text/javascript" src="<c:url value="/assets/js/function.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/Modernizr.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.plugin.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.countdown.js"/>"></script>
+<script type="text/javascript" src="<c:url value='/assets/js/validate.js'/>"></script>
+
 </body>
 </html>

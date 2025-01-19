@@ -88,15 +88,12 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6 col-lg-4">
-                        <!-- Tiêu đề Form -->
                         <h3 class="text-center mb-4">Log in to your account</h3>
 
-                        <!-- Thông báo lỗi -->
                         <c:if test="${not empty errorMessage}">
                             <div class="alert alert-danger text-center">${errorMessage}</div>
                         </c:if>
 
-                        <!-- Form đăng nhập -->
                         <form class="p-4 rounded shadow-lg bg-white" method="post" action="<c:url value='/auth/login'/>">
                             <!-- Username -->
                             <div class="mb-3">
