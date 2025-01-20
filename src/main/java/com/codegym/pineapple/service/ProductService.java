@@ -11,7 +11,7 @@ import java.util.Optional;
 public class ProductService {
     private static ProductService productService = null;
 
-    private ProductService(){}
+    public ProductService(){}
 
     public static ProductService getInstance(){
         if (!Optional.ofNullable(productService).isPresent()){
@@ -58,5 +58,9 @@ public class ProductService {
 
     public void addProduct(String color, Integer amount, Double price, String description, Integer productId){
         ProductDao.getInstance().insertProductDetail(color, amount, price, description, productId);
+    }
+
+    public List<Product> searchProductsByName(String name) {
+        return ProductDao.getInstance().searchProductsByName(name);
     }
 }

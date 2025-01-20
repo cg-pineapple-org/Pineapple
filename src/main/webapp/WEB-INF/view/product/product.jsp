@@ -190,7 +190,8 @@
   <!-- end HEADER -->
   <!-- MAIN -->
   <main class="site-main">
-    <div class="container">
+    <div class="block-section-99">
+      <div class="container">
       <div class="title-of-section main-title"><c:out value="Buy ${category.name}"/> </div>
       <div class="tab-product tab-product-fade-effect">
         <ul class="box-tabs nav-tab">
@@ -265,6 +266,196 @@
                   </div>
                 </div>
                 </c:forEach>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="block-daily-deals style1">
+      <div class="container">
+        <div class="title-of-section main-title">Explore New Tech</div>
+        <div
+                class="owl-carousel nav-style2 border-background equal-container"
+                data-nav="true"
+                data-autoplay="false"
+                data-dots="false"
+                data-loop="true"
+                data-margin="30"
+                data-responsive='{"0":{"items":1},"530":{"items":2},"768":{"items":3},"992":{"items":2}}'
+        >
+          <div class="deal-of-day equal-elem">
+            <div class="product-thumb style1">
+              <div class="thumb-inner">
+                <a href="<c:url value = "/products?id=2"/>"
+                ><img src="<c:url value = "/assets/images/store-card-50-cny-iphone-pro-202501_GEO_VN.jpg"/>" alt="d1"
+                /></a>
+              </div>
+            </div>
+            <div class="product-innfo">
+              <div class="product-name">
+                <a href="<c:url value = "/products?id=2"/>">iPhone 16 Pro</a>
+              </div>
+              <span class="price">
+                    <ins>$299</ins>
+                  </span>
+              <span class="star-rating">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <span class="review">5 Review(s)</span>
+                  </span>
+              <div class="product-count-down">
+                <div
+                        class="kt-countdown"
+                        data-y="2020"
+                        data-m="6"
+                        data-d="1"
+                        data-h="10"
+                        data-i="0"
+                        data-s="0"
+                ></div>
+              </div>
+              <a href="#" class="btn-add-to-cart">Add to cart</a>
+            </div>
+          </div>
+          <div class="deal-of-day equal-elem">
+            <div class="product-thumb style1">
+              <div class="thumb-inner">
+                <a href="<c:url value = "/products?id=1"/>"
+                ><img src="<c:url value = "/assets/images/store-card-50-cny-macbook-pro-202501_GEO_VN.jpg"/>" alt="d2"
+                /></a>
+              </div>
+            </div>
+            <div class="product-innfo">
+              <div class="product-name">
+                <a href="<c:url value = "/products?id=1"/>">Macbook Pro</a>
+              </div>
+              <span class="price">
+                    <ins>$229.00</ins>
+                    <del>$259.00</del>
+                  </span>
+              <span class="star-rating">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <span class="review">5 Review(s)</span>
+                  </span>
+              <div class="product-count-down">
+                <div
+                        class="kt-countdown"
+                        data-y="2020"
+                        data-m="7"
+                        data-d="1"
+                        data-h="20"
+                        data-i="0"
+                        data-s="0"
+                ></div>
+              </div>
+              <a href="#" class="btn-add-to-cart">Add to cart</a>
+            </div>
+          </div>
+          <div class="deal-of-day equal-elem">
+            <div class="product-thumb style1">
+              <div class="thumb-inner">
+                <a href="<c:url value = "/products?id=3"/>"
+                ><img src="<c:url value = "/assets/images/store-card-50-cny-ipad-pro-202501_GEO_VN.jpg"/>" alt="d1"
+                /></a>
+              </div>
+            </div>
+            <div class="product-innfo">
+              <div class="product-name">
+                <a href="<c:url value = "/products?id=3"/>">iPad Pro</a>
+              </div>
+              <span class="price">
+                    <ins>$229.00</ins>
+                    <del>$259.00</del>
+                  </span>
+              <span class="star-rating">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <span class="review">5 Review(s)</span>
+                  </span>
+
+              <a href="#" class="btn-add-to-cart">Add to cart</a>
+            </div>
+          </div>
+          <div class="deal-of-day equal-elem">
+            <div class="product-thumb style1">
+              <div class="thumb-inner">
+                <a href="<c:url value = "/products?id=4"/>"
+                ><img src="<c:url value = "/assets/images/store-card-50-cny-watch-ultra-2-202501_GEO_VN.jpg"/>" alt="d2"
+                /></a>
+              </div>
+            </div>
+            <div class="product-innfo">
+              <div class="product-name">
+                <a href="<c:url value = "/products?id=4"/>">Pineapple Watch Ultra</a>
+              </div>
+              <span class="price">
+                    <ins>$229.00</ins>
+                    <del>$259.00</del>
+                  </span>
+              <span class="star-rating">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <span class="review">5 Review(s)</span>
+                  </span>
+              <div class="product-count-down">
+                <div
+                        class="kt-countdown"
+                        data-y="2020"
+                        data-m="7"
+                        data-d="1"
+                        data-h="20"
+                        data-i="0"
+                        data-s="0"
+                ></div>
+              </div>
+              <a href="#" class="btn-add-to-cart">Add to cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block-section-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 col-sm-5">
+            <div class="promotion-banner style-1">
+              <a href="<c:url value = "/products?id=2"/>" class="banner-img">
+                <img
+                        src="<c:url value = "/assets/images/470x250.png"/>"
+                        alt="banner-1"
+                />
+              </a>
+              <div class="promotion-banner-inner">
+                <h4>iPhone</h4>
+                <h3>Sale <strong>1%</strong> Off</h3>
+                <a class="banner-link" href="<c:url value = "/products?id=2"/>">Shop now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7 col-sm-7">
+            <div class="promotion-banner style-1">
+              <a href="<c:url value = "/products?id=8"/>" class="banner-img"
+              ><img src="<c:url value = "/assets/images/669x250.png"/>" alt="banner-2"
+              /></a>
+              <div class="promotion-banner-inner">
+                <h4>Accessories</h4>
+                <h3>Get <strong>25%</strong> Flat Off</h3>
+                <a class="banner-link" href="<c:url value = "/products?id=8"/>">Shop now</a>
               </div>
             </div>
           </div>

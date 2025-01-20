@@ -62,4 +62,6 @@ public class QueryConstant {
 
     public static final String QUERY_FIND_TRANSACTION_BY_USER_ID = "select t.id, t.cart_id, t.checkout_date, c.user_id from transactions t inner join carts c on t.cart_id = c.id where c.user_id = ? limit ? offset ?;";
     public static final String QUERY_FIND_CART_ITEM_BY_CART_ID = "select ci.id, ci.product_detail_id, ci.quantity, pd.color, pd.price, p.name from cart_items ci inner join product_details pd on ci.product_detail_id = pd.id inner join products p on pd.product_id = p.id where ci.cart_id = ?;";
+
+    public static final String QUERY_SEARCH_PRODUCT_BY_NAME = "select p.id, p.name, p.category_id, c.name from products p inner join categories c on p.category_id = c.id where p.name like ? limit ? offset ?;";
 }

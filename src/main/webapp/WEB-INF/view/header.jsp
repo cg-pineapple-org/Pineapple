@@ -133,84 +133,10 @@
 </head>
 <body class="index-opt-1">
 <div class="wrapper">
-  <form id="block-search-mobile" method="get" class="block-search-mobile">
-    <div class="form-content">
-      <div class="control">
-        <a href="#" class="close-block-serach"
-        ><span class="icon flaticon-close"></span
-        ></a>
-        <input
-                type="text"
-                name="search"
-                placeholder="Search"
-                class="input-subscribe"
-        />
-        <button type="submit" class="btn search">
-              <span
-              ><i class="flaticon-magnifying-glass" aria-hidden="true"></i
-              ></span>
-        </button>
-      </div>
-    </div>
-  </form>
-  <div id="block-quick-view-popup" class="block-quick-view-popup">
-    <div class="quick-view-content">
-      <a href="#" class="popup-btn-close"
-      ><span class="flaticon-close"></span
-      ></a>
-      <div class="product-items">
-        <div class="product-image">
-          <a href="#"><img src="assets/images/popup-pro.jpg" alt="p1"/></a>
-        </div>
-        <div class="product-info">
-          <div class="product-name"><a href="#">Photo Camera</a></div>
-          <span class="star-rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <span class="review">5 Review(s)</span>
-              </span>
-          <a href="wishlist.html" class="wishlist"
-          ><i class="fa fa-heart-o" aria-hidden="true"></i>Add to
-            Wishlist</a
-          >
-          <div class="product-infomation">
-            Description Our new HPB12 / A12 battery is rated at 2000mAh and
-            designed to power up Black and Decker FireStorm line of 12V
-            tools allowing...
-          </div>
-        </div>
-        <div class="product-info-price">
-              <span class="price">
-                <ins>$229.00</ins>
-                <del>$259.00</del>
-              </span>
-          <div class="quantity">
-            <h6 class="quantity-title">Quantity:</h6>
-            <div class="buttons-added">
-              <input
-                      type="text"
-                      value="1"
-                      title="Qty"
-                      class="input-text qty text"
-                      size="1"
-              />
-              <a href="#" class="sign plus"><i class="fa fa-plus"></i></a>
-              <a href="#" class="sign minus"><i class="fa fa-minus"></i></a>
-            </div>
-          </div>
-          <a href="#" class="btn-add-to-cart">Add to cart</a>
-        </div>
-      </div>
-    </div>
-  </div>
   <header class="site-header header-opt-1">
     <!-- header-top -->
     <div class="header-top">
       <div class="container">
-        <!-- hotline -->
         <ul class="nav-top-left">
           <li>
             <div class="logo-container">
@@ -338,268 +264,38 @@
               <li class="menu-item-has-children arrow">
                 <a href="index.html">Store</a>
                 <span class="toggle-submenu hidden-md"></span>
-                <ul class="submenu parent-megamenu">
-                  <li class="menu-item">
-                    <a href="index.html">Home 1</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="index2.html">Home 2</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="index3.html">Home 3</a>
-                  </li>
-                </ul>
               </li>
               <li class="menu-item-has-children arrow">
                 <a href="<c:url value = "/products?id=1"/>">Mac</a>
                 <span class="toggle-submenu hidden-md"></span>
-                <ul class="submenu parent-megamenu">
-                  <c:forEach var="product" items="${products}">
-                  <li class="menu-item">
-                    <a href="<c:url value = "/products?${product.id}/"/>"></a>
-                  </li>
-                  </c:forEach>
-                </ul>
               </li>
               <li class="menu-item-has-children arrow item-megamenu">
                 <a href="<c:url value = "/products?id=3"/>">iPad</a>
                 <span class="toggle-submenu hidden-md"></span>
-                <div class="submenu parent-megamenu megamenu">
-                  <div class="row">
-                    <div class="submenu-banner submenu-banner-menu-1">
-                      <div class="col-md-4">
-                        <div class="dropdown-menu-info">
-                          <h6 class="dropdown-menu-title">iPad</h6>
-                          <div class="dropdown-menu-content">
-                            <ul class="menu">
-                              <li class="menu-item">
-                                <a href="#">Laptop</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Speakers</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Tablet Computer</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Monitors</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Projector</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Office</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Networking</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="dropdown-menu-info">
-                          <h6 class="dropdown-menu-title">Computer</h6>
-                          <div class="dropdown-menu-content">
-                            <ul class="menu">
-                              <li class="menu-item">
-                                <a href="#">Computer</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Smartphone </a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Printers</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Game & Consoles</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">New Arrivals</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Monitors</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </li>
               <li class="menu-item-has-children arrow item-megamenu">
                 <a href="<c:url value = "/products?id=2"/>">iPhone</a>
                 <span class="toggle-submenu hidden-md"></span>
-                <div class="submenu parent-megamenu megamenu">
-                  <div class="row">
-                    <div class="submenu-banner submenu-banner-menu-2">
-                      <div class="col-md-3">
-                        <div class="dropdown-menu-info">
-                          <h6 class="dropdown-menu-title">iPhone</h6>
-                          <div class="dropdown-menu-content">
-                            <ul class="menu">
-                              <li class="menu-item">
-                                <a href="#">Laptop</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Speakers</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Tablet Computer</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Monitors</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Projector</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Office</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Networking</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="dropdown-menu-info">
-                          <h6 class="dropdown-menu-title">iPhone</h6>
-                          <div class="dropdown-menu-content">
-                            <ul class="menu">
-                              <li class="menu-item">
-                                <a href="#">Computer</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Smartphone </a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Printers</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Game & Consoles</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">New Arrivals</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Monitors</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="dropdown-menu-info">
-                          <h6 class="dropdown-menu-title">iPhone</h6>
-                          <div class="dropdown-menu-content">
-                            <ul class="menu">
-                              <li class="menu-item">
-                                <a href="#">Computer</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Smartphone </a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Printers</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Game & Consoles</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">New Arrivals</a>
-                              </li>
-                              <li class="menu-item">
-                                <a href="#">Monitors</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3"></div>
-                    </div>
-                  </div>
-                </div>
               </li>
               <li class="menu-item-has-children arrow">
                 <a href="<c:url value = "/products?id=4"/>">Watch</a>
                 <span class="toggle-submenu hidden-md"></span>
-                <ul class="submenu parent-megamenu">
-                  <li class="menu-item">
-                    <a href="checkout.html">Checkout</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="shopping-cart.html">Shopping Cart</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="wishlist.html">Wishlist</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="compare.html">Compare</a>
-                  </li>
-                </ul>
               </li>
               <li class="menu-item-has-children arrow">
                 <a href="<c:url value = "/products?id=5"/>">Airpods</a>
                 <span class="toggle-submenu hidden-md"></span>
-                <ul class="submenu parent-megamenu">
-                  <li class="menu-item">
-                    <a href="blog-grid.html">Blog Grid</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="blog-list.html">Blog List</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="blog-single.html">Blog Single</a>
-                  </li>
-                </ul>
               </li>
               <li class="menu-item-has-children arrow">
                 <a href="<c:url value = "/products?id=6"/>">Airtag</a>
                 <span class="toggle-submenu hidden-md"></span>
-                <ul class="submenu parent-megamenu">
-                  <li class="menu-item">
-                    <a href="about-us.html">About Us</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="contact-us.html">Contact Us</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="login.html">Login</a>
-                  </li>
-                </ul>
               </li>
               <li class="menu-item-has-children arrow">
                 <a href="<c:url value = "/products?id=7"/>">Apple TV</a>
                 <span class="toggle-submenu hidden-md"></span>
-                <ul class="submenu parent-megamenu">
-                  <li class="menu-item">
-                    <a href="about-us.html">About Us</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="contact-us.html">Contact Us</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="login.html">Login</a>
-                  </li>
-                </ul>
               </li>
               <li class="menu-item-has-children arrow">
                 <a href="<c:url value = "/products?id=8"/>">Accessories</a>
                 <span class="toggle-submenu hidden-md"></span>
-                <ul class="submenu parent-megamenu">
-                  <li class="menu-item">
-                    <a href="about-us.html">About Us</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="contact-us.html">Contact Us</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="login.html">Login</a>
-                  </li>
-                </ul>
               </li>
             </ul>
           </div>
