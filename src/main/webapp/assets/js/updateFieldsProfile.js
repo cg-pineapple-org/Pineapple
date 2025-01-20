@@ -17,6 +17,10 @@ document.getElementById("editLastNameBtn").addEventListener("click", function ()
     enableEdit("lastName", "editLastNameBtn");
 });
 
+document.getElementById("editCountryBtn").addEventListener("click", function () {
+    enableEdit("country", "editCountryBtn");
+});
+
 document.getElementById("editPhoneBtn").addEventListener("click", function () {
     enableEdit("phone", "editPhoneBtn");
 });
@@ -24,4 +28,6 @@ document.getElementById("editPhoneBtn").addEventListener("click", function () {
 document.getElementById("editEmailBtn").addEventListener("click", function () {
     enableEdit("email", "editEmailBtn");
 });
+
+
 

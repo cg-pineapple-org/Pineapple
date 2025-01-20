@@ -12,7 +12,6 @@ public class QueryConstant {
     public static final String QUERY_FIND_ALL_PRODUCT = "select id, name, category_id from products;";
     public static final String QUERY_INSERT_PRODUCT_DETAIL = "insert into product_details (color, amount, price, description, product_id) values (?, ?, ?, ? ,?)";
 
-    public static final String QUERY_GET_PASSWORD_BY_USERNAME = "SELECT password FROM accounts WHERE username = ?";
     public static final String QUERY_GET_USERNAME_BY_USERNAME = "SELECT username FROM accounts WHERE username = ?";
     public static final String QUERY_GET_EMAIL_BY_EMAIL = "SELECT email FROM users WHERE email = ?";
     public static final String QUERY_ADD_USER = "INSERT INTO users (first_name, last_name, country, day_of_birth, email, phone, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -22,6 +21,14 @@ public class QueryConstant {
     public static final String QUERY_RESET_TOKEN = "UPDATE accounts SET reset_token = ?, reset_token_expiry = ? WHERE username = ?";
     public static final String QUERY_DELETE_OLD_TOKEN = "DELETE FROM reset_tokens WHERE username = ?";
     public static final int TIME_EXPIRY_TOKEN = 60 * 1000;
+    public static final String QUERY_GET_USER_ID_BY_EMAIL = "SELECT user_id FROM users WHERE email = ?";
+    public static final String QUERY_GET_CART_ID_BY_USER_ID = "SELECT cart_id FROM carts WHERE id = ?";
+    public static final String QUERY_UPDATE_CART_ID = "UPDATE users SET cart_id = ? WHERE id = ?";
+    public static final String QUERY_UPDATE_FROFILE = "UPDATE users u " +
+            "JOIN accounts a ON u.id = a.user_id " +
+            "SET u.first_name = ?, u.last_name = ?, u.country = ?, u.day_of_birth = ?, u.email = ?, u.phone = ? " +
+            "WHERE a.username = ?";
+    public static final String QUERY_INSERT_CART = "INSERT INTO carts (user_id) VALUES (?)";
     public static final String GET_ACCOUNT_BY_USERNAME_QUERY = "" +
             "SELECT user_id, username, password  \n" +
             "        FROM accounts \n" +

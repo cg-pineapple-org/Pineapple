@@ -14,6 +14,10 @@ public class Cart {
         cartItems = new ArrayList<>();
     }
 
+    public Cart(Integer userId) {
+        this.userId = userId;
+    }
+
     public Cart(Integer userId, List<CartItem> cartItems, Double totalPrice, int numberOfItem) {
         this.userId = userId;
         this.cartItems = cartItems;

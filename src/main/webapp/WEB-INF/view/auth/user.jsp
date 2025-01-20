@@ -110,7 +110,7 @@
           </c:if>
 
           <c:catch var="catchtheException">
-          <form action="/updateProfile" method="post" enctype="multipart/form-data">
+          <form action="/updateProfile" method="post">
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
               <input type="text" id="username" name="username" class="form-control" value="${account.username}" readonly>
@@ -121,13 +121,19 @@
                 <input type="text" id="firstName" name="firstName" class="form-control me-2" value="${user.firstName}" readonly>
                 <button type="button" class="btn btn-warning" id="editFirstNameBtn">Change</button>
               </div>
-
             </div>
             <div class="mb-3">
               <label for="lastName" class="form-label">Last Name</label>
               <div class="mb-3 d-flex align-items-center">
                 <input type="text" id="lastName" name="lastName" class="form-control me-1" value="${user.lastName}" readonly>
                 <button type="button" class="btn btn-warning ms-2" id="editLastNameBtn">Change</button>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="country" class="form-label">Last Name</label>
+              <div class="mb-3 d-flex align-items-center">
+                <input type="text" id="country" name="country" class="form-control me-1" value="${user.country}" readonly>
+                <button type="button" class="btn btn-warning ms-2" id="editCountryBtn">Change</button>
               </div>
             </div>
             <div class="mb-3">
@@ -166,8 +172,8 @@
                 </div>
                 <div class="col">
                   <select name="dob_year" id="dob_year" class="form-select" required>
-                    <option value="">Year</option>
-                    <c:forEach var="i" begin="1980" end="2025">
+                    <option value="">Month</option>
+                    <c:forEach var="i" begin="1900" end="2025">
                       <option value="${i}" ${user.dateOfBirth.split('-')[0] == i ? 'selected' : ''}>${i}</option>
                     </c:forEach>
                   </select>

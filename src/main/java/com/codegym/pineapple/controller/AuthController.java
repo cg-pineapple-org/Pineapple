@@ -2,6 +2,7 @@ package com.codegym.pineapple.controller;
 
 import com.codegym.pineapple.dao.AuthDAO;
 import com.codegym.pineapple.model.Account;
+import com.codegym.pineapple.model.Cart;
 import com.codegym.pineapple.model.User;
 import com.codegym.pineapple.service.AuthService;
 import com.codegym.pineapple.utility.EmailMessage;
@@ -209,12 +210,14 @@ public class AuthController extends HttpServlet {
                 String email = req.getParameter("email");
                 String phone = req.getParameter("phone");
 
-
                 dayOfBirth = year + "-" + month + "-" + day;
 
+                User newUser = new User(username, firstName, lastName, country, dayOfBirth, email, phone);
                 try {
                     if (authService.updateProfile(username, firstName, lastName, country, dayOfBirth, email, phone)) {
                         req.setAttribute("successMessageSave", "Profile updated successfully!");
+                        session = req.getSession();
+                        session.setAttribute("user", newUser);
                         resp.sendRedirect("/auth");
                     } else {
                         req.setAttribute("errorMessageSave", "Failed to update profile. Please try again.");

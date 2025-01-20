@@ -2,6 +2,7 @@ package com.codegym.pineapple.service;
 
 import com.codegym.pineapple.dao.AuthDAO;
 import com.codegym.pineapple.model.Account;
+import com.codegym.pineapple.model.Cart;
 import com.codegym.pineapple.model.User;
 import com.codegym.pineapple.utility.EmailMessage;
 import com.codegym.pineapple.utility.HashPasswordUtility;

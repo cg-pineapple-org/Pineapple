@@ -39,6 +39,15 @@ public class User {
         this.cartId = cartId;
     }
 
+    public User(String username, String firstName, String lastName, String country, String dayOfBirth, String email, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.country = country;
+        this.dateOfBirth = dayOfBirth;
+        this.email = email;
+        this.phone = phone;
+    }
+
     public Integer getId() {
         return id;
     }
