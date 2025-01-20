@@ -21,14 +21,14 @@ public class QueryConstant {
     public static final String QUERY_RESET_TOKEN = "UPDATE accounts SET reset_token = ?, reset_token_expiry = ? WHERE username = ?";
     public static final String QUERY_DELETE_OLD_TOKEN = "DELETE FROM reset_tokens WHERE username = ?";
     public static final int TIME_EXPIRY_TOKEN = 60 * 1000;
-    public static final String QUERY_GET_USER_ID_BY_EMAIL = "SELECT user_id FROM users WHERE email = ?";
-    public static final String QUERY_GET_CART_ID_BY_USER_ID = "SELECT cart_id FROM carts WHERE id = ?";
+    public static final String QUERY_GET_USER_ID_BY_EMAIL = "SELECT id FROM users WHERE email = ?";
+    public static final String QUERY_GET_CART_ID_BY_USER_ID = "SELECT id FROM carts WHERE user_id = ?;";
     public static final String QUERY_UPDATE_CART_ID = "UPDATE users SET cart_id = ? WHERE id = ?";
     public static final String QUERY_UPDATE_FROFILE = "UPDATE users u " +
             "JOIN accounts a ON u.id = a.user_id " +
             "SET u.first_name = ?, u.last_name = ?, u.country = ?, u.day_of_birth = ?, u.email = ?, u.phone = ? " +
             "WHERE a.username = ?";
-    public static final String QUERY_INSERT_CART = "INSERT INTO carts (user_id) VALUES (?)";
+    public static final String QUERY_INSERT_CART = "INSERT INTO carts (user_id) VALUES (?);";
     public static final String GET_ACCOUNT_BY_USERNAME_QUERY = "" +
             "SELECT user_id, username, password  \n" +
             "        FROM accounts \n" +
@@ -41,10 +41,10 @@ public class QueryConstant {
             "        WHERE id = ?;";
     public static final String QUERY_LIST_CART_ITEMS = "SELECT pd.amount, p.name, pd.color, pd.price, pd.id, ci.quantity, (pd.price * ci.quantity) AS sub_total\n" +
             "FROM carts c\n" +
-            "JOIN users u ON u.cart_id = c.id\n" +
-            "JOIN cart_items ci ON ci.cart_id = c.id\n" +
-            "JOIN product_details pd ON ci.product_detail_id = pd.id\n" +
-            "JOIN products p ON p.id = pd.product_id;";
+            "inner JOIN users u ON u.cart_id = c.id\n" +
+            "inner JOIN cart_items ci ON ci.cart_id = c.id\n" +
+            "inner JOIN product_details pd ON ci.product_detail_id = pd.id\n" +
+            "inner JOIN products p ON p.id = pd.product_id;";
 
     public static final String QUERY_CALCULATE_CART_TOTAL_PRICE = "SELECT sum(subquery.sub_total) AS cart_total\n" +
             "FROM (SELECT (sum(ci.quantity) * pd.price) AS sub_total\n" +

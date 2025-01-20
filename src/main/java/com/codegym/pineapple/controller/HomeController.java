@@ -35,6 +35,7 @@ public class HomeController extends HttpServlet {
         try {
             HttpSession session = req.getSession();
             Integer userId = (Integer) session.getAttribute("userId");
+            userId = null;
             Integer defaultUserId = 1;
             Cart cart = cartService.getCart(Optional.ofNullable(userId).orElse(defaultUserId));
             session.setAttribute("cart", cart);

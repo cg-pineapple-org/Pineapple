@@ -8,6 +8,7 @@ import com.codegym.pineapple.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.nio.channels.ScatteringByteChannel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -91,7 +92,7 @@ public class AuthDAO {
     }
 
     public boolean createUser(String first_name, String last_name, String country,
-                              String day_of_birth, String email, String phone, String username, String hashedPassword) {
+                              String day_of_birth, String email, String phone, String username, String hashedPassword) throws SQLException {
         try (Connection connection = JdbcConnection.getConnection()) {
             connection.setAutoCommit(false);
 
@@ -105,16 +106,28 @@ public class AuthDAO {
                 userStatement.setInt(7, 2);
 
                 userStatement.executeUpdate();
+                connection.commit();
             }
 
             try (PreparedStatement accountStatement = connection.prepareStatement(QueryConstant.QUERY_ADD_ACCOUNT)) {
                 accountStatement.setString(1, username);
                 accountStatement.setString(2, hashedPassword);
                 accountStatement.executeUpdate();
+                connection.commit();
+            } catch (SQLException e) {
+                logger.error("Error creating user: " + e.getMessage());
             }
-            connection.commit();
             Integer userId = getUserIdByEmail(email);
-            createCart(userId);
+
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_INSERT_CART);
+                    preparedStatement.setInt(1, userId);
+                    preparedStatement.executeUpdate();
+                    connection.commit();
+            } catch (SQLException e) {
+                logger.error("Error creating user: " + e.getMessage());
+            }
+
             updateCartId(getCartId(userId), userId);
             return true;
         } catch (SQLException e) {
@@ -236,7 +249,7 @@ public class AuthDAO {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return resultSet.getInt("user_id");
+                return resultSet.getInt("id");
             }
         } catch (SQLException e) {
             logger.error("Error getting user ID by email: " + e.getMessage());
@@ -250,7 +263,7 @@ public class AuthDAO {
             statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return resultSet.getInt("cart_id");
+                return resultSet.getInt("id");
             }
         } catch (SQLException e) {
             logger.error("Error getting cart ID by user ID: " + e.getMessage());
