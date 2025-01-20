@@ -115,7 +115,7 @@
                                             <div class="product-name"><a href="#">${item.productName}</a></div>
                                         </td>
                                         <td class="tb-price">
-                                            <span class="price">
+                                            <span class="price">$
                                                 <fmt:formatNumber value="${item.productDetail.price}"
                                                                   type="number" minFractionDigits="0"
                                                                   maxFractionDigits="2"/>
@@ -201,11 +201,12 @@
                             <button type="submit" class="btn-continue">
                                 <a href="/" style="color: white">Continue Shopping</a>
                             </button>
-                            <button class="btn-update" onclick="postClear();">
+                            <button class="btn-update" onclick="postClear(event);">
                                 <a href="#" style="color: white">Clear Shopping Cart</a>
                             </button>
                             <script>
-                                function postClear() {
+                                function postClear(event) {
+                                    event.preventDefault();
                                     var form = document.createElement('form');
                                     form.method = 'POST';
                                     form.action = '/cart/clear';

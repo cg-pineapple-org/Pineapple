@@ -154,14 +154,15 @@
             </div>
           </li>
           <div class="form-search">
-            <form>
+            <form action="/search" method="get">
               <div class="box-group">
                 <input
                         type="text"
                         class="form-control"
                         placeholder="Search keyword here..."
+                        name="searchKeyword"
                 />
-                <button class="btn btn-search" type="button">
+                <button class="btn btn-search" type="submit">
                   <span class="flaticon-magnifying-glass"></span>
                 </button>
                 <span
