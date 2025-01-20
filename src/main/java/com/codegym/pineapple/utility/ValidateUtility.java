@@ -35,7 +35,7 @@ public class ValidateUtility {
     }
 
     public boolean checkDayOfBirth(String dayOfBirth) {
-        String regex = "^([12]\\d{3})/(0[1-9]|1[012])/(0[1-9]|[12][0-9]|3[01])$";
+        String regex = "^([12]\\d{3})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
         return dayOfBirth.matches(regex);
     }
 }

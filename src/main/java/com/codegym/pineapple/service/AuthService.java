@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -20,6 +21,7 @@ import java.util.UUID;
 
 public class AuthService {
     private final AuthDAO authDAO;
+    private HttpSession session;
     private static final Logger logger = LogManager.getLogger(AuthDAO.class);
     private ValidateUtility validateUtility = ValidateUtility.getInstance();
 
@@ -126,5 +128,30 @@ public class AuthService {
         emailMessage.setMessage("Hi " + username + ",\n\nClick the link below to reset your password:\n" + resetLink);
         emailMessage.setSubject("Password Reset Request");
         return emailMessage;
+    }
+
+    public User getCurrentUser() {
+        User user = (User) session.getAttribute("user");
+
+        if (user == null) {
+            throw new RuntimeException("User not logged in.");
+        }
+        return user;
+    }
+
+    public boolean updateProfile(String username, String firstName, String lastName, String country, String dayOfBirth, String email, String phone) {
+        if (!Optional.ofNullable(username).isPresent() || email.isEmpty()) {
+            logger.error("Username is required!");
+            return false;
+        }
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setCountry(country);
+        user.setDateOfBirth(dayOfBirth);
+        user.setEmail(email);
+        user.setPhone(phone);
+
+        return authDAO.updateUser(user, username);
     }
 }

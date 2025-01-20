@@ -194,6 +194,9 @@
     <!-- end HEADER -->
     <!-- MAIN -->
     <main class="site-main">
+        <c:if test="${not empty successMessage}">
+            <div class="alert alert-success text-center">${successMessage}</div>
+        </c:if>
         <div class="block-section-1">
             <div class="main-slide slide-opt-1 full-width">
                 <div
@@ -1762,5 +1765,6 @@
 <script type="text/javascript" src=" <c:url value="/assets/js/Modernizr.js"/>"></script>
 <script type="text/javascript" src=" <c:url value="/assets/js/jquery.plugin.js"/>"></script>
 <script type="text/javascript" src=" <c:url value="/assets/js/jquery.countdown.js"/>"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/hiddenAlert.js"/>"></script>
 </body>
 </html>

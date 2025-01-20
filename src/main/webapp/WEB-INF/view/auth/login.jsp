@@ -93,11 +93,14 @@
                         <c:if test="${not empty errorMessage}">
                             <div class="alert alert-danger text-center">${errorMessage}</div>
                         </c:if>
+                        <c:if test="${not empty successMessage}">
+                            <div class="alert alert-success text-center">${successMessage}</div>
+                        </c:if>
 
                         <form class="p-4 rounded shadow-lg bg-white" method="post" action="<c:url value='/auth/login'/>">
                             <!-- Username -->
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username or Email Address:</label>
+                                <label for="username" class="form-label">Username:</label>
                                 <input type="text" id="username" name="username" placeholder="Enter your username or email address"
                                        class="form-control form-control-lg" required>
                             </div>
