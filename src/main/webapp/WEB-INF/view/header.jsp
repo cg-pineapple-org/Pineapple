@@ -234,9 +234,35 @@
             </form>
           </div>
         </ul>
+
         <ul class="nav-top-right">
-          <li><a href="<c:url value = "/auth/login"/>"><i class="flaticon-profile" aria-hidden="true"> Sign in</i></a></li>
+          <c:if test="${not empty user}">
+            <li class="dropdown">
+              <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="flaticon-profile" ></i> ${account.username}
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="<c:url value='/auth'/>">Profile</a></li>
+                <li><a class="dropdown-item" href="<c:url value='/auth/register'/>">Register</a></li>
+                <li><a class="dropdown-item" href="<c:url value='/auth/logout'/>">Log Out</a></li>
+
+              </ul>
+            </li>
+          </c:if>
+
+          <c:if test="${empty user}">
+            <li class="dropdown">
+              <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="flaticon-profile" ></i> Sign In
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="<c:url value='/auth/login'/>">Login</a></li>
+                <li><a class="dropdown-item" href="<c:url value='/auth/register'/>">Register</a></li>
+              </ul>
+            </li>
+          </c:if>
         </ul>
+
       </div>
     </div>
   </header>
@@ -293,5 +319,7 @@
   </div>
   </header>
   </div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

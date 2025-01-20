@@ -40,8 +40,18 @@ public class HomeController extends HttpServlet {
             session.setAttribute("cart", cart);
             req.getRequestDispatcher("WEB-INF/view/index.jsp").forward(req, resp);
 
+//            session = req.getSession(false);
+
+            if (session != null) {
+                String message = (String) session.getAttribute("successMessage");
+                req.setAttribute("successMessage", message);
+            }
+            req.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(req, resp);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+
+

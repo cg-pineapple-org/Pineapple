@@ -19,7 +19,7 @@
   <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/style.css"/>">
   <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/dropDown.css"/>">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="page-inner">
 <div class="wrapper">
@@ -85,23 +85,32 @@
         <!-- Sidebar -->
         <div class="col-md-3">
           <div class="text-center mb-4">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYqc1LSBqacwVLQyzGK1MZWRJoBVI6t8sE2g&s" alt="Avatar" class="rounded-circle img-fluid w-25"/>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYqc1LSBqacwVLQyzGK1MZWRJoBVI6t8sE2g&s" alt="Avatar" class="rounded-circle img-fluid w-35"/>
           </div>
           <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action">Profile</a>
             <a href="#" class="list-group-item list-group-item-action">Bank</a>
             <a href="/auth/forgotPassword" class="list-group-item list-group-item-action">Change Password</a>
-            <a href="#" class="list-group-item list-group-item-action">Settings</a>
+            <a href="/transaction" class="list-group-item list-group-item-action">Transaction</a>
             <c:if test="${RoleId == 1}">
               <a href="/products/list" class="list-group-item list-group-item-action">View Products List</a>
               <a href="/users/list" class="list-group-item list-group-item-action">View Users List</a>
             </c:if>
+            <a href="/auth/logout" class="list-group-item list-group-item-action">Logout</a>
           </div>
         </div>
 
         <div class="col-md-9">
           <h1 class="mb-4">My Profile</h1>
-          <form action="updateProfile" method="post" enctype="multipart/form-data">
+          <c:if test="${not empty successMessageSave}">
+            <div class="alert alert-success">${successMessageSave}</div>
+          </c:if>
+          <c:if test="${not empty errorMessageSave}">
+            <div class="alert alert-danger">${errorMessageSave}</div>
+          </c:if>
+
+          <c:catch var="catchtheException">
+          <form action="/updateProfile" method="post" enctype="multipart/form-data">
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
               <input type="text" id="username" name="username" class="form-control" value="${account.username}" readonly>
@@ -109,36 +118,38 @@
             <div class="mb-3">
               <label for="firstName" class="form-label">First Name</label>
               <div class="mb-3 d-flex align-items-center">
-                <input type="text" id="firstName" name="firstName" class="form-control me-1" value="${user.firstName}" readonly>
-                <button type="button" class="btn btn-warning ms-2" id="editFirstNameBtn">Sửa</button>
+                <input type="text" id="firstName" name="firstName" class="form-control me-2" value="${user.firstName}" readonly>
+                <button type="button" class="btn btn-warning" id="editFirstNameBtn">Change</button>
               </div>
+
             </div>
             <div class="mb-3">
               <label for="lastName" class="form-label">Last Name</label>
               <div class="mb-3 d-flex align-items-center">
                 <input type="text" id="lastName" name="lastName" class="form-control me-1" value="${user.lastName}" readonly>
-                <button type="button" class="btn btn-warning ms-2" id="editLastNameBtn">Sửa</button>
+                <button type="button" class="btn btn-warning ms-2" id="editLastNameBtn">Change</button>
               </div>
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <div class="mb-3 d-flex align-items-center">
                 <input type="email" id="email" name="email" class="form-control me-1" value="${user.email}" readonly>
-                <button type="button" class="btn btn-warning ms-2" id="editEmailBtn">Sửa</button>
+                <button type="button" class="btn btn-warning ms-2" id="editEmailBtn">Change</button>
               </div>
             </div>
+
             <div class="mb-3">
               <label for="phone" class="form-label">Phone Number</label>
               <div class="mb-3 d-flex align-items-center">
-                <input type="text" id="phone" name="phone" class="form-control" value="${user.phone}" readonly>
-                <button type="button" class="btn btn-warning ms-2" id="editPhoneBtn">Sửa</button>
+                <input type="text" id="phone" name="phone" class="form-control me-1" value="${user.phone}" readonly>
+                <button type="button" class="btn btn-warning ms-2" id="editPhoneBtn">Change</button>
               </div>
             </div>
             <div class="mb-3">
-              <label for="day_of_birth" class="form-label">Day of Birth</label>
+              <label for="dob_day" class="form-label">Day of Birth</label>
               <div class="row">
                 <div class="col">
-                  <select name="day_of_birth" id="day_of_birth" class="form-select" required>
+                  <select name="dob_day" id="dob_day" class="form-select" required>
                     <option value="">Day</option>
                     <c:forEach var="i" begin="1" end="31">
                       <option value="${i}" ${user.dateOfBirth.split('-')[2] == i ? 'selected' : ''}>${i}</option>
@@ -163,10 +174,16 @@
                 </div>
               </div>
             </div>
+
             <div class="text-end">
               <button type="submit" class="btn btn-primary">Save</button>
-              <button type="submit" class="btn btn-primary">Log out</button>
             </div>
+            </c:catch>
+
+            <c:if test="${catchtheException != null}">
+              <p>${catchtheException} <br/>
+                There is an exception: ${catchtheException.message}</p>
+            </c:if>
           </form>
         </div>
 
@@ -181,24 +198,27 @@
 </div>
 <a href="#" id="scrollup" title="Scroll to Top">Scroll</a>
 <!-- jQuery -->
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery-2.1.4.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery-ui.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/owl.carousel.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/wow.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery.actual.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/chosen.jquery.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery.bxslider.min.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery.sticky.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery.elevateZoom.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery-2.1.4.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery-ui.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/owl.carousel.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/wow.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.actual.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/chosen.jquery.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.bxslider.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.sticky.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.elevateZoom.min.js"/>"></script>
 <script src=" <c:url value="/assets/js/fancybox/source/jquery.fancybox.pack.js"/>"></script>
 <script src=" <c:url value="/assets/js/fancybox/source/helpers/jquery.fancybox-media.js"/>"></script>
 <script src=" <c:url value="/assets/js/fancybox/source/helpers/jquery.fancybox-thumbs.js"/>"></script>
 <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/function.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/Modernizr.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery.plugin.js"/>"></script>
-<script type="text/javascript" src=" <c:url value="/assets/js/jquery.countdown.js"/>"></script>
-<script src="<c:url value= "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"/>"></script></script>
+<script type="text/javascript" src="<c:url value="/assets/js/function.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/Modernizr.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.plugin.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.countdown.js"/>"></script>
+<script type="text/javascript" src="<c:url value='/assets/js/validate.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/assets/js/updateFieldsProfile.js'/>"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src=" <c:url value="/assets/js/hiddenAlert.js"/>"></script>
 </body>
 </html>

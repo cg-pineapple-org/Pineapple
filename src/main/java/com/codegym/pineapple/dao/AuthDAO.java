@@ -175,4 +175,31 @@ public class AuthDAO {
         }
         return false;
     }
+
+    public boolean updateUser(User user, String username) {
+        String sql = "UPDATE users u " +
+                "JOIN accounts a ON u.id = a.user_id " +
+                "SET u.first_name = ?, u.last_name = ?, u.country = ?, u.day_of_birth = ?, u.email = ?, u.phone = ? " +
+                "WHERE a.username = ?";
+
+        try (Connection connection = JdbcConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getLastName());
+            preparedStatement.setString(3, user.getCountry());
+            preparedStatement.setString(4, user.getDateOfBirth());
+            preparedStatement.setString(5, user.getEmail());
+            preparedStatement.setString(6, user.getPhone());
+            preparedStatement.setString(7, username);
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            return rowsUpdated > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

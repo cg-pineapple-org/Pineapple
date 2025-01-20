@@ -22,7 +22,7 @@ import java.util.Optional;
 
 import static com.codegym.pineapple.service.AuthService.getEmailMessage;
 
-@WebServlet(name = "AuthController", urlPatterns = {"/auth", "/auth/login", "/auth/register", "/auth/logout", "/auth/forgot-password", "/auth/reset-password"})
+@WebServlet(name = "AuthController", urlPatterns = {"/auth", "/auth/login", "/auth/register", "/auth/logout", "/auth/forgot-password", "/auth/reset-password", "/updateProfile"})
 public class AuthController extends HttpServlet {
 
     private String firstName = null;
@@ -87,18 +87,24 @@ public class AuthController extends HttpServlet {
 
                 Map<String, Object> map = authService.login(username, password);
 
-                User user = (User) map.get("user");
-                Account account = (Account) map.get("account");
-                if (Optional.ofNullable(user).isPresent()) {
-                    HttpSession session = req.getSession();
-                    session.setAttribute("userId", user.getId());
-                    session.setAttribute("RoleId", user.getRoleId());
-                    session.setAttribute("cartId", user.getCartId());
-                    session.setAttribute("user", user);
-                    session.setAttribute("account", account);
-                    resp.sendRedirect("/");
-                } else {
-                    req.setAttribute("errorMessage", "Invalid username or password");
+                try {
+                    User user = (User) map.get("user");
+                    Account account = (Account) map.get("account");
+                    if (Optional.ofNullable(user).isPresent()) {
+                        HttpSession session = req.getSession();
+                        session.setAttribute("userId", user.getId());
+                        session.setAttribute("RoleId", user.getRoleId());
+                        session.setAttribute("cartId", user.getCartId());
+                        session.setAttribute("user", user);
+                        session.setAttribute("account", account);
+                        session.setAttribute("successMessage", "Login successful!");
+                        logger.info("Login successful");
+                        resp.sendRedirect("/");
+                    } else {
+                        req.setAttribute("errorMessage", "Invalid username or password");
+                        req.getRequestDispatcher("/WEB-INF/view/auth/login.jsp").forward(req, resp);}
+                } catch (Exception e) {
+                    req.setAttribute("errorMessage", "Login failed");
                     req.getRequestDispatcher("/WEB-INF/view/auth/login.jsp").forward(req, resp);
                 }
                 break;
@@ -107,7 +113,7 @@ public class AuthController extends HttpServlet {
                 lastName = req.getParameter("last_name");
                 country = req.getParameter("country");
                 String day =req.getParameter("birth_day");
-                String mouth =req.getParameter("birth_month");
+                String month =req.getParameter("birth_month");
                 String year =req.getParameter("birth_year");
                 email = req.getParameter("email");
                 phone = req.getParameter("phone");
@@ -115,13 +121,14 @@ public class AuthController extends HttpServlet {
                 password = req.getParameter("password");
                 confirmPassword = req.getParameter("confirmPassword");
 
-                dayOfBirth = year + "-" + mouth + "-" + day;
+                dayOfBirth = year + "-" + month + "-" + day;
 
                 try {
                     if (authService.register(firstName, lastName, country, dayOfBirth, email, phone, username, password, confirmPassword)) {
-                        req.setAttribute("successMessage", "Registration successful!");
+                        req.setAttribute("successMessage", "Registration successful! Please login.");
                         logger.info("Registration successful");
-                        resp.sendRedirect("/auth/login");
+                        req.getRequestDispatcher("/WEB-INF/view/auth/login.jsp").forward(req, resp);
+
                     } else {
                         req.setAttribute("errorMessage", "Registration failed! Email or username already exists!");
                         req.getRequestDispatcher("/WEB-INF/view/auth/register.jsp").forward(req, resp);
@@ -165,7 +172,7 @@ public class AuthController extends HttpServlet {
 
             case "/auth/reset-password":
                 session = req.getSession(false);
-                if (Optional.ofNullable(session).isPresent() || !Optional.ofNullable(session.getAttribute("resetUsername")).isPresent()) {
+                if (!Optional.ofNullable(session).isPresent() || !Optional.ofNullable(session.getAttribute("resetUsername")).isPresent()) {
                     req.setAttribute("errorMessage", "Session expired or invalid access.");
                     req.getRequestDispatcher("/WEB-INF/view/auth/forgotPassword.jsp").forward(req, resp);
                     return;
@@ -191,6 +198,34 @@ public class AuthController extends HttpServlet {
                     req.getRequestDispatcher("/WEB-INF/view/auth/resetPassword.jsp").forward(req, resp);
                 }
                 break;
+            case "/updateProfile":
+                username = req.getParameter("username");
+                String firstName = req.getParameter("firstName");
+                String lastName = req.getParameter("lastName");
+                String country = req.getParameter("country");
+                 day =req.getParameter("dob_day");
+                 month =req.getParameter("dob_month");
+                 year =req.getParameter("dob_year");
+                String email = req.getParameter("email");
+                String phone = req.getParameter("phone");
+
+
+                dayOfBirth = year + "-" + month + "-" + day;
+
+                try {
+                    if (authService.updateProfile(username, firstName, lastName, country, dayOfBirth, email, phone)) {
+                        req.setAttribute("successMessageSave", "Profile updated successfully!");
+                        resp.sendRedirect("/auth");
+                    } else {
+                        req.setAttribute("errorMessageSave", "Failed to update profile. Please try again.");
+                        logger.error("Failed to update profile");
+                        resp.sendRedirect("/auth");
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+
         }
     }
 }

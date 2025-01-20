@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -20,6 +21,7 @@ import java.util.UUID;
 
 public class AuthService {
     private final AuthDAO authDAO;
+    private HttpSession session;
     private static final Logger logger = LogManager.getLogger(AuthDAO.class);
     private ValidateUtility validateUtility = ValidateUtility.getInstance();
 
@@ -37,21 +39,23 @@ public class AuthService {
             map.put("user", user);
             map.put("account", account);
             return map;
+        } else {
+            logger.error("Invalid username or password!");
+            return null;
         }
-        return null;
     }
 
     public boolean register(String firstName, String lastName, String country,
                             String dayOfBirth, String email, String phone, String username, String password, String confirmPassword) throws Exception {
-        if (firstName == null || firstName.trim().isEmpty() ||
-                lastName == null || lastName.trim().isEmpty() ||
-                country == null || country.trim().isEmpty() ||
-                dayOfBirth == null || dayOfBirth.trim().isEmpty() ||
-                email == null || email.trim().isEmpty() ||
-                phone == null || phone.trim().isEmpty() ||
-                username == null || username.trim().isEmpty() ||
-                password == null || password.trim().isEmpty() ||
-                confirmPassword == null || confirmPassword.trim().isEmpty()) {
+        if (!Optional.ofNullable(firstName).isPresent() || firstName.trim().isEmpty() ||
+                !Optional.ofNullable(lastName).isPresent() || lastName.trim().isEmpty() ||
+                !Optional.ofNullable(country).isPresent() || country.trim().isEmpty() ||
+                !Optional.ofNullable(dayOfBirth).isPresent() || dayOfBirth.trim().isEmpty() ||
+                !Optional.ofNullable(email).isPresent() || email.trim().isEmpty() ||
+                !Optional.ofNullable(phone).isPresent() || phone.trim().isEmpty() ||
+                !Optional.ofNullable(username).isPresent() || username.trim().isEmpty() ||
+                !Optional.ofNullable(password).isPresent() || password.trim().isEmpty() ||
+                !Optional.ofNullable(confirmPassword).isPresent() || confirmPassword.trim().isEmpty()) {
 
             logger.error("All fields are required!");
             return false;
@@ -126,5 +130,30 @@ public class AuthService {
         emailMessage.setMessage("Hi " + username + ",\n\nClick the link below to reset your password:\n" + resetLink);
         emailMessage.setSubject("Password Reset Request");
         return emailMessage;
+    }
+
+    public User getCurrentUser() {
+        User user = (User) session.getAttribute("user");
+
+        if (!Optional.ofNullable(user).isPresent()) {
+            throw new RuntimeException("User not logged in.");
+        }
+        return user;
+    }
+
+    public boolean updateProfile(String username, String firstName, String lastName, String country, String dayOfBirth, String email, String phone) {
+        if (!Optional.ofNullable(username).isPresent() || email.isEmpty()) {
+            logger.error("Username is required!");
+            return false;
+        }
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setCountry(country);
+        user.setDateOfBirth(dayOfBirth);
+        user.setEmail(email);
+        user.setPhone(phone);
+
+        return authDAO.updateUser(user, username);
     }
 }
