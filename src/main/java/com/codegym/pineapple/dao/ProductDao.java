@@ -20,8 +20,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-import com.codegym.pineapple.constant.QueryConstant.QUERY_SEARCH_PRODUCT_BY_NAME;
-
 public class ProductDao {
     private static final Logger logger = LoggerFactory.getLogger(ProductDao.class);
     private final Integer DEFAULT_CATEGORY_ID = 1;

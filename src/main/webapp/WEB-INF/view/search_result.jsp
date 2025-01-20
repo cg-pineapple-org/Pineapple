@@ -195,15 +195,36 @@
     <!-- MAIN -->
     <main class="main">
         <div class="container">
-            <h1>Search Results</h1>
-            <c:if test="${empty products}">
-                <p>No products found matching your search.</p>
-            </c:if>
-            <ul>
-                <c:forEach var="product" items="${products}">
-                    <li>${product.name}</li>
-                </c:forEach>
-            </ul>
+            <h2>Search Results for "${param.query}"</h2>
+
+            <c:choose>
+                <c:when test="${not empty products}">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Category ID</th>
+                            <th>Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="product" items="${products}">
+                            <tr>
+                                <td>${product.id}</td>
+                                <td>${product.name}</td>
+                                <td>${product.categoryId}</td>
+                                <td>${product.productDetails.price}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </c:when>
+                <c:otherwise>
+                    <p>No products found for query "${param.query}".</p>
+                </c:otherwise>
+            </c:choose>
+
             <a href="<c:url value='/'>">Back to Home</a>
         </div>
     </main>
