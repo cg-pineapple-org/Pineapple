@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet(name = "CartController", urlPatterns = {"/cart", "/cart/remove", "/cart/clear", "/cart/update"})
 public class CartController extends HttpServlet {
@@ -29,7 +30,7 @@ public class CartController extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
         switch (action) {
             case "/cart":
-                if (cart == null) {
+                if (!Optional.ofNullable(cart).isPresent()) {
                     req.getRequestDispatcher("/WEB-INF/view/cart/signin_cart.jsp").forward(req, resp);
                 } else if (cart.getCartItems().isEmpty()) {
                     req.getRequestDispatcher("/WEB-INF/view/cart/clear_cart.jsp").forward(req, resp);
@@ -47,13 +48,12 @@ public class CartController extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
         Integer cartId = (Integer) session.getAttribute("cartId");
         Integer userId = (Integer) session.getAttribute("userId");
-        if (cartId == null) {
-            cartId = 1;
-        }
-        if (userId == null) {
-            userId = 1;
-        }
+        Integer defaultCartId = 1;
+        Integer defaultUserId = 1;
+        cartId = Optional.ofNullable(cartId).orElse(defaultCartId);
+        userId = Optional.ofNullable(userId).orElse(defaultUserId);
         cart.setId(cartId);
+
         switch (action) {
             case "/cart":
                 Integer productDetailId = Integer.parseInt(req.getParameter("id"));

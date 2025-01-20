@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Optional;
 
 public class CartDao {
     private static final Logger log = LoggerFactory.getLogger(CartDao.class);
@@ -169,7 +170,7 @@ public class CartDao {
 
     public boolean addToCart(Cart cart, Integer cartId, Integer productDetailId, Integer quantity) {
         CartItem cartItem = getCartItemByProductDetailId(productDetailId);
-        if(cartItem != null){
+        if(Optional.ofNullable(cartItem).isPresent()){
             updateCartItemQuantity(cartItem, quantity, productDetailId, cartId);
         }else{
             addNewItemToCart(cart, cartId, productDetailId, quantity);
