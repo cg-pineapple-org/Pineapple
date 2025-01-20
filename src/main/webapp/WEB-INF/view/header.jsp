@@ -184,9 +184,6 @@
                         </span>
                     <span class="counter-your-cart">
                           <span class="counter-label">Your Cart:</span>
-                          <span class="counter-price"><fmt:formatNumber value="${cart.totalPrice}"
-                                                                        type="number" minFractionDigits="0"
-                                                                        maxFractionDigits="2"/></span>
                         </span>
                   </a>
                   <div class="parent-megamenu">
@@ -200,11 +197,6 @@
                             <li class="product-inner">
                               <div class="product-thumb style1">
                                 <div class="thumb-inner">
-                                  <a href="#"
-                                  ><img
-                                          src="#"
-                                          alt="c1"
-                                  /></a>
                                 </div>
                               </div>
                               <div class="product-innfo">
@@ -223,10 +215,6 @@
                               </div>
                             </li>
                           </ol>
-                        </div>
-                        <div class="subtotal">
-                          <span class="label">Total :</span>
-                          <span class="price"></span>
                         </div>
                         <div class="actions">
                           <a

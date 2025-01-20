@@ -32,14 +32,12 @@ public class QueryConstant {
             "               phone, role_id, cart_id \n" +
             "        FROM users \n" +
             "        WHERE id = ?;";
-    public static final String QUERY_LIST_CART_ITEMS = "SELECT p.name, pd.color, pd.price, pd.id, sum(ci.quantity) AS quantity, (sum(ci.quantity) * pd.price) AS sub_total\n" +
+    public static final String QUERY_LIST_CART_ITEMS = "SELECT pd.amount, p.name, pd.color, pd.price, pd.id, ci.quantity, (pd.price * ci.quantity) AS sub_total\n" +
             "FROM carts c\n" +
             "JOIN users u ON u.cart_id = c.id\n" +
             "JOIN cart_items ci ON ci.cart_id = c.id\n" +
             "JOIN product_details pd ON ci.product_detail_id = pd.id\n" +
-            "JOIN products p ON p.id = pd.product_id\n" +
-            "GROUP BY  pd.id\n" +
-            "ORDER BY p.id";
+            "JOIN products p ON p.id = pd.product_id;";
 
     public static final String QUERY_CALCULATE_CART_TOTAL_PRICE = "SELECT sum(subquery.sub_total) AS cart_total\n" +
             "FROM (SELECT (sum(ci.quantity) * pd.price) AS sub_total\n" +
@@ -57,6 +55,28 @@ public class QueryConstant {
             "JOIN product_details pd ON ci.product_detail_id = pd.id\n" +
             "JOIN products p ON p.id = pd.product_id\n" +
             "GROUP BY  pd.id) AS subquery";
+
+    public static final String QUERY_FIND_CART_ITEM_BY_PRODUCT_DETAIL_ID = "SELECT ci.id, ci.product_detail_id, ci.quantity\n" +
+            "FROM carts c\n" +
+            "JOIN users u ON u.cart_id = c.id\n" +
+            "JOIN cart_items ci ON ci.cart_id = c.id\n" +
+            "JOIN product_details pd ON ci.product_detail_id = pd.id\n" +
+            "WHERE pd.id = ?;";
+
+    public static final String QUERY_UPDATE_CART_ITEM_QUANTITY = "UPDATE cart_items \n" +
+            "SET quantity = quantity + ?\n" +
+            "WHERE product_detail_id = ? AND cart_id = ?;";
+
+    public static final String QUERY_UPDATE_CART_ITEM_WITH_NEW_QUANTITY = "UPDATE cart_items \n" +
+            "SET quantity = ?\n" +
+            "WHERE product_detail_id = ? AND cart_id = ?;";
+
+    public static final String QUERY_ADD_NEW_ITEM_TO_CART = "INSERT INTO cart_items(cart_id, product_detail_id, quantity)\n" +
+                                                    "VALUES(?, ?, ?)";
+
+    public static final String QUERY_DELETE_CART_ITEM_BY_PRODUCT_DETAIL_ID = "DELETE FROM cart_items WHERE product_detail_id = ?;";
+
+    public static final String QUERY_DELETE_ALL_CART_ITEM = "DELETE FROM cart_items WHERE cart_id = ?;";
 
     public static final String QUERY_FIND_CATEGORY_BY_ID = "SELECT id, name FROM categories WHERE id = ?";
 

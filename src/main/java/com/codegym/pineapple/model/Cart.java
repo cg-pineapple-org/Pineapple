@@ -72,4 +72,8 @@ public class Cart {
     public void add(CartItem item) {
         this.cartItems.add(item);
     }
+
+    public boolean remove(CartItem cartItem) {
+        return this.cartItems.remove(cartItem);
+    }
 }
