@@ -195,17 +195,17 @@
     <!-- MAIN -->
     <main class="main">
         <div class="container">
-            <h2>Search Results for "${param.query}"</h2>
+            <h2>Search Results for "${query}"</h2>
 
             <c:choose>
                 <c:when test="${not empty products}">
-                    <table>
+                    <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Category ID</th>
-                            <th>Price</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -214,18 +214,21 @@
                                 <td>${product.id}</td>
                                 <td>${product.name}</td>
                                 <td>${product.categoryId}</td>
-                                <td>${product.productDetails.price}</td>
+                                <td>
+                                    <a class="btn btn-primary"
+                                       href="<c:url value="/products/detail?id=${product.id}"/>">Detail</a>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
                     </table>
                 </c:when>
                 <c:otherwise>
-                    <p>No products found for query "${param.query}".</p>
+                    <p>No products found for query "${query}".</p>
                 </c:otherwise>
             </c:choose>
 
-            <a href="<c:url value='/'>">Back to Home</a>
+            <a href="<c:url value='/'/>">Back to Home</a>
         </div>
     </main>
 
