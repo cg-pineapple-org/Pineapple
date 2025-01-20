@@ -87,21 +87,24 @@ public class AuthController extends HttpServlet {
 
                 Map<String, Object> map = authService.login(username, password);
 
-                User user = (User) map.get("user");
-                Account account = (Account) map.get("account");
-                if (Optional.ofNullable(user).isPresent()) {
-                    HttpSession session = req.getSession();
-                    session.setAttribute("userId", user.getId());
-                    session.setAttribute("RoleId", user.getRoleId());
-                    session.setAttribute("cartId", user.getCartId());
-                    session.setAttribute("user", user);
-                    session.setAttribute("account", account);
-                    session.setAttribute("successMessage", "Login successful!");
-                    logger.info("Login successful");
-                    resp.sendRedirect("/");
-
-                } else {
-                    req.setAttribute("errorMessage", "Invalid username or password");
+                try {
+                    User user = (User) map.get("user");
+                    Account account = (Account) map.get("account");
+                    if (Optional.ofNullable(user).isPresent()) {
+                        HttpSession session = req.getSession();
+                        session.setAttribute("userId", user.getId());
+                        session.setAttribute("RoleId", user.getRoleId());
+                        session.setAttribute("cartId", user.getCartId());
+                        session.setAttribute("user", user);
+                        session.setAttribute("account", account);
+                        session.setAttribute("successMessage", "Login successful!");
+                        logger.info("Login successful");
+                        resp.sendRedirect("/");
+                    } else {
+                        req.setAttribute("errorMessage", "Invalid username or password");
+                        req.getRequestDispatcher("/WEB-INF/view/auth/login.jsp").forward(req, resp);}
+                } catch (Exception e) {
+                    req.setAttribute("errorMessage", "Login failed");
                     req.getRequestDispatcher("/WEB-INF/view/auth/login.jsp").forward(req, resp);
                 }
                 break;
@@ -211,10 +214,10 @@ public class AuthController extends HttpServlet {
 
                 try {
                     if (authService.updateProfile(username, firstName, lastName, country, dayOfBirth, email, phone)) {
-                        req.setAttribute("successMessage", "Profile updated successfully!");
+                        req.setAttribute("successMessageSave", "Profile updated successfully!");
                         resp.sendRedirect("/auth");
                     } else {
-                        req.setAttribute("errorMessage", "Failed to update profile. Please try again.");
+                        req.setAttribute("errorMessageSave", "Failed to update profile. Please try again.");
                         logger.error("Failed to update profile");
                         resp.sendRedirect("/auth");
                     }

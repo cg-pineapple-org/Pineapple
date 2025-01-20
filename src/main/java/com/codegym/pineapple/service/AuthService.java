@@ -39,8 +39,10 @@ public class AuthService {
             map.put("user", user);
             map.put("account", account);
             return map;
+        } else {
+            logger.error("Invalid username or password!");
+            return null;
         }
-        return null;
     }
 
     public boolean register(String firstName, String lastName, String country,

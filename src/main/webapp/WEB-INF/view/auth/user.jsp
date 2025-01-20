@@ -91,7 +91,7 @@
             <a href="#" class="list-group-item list-group-item-action">Profile</a>
             <a href="#" class="list-group-item list-group-item-action">Bank</a>
             <a href="/auth/forgotPassword" class="list-group-item list-group-item-action">Change Password</a>
-            <a href="#" class="list-group-item list-group-item-action">Settings</a>
+            <a href="/transaction" class="list-group-item list-group-item-action">Transaction</a>
             <c:if test="${RoleId == 1}">
               <a href="/products/list" class="list-group-item list-group-item-action">View Products List</a>
               <a href="/users/list" class="list-group-item list-group-item-action">View Users List</a>
@@ -102,12 +102,14 @@
 
         <div class="col-md-9">
           <h1 class="mb-4">My Profile</h1>
-          <c:if test="${not empty successMessage}">
-            <div class="alert alert-danger">${successMessage}</div>
+          <c:if test="${not empty successMessageSave}">
+            <div class="alert alert-success">${successMessageSave}</div>
           </c:if>
-          <c:if test="${not empty errorMessage}">
-            <div class="alert alert-danger">${errorMessage}</div>
+          <c:if test="${not empty errorMessageSave}">
+            <div class="alert alert-danger">${errorMessageSave}</div>
           </c:if>
+
+          <c:catch var="catchtheException">
           <form action="/updateProfile" method="post" enctype="multipart/form-data">
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
@@ -176,7 +178,12 @@
             <div class="text-end">
               <button type="submit" class="btn btn-primary">Save</button>
             </div>
+            </c:catch>
 
+            <c:if test="${catchtheException != null}">
+              <p>${catchtheException} <br/>
+                There is an exception: ${catchtheException.message}</p>
+            </c:if>
           </form>
         </div>
 
