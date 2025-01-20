@@ -18,7 +18,6 @@ public class AuthDAO {
 
     private static final Logger logger = LogManager.getLogger(AuthDAO.class);
 
-
     public Account getAccountByUsername(String username) {
         try (Connection connection = JdbcConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(QueryConstant.GET_ACCOUNT_BY_USERNAME_QUERY)) {
@@ -181,13 +180,8 @@ public class AuthDAO {
     }
 
     public boolean updateUser(User user, String username) {
-        String sql = "UPDATE users u " +
-                "JOIN accounts a ON u.id = a.user_id " +
-                "SET u.first_name = ?, u.last_name = ?, u.country = ?, u.day_of_birth = ?, u.email = ?, u.phone = ? " +
-                "WHERE a.username = ?";
-
         try (Connection connection = JdbcConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_UPDATE_FROFILE)) {
 
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
@@ -212,9 +206,8 @@ public class AuthDAO {
     }
 
     public Integer updateCartId(Integer cartId, Integer userId) {
-        String query = "UPDATE users SET cart_id = ? WHERE id = ?";
         try (Connection connection = JdbcConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_UPDATE_CART_ID)) {
             preparedStatement.setInt(1, cartId);
             preparedStatement.setInt(2, userId);
             preparedStatement.executeUpdate();
@@ -228,9 +221,8 @@ public class AuthDAO {
     }
 
     public void createCart(Integer userId) {
-        String query = "INSERT INTO carts (user_id) VALUES (?)";
         try (Connection connection = JdbcConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_INSERT_CART)) {
             preparedStatement.setInt(1, userId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
