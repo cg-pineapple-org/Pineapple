@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.codegym.pineapple.constant.QueryConstant.QUERY_SEARCH_PRODUCT_BY_NAME;
+import com.codegym.pineapple.constant.QueryConstant.QUERY_SEARCH_PRODUCT_BY_NAME;
 
 public class ProductDao {
     private static final Logger logger = LoggerFactory.getLogger(ProductDao.class);
@@ -428,7 +428,7 @@ public class ProductDao {
     public List<Product> searchProductsByName(String name) {
         List<Product> products = new ArrayList<>();
         try (Connection connection = JdbcConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(QUERY_SEARCH_PRODUCT_BY_NAME)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(QueryConstant.QUERY_SEARCH_PRODUCT_BY_NAME)) {
 
             preparedStatement.setString(1, "%" + name + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
