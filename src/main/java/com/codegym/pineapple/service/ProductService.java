@@ -59,4 +59,8 @@ public class ProductService {
     public void addProduct(String color, Integer amount, Double price, String description, Integer productId){
         ProductDao.getInstance().insertProductDetail(color, amount, price, description, productId);
     }
+
+    public List<Product> searchProductsByName(String name) {
+        return ProductDao.getInstance().searchProductsByName(name);
+    }
 }
