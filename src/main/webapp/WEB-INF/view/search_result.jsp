@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Pineapple</title>
-    <link rel="shortcut icon" type="image/x-icon" href=" <c:url value = "/assets/images/favicon.png"/>">
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value='/assets/images/favicon.png'/>">
     <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/fonts/flaticon/flaticon.css"/>">
     <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/animate.css"/>">
     <link rel="stylesheet" type="text/css" href=" <c:url value = "/assets/css/bootstrap.min.css"/>">

@@ -13,7 +13,7 @@ import java.util.List;
 
 @WebServlet(name = "SearchController", urlPatterns = "/search")
 public class SearchController extends HttpServlet {
-    private ProductService productService = new ProductService();
+    private ProductService productService = ProductService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

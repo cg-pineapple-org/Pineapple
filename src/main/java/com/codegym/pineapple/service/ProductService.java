@@ -11,7 +11,7 @@ import java.util.Optional;
 public class ProductService {
     private static ProductService productService = null;
 
-    public ProductService(){}
+    private ProductService(){}
 
     public static ProductService getInstance(){
         if (!Optional.ofNullable(productService).isPresent()){
