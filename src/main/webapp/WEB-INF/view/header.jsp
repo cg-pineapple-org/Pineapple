@@ -15,6 +15,10 @@
       flex-wrap: wrap; /* Cho phép xuống dòng khi màn hình nhỏ */
     }
 
+    .header-opt-1 .header-top a{
+      color: #000000 !important;
+    }
+
     .header-opt-1 .header-top {
       background-color: #ffffff;
     }
@@ -239,7 +243,7 @@
           <c:if test="${not empty user}">
             <li class="dropdown">
               <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="flaticon-profile" ></i> ${account.username}
+                <i class="flaticon-profile" ></i> ${user.firstName} ${user.lastName}
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<c:url value='/auth'/>">Profile</a></li>
