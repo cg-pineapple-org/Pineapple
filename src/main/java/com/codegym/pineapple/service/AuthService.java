@@ -82,10 +82,10 @@ public class AuthService {
             return false;
         }
 
-        if (!validateUtility.checkDayOfBirth(dayOfBirth)) {
-            logger.error("Invalid date of birth!");
-            return false;
-        }
+//        if (!validateUtility.checkDayOfBirth(dayOfBirth)) {
+//            logger.error("Invalid date of birth!");
+//            return false;
+//        }
 
         if (!validateUtility.checkPassword(password)) {
             logger.error("Invalid password!");

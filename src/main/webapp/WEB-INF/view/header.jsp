@@ -222,12 +222,12 @@
                           </ol>
                         </div>
                         <div class="actions">
-                          <a
+                          <a style="color: #FFFFFF !important;"
                                   class="btn btn-viewcart"
                                   href="<c:url value = "/cart"/>"
                           >View cart</a
                           >
-                          <a class="btn btn-checkout" href="checkout.html"
+                          <a style="color: #FFFFFF !important;" class="btn btn-checkout" href="checkout.html"
                           >Checkout</a
                           >
                         </div>
