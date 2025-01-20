@@ -38,9 +38,6 @@ public class HomeController extends HttpServlet {
             Integer defaultUserId = 1;
             Cart cart = cartService.getCart(Optional.ofNullable(userId).orElse(defaultUserId));
             session.setAttribute("cart", cart);
-            req.getRequestDispatcher("WEB-INF/view/index.jsp").forward(req, resp);
-
-//            session = req.getSession(false);
 
             if (session != null) {
                 String message = (String) session.getAttribute("successMessage");
